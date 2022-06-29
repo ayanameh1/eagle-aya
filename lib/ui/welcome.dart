@@ -39,7 +39,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               " Bring your exhibition event\n management to the next level\n with us",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.red,
                 fontFamily: 'Uniform',
               ),
             ),
