@@ -58,7 +58,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   );
               },
               child: Text(
-                "Get Started",
+                "Gettttt",
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'Uniform',
