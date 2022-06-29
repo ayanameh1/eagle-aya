@@ -155,7 +155,7 @@ class _loginscreenState extends State<loginscreen> {
                         // );
                       },
                       child: Text(
-                        "Login",
+                        "Loginnnnnnnnnn",
                         style: TextStyle(
                           color: black,
                           fontFamily: 'Uniform',
@@ -225,7 +225,8 @@ class _BcardState extends State<Bcard> {
             height: MediaQuery.of(context).size.height * 50 / 1920,
           ),
           Text(
-            widget.description,textAlign: TextAlign.center,
+            widget.description,
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: 'Uniform',
             ),
