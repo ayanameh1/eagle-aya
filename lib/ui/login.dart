@@ -1,6 +1,8 @@
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:provider/provider.dart';
+import 'package:eagle/providerChange.dart';
 
 class loginscreen extends StatefulWidget {
   const loginscreen({Key? key}) : super(key: key);
@@ -100,46 +102,47 @@ class _loginscreenState extends State<loginscreen> {
                   Container(
                     width: sizeAware.width * 764 / 1080,
                     height: sizeAware.height * 107 / 1920,
-                    child: TextFormField(
-                      keyboardType: TextInputType.visiblePassword,
-                      obscureText: _obscureText,
-                      onChanged: (String value) {
-                        print(value);
-                      },
-                      validator: (String? value) {
-                        if (value == null || value.trim().length == 0) {
-                          return " password must not be empty";
-                        }
-                        if (value.length < 8) {
-                          return " Password is too short";
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                        hintStyle: TextStyle(
-                          fontFamily: 'Uniform',
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.lock,
-                        ),
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _obscureText = !_obscureText;
-                            });
-                          },
-                          child: Icon(_obscureText
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(54),
+                    child: Consumer<Passwordvisibilty>(
+                        builder: (context, passwordvisibilty, child) {
+                      return TextFormField(
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: passwordvisibilty.obscureTexttt,
+                        onChanged: (String value) {
+                          print(value);
+                        },
+                        validator: (String? value) {
+                          if (value == null || value.trim().length == 0) {
+                            return " password must not be empty";
+                          }
+                          if (value.length < 8) {
+                            return " Password is too short";
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: 'Password',
+                          hintStyle: TextStyle(
+                            fontFamily: 'Uniform',
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.lock,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              passwordvisibilty.eye2();
+                            },
+                            child: Icon(_obscureText
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(54),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                      );
+                    }),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 202 / 1920,
