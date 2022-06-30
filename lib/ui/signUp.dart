@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors
+
 import 'dart:isolate';
 import 'package:eagle/ui/homepage.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,7 @@ class SignUpScreen extends StatelessWidget {
   TextEditingController namecontrller = TextEditingController();
   TextEditingController passworddcontroller = TextEditingController();
 
-  final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
+  final _formkey = GlobalKey<FormState>();
   bool isPassword = true;
   var textInputDecoration;
   bool loading = false;
@@ -82,7 +84,7 @@ class SignUpScreen extends StatelessWidget {
                         }
                         return null;
                       },
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'email',
                         hintStyle: TextStyle(
                           fontFamily: 'Uniform',
@@ -185,7 +187,7 @@ class SignUpScreen extends StatelessWidget {
                         },
                     ),
                   ),
-                  const SizedBox(
+                   SizedBox(
                     height: 30.0,
                   ),
                   Container(

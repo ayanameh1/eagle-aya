@@ -1,21 +1,17 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:provider/provider.dart';
 import 'package:eagle/providerChange.dart';
 
-class loginscreen extends StatefulWidget {
+class loginscreen extends StatelessWidget {
   const loginscreen({Key? key}) : super(key: key);
 
   @override
-  _loginscreenState createState() => _loginscreenState();
-}
-
-class _loginscreenState extends State<loginscreen> {
-  @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
-    bool _obscureText = true;
     List<Bcard> cards = [
       Bcard(
           photoname: 'assets/images/asset 1a.png',
@@ -133,7 +129,7 @@ class _loginscreenState extends State<loginscreen> {
                               onTap: () {
                                 passwordvisibilty.eye2();
                               },
-                              child: Icon(_obscureText
+                              child: Icon(passwordvisibilty.obscureTexttt
                                   ? Icons.visibility
                                   : Icons.visibility_off),
                             ),
@@ -191,6 +187,7 @@ class _loginscreenState extends State<loginscreen> {
   }
 }
 
+// cards
 class Bcard extends StatefulWidget {
   Bcard({Key? key, required this.photoname, required this.description})
       : super(key: key);
@@ -205,9 +202,6 @@ class _BcardState extends State<Bcard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      //color: yellow1,
-      // width: MediaQuery.of(context).size.width * 844 / 1080,
-      // height: MediaQuery.of(context).size.height * 700 / 1920,
       child: Column(
         children: [
           Image(
@@ -215,9 +209,7 @@ class _BcardState extends State<Bcard> {
             width: MediaQuery.of(context).size.width * 600 / 1080,
             height: MediaQuery.of(context).size.height * 600 / 1920,
           ),
-          // SizedBox(
-          //   height: MediaQuery.of(context).size.height * 2 / 1920,
-          // ),
+          // ignore: prefer_const_constructors
           Text(
             'Quick & easy',
             textAlign: TextAlign.center,
