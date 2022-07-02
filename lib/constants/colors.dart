@@ -7,3 +7,4 @@ final Color grey2 = Color(0xff333533);
 final Color grey3 = Color(0xff202020);
 final Color white = Colors.white;
 final Color black = Colors.black;
+final Color darkpurple = Color(0xff5C0099);

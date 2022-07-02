@@ -1,8 +1,10 @@
+import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/addExpo.dart';
+import 'package:eagle/ui/homepage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
+import 'package:floating_bottom_bar/animated_bottom_navigation_bar.dart';
 import 'notification.dart';
 import 'profile.dart';
 
@@ -13,10 +15,16 @@ class HomeLayout extends StatefulWidget {
 
 class _HomeLayoutState extends State<HomeLayout> {
   int currentIndex = 0;
-  List<Widget> screens = [
+  Widget currentScreen =HomePageScreen();
+
+  final List<Widget> screens = [
     ProfileScreen(),
     NotificationScreen(),
+    HomePageScreen(),
   ];
+
+  final PageStorageBucket bucket = PageStorageBucket();
+
   List<String> titles = [
     'Profile',
     'Notrification',
@@ -43,62 +51,101 @@ class _HomeLayoutState extends State<HomeLayout> {
         ),
         shadowColor: Colors.black.withOpacity(0.5),
       ),
-      body: screens[currentIndex],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          navigateTo(context, AddExpoScreen());
-          try {
-            var data = await getdata();
-            print(data);
-            //throw('error !!!!!!!');
-          } catch (error) {
-            print('error ${error.toString()}');
-          }
-        },
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.deepPurple,
+      body: PageStorage(
+        child: currentScreen,
+        bucket: bucket,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      bottomNavigationBar: BottomNavigationBar(
-        //shape: CircularNotchedRectangle(),
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Color(0xffffee32),
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        // ignore: prefer_const_literals_to_create_immutables
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
+
+      bottomNavigationBar: AnimatedBottomNavigationBar(
+        bottomBarItems: [
+
+          //first :home
+          BottomBarItemsModel(
+            icon: const Icon(
+              Icons.home,
+            ),
+            iconSelected: const Icon(
+              Icons.home,
+               //color: yellow1,
+              // size: example.Dimens.iconNormal
+            ),
+            title: ('home'),
+            dotColor: yellow1,
+            onTap: () {
+             setState(() {
+               currentScreen =HomePageScreen();
+             });
+            },
+          ),
+          BottomBarItemsModel(
+            icon: const Icon(
+              Icons.notifications_active_rounded,
+            ),
+            iconSelected: const Icon(
+              Icons.notifications_active_rounded,
+              // color: yellow1,
+              //size: example.Dimens.iconNormal
+            ),
+            title: ('news'),
+            dotColor: yellow1,
+            onTap: () {
+              setState(() {
+                currentScreen =NotificationScreen();
+              });
+            },
+          ),
+          BottomBarItemsModel(
+            icon: const Icon(
               Icons.person,
             ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.notifications_active,
+            iconSelected: const Icon(
+              Icons.person,
+              //color: AppColors.cherryRed,
+              //size: example.Dimens.iconNormal
             ),
-            label: '',
+            title: 'profile',
+            dotColor: yellow1,
+            onTap: () {
+              setState(() {
+                currentScreen =ProfileScreen();
+              });
+            },
+          ),
+          BottomBarItemsModel(
+            icon: const Icon(
+              Icons.menu,
+            ),
+            iconSelected: const Icon(
+              Icons.menu,
+              //color: AppColors.cherryRed,
+              //size: example.Dimens.iconNormal
+            ),
+            title: 'other',
+            dotColor: yellow1,
+            onTap: () {
+              //log('Profile');
+            },
           ),
         ],
+        bottomBarCenterModel: BottomBarCenterModel(
+          centerBackgroundColor: darkpurple,
+          centerIcon: const FloatingCenterButton(
+            child: Icon(
+              Icons.add,
+              color: AppColors.white,
+            ),
+          ),
+         centerIconChild: [
+            FloatingCenterButtonChild(
+              child: const Icon(
+                Icons.add,
+                color: AppColors.white,
+              ),
+              onTap: () {},
+            ),
+         ],
+        ),
       ),
-
     );
   }
-  Future<String> getdata() async {
-    return 'Great a new Product';
-  }
-
-  void navigateTo(context, widget) => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => widget,
-        ),
-      );
 }

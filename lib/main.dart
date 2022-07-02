@@ -1,8 +1,8 @@
+import 'package:eagle/ui/homelayout.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/login.dart';
 import 'package:eagle/ui/signUp.dart';
 import 'package:eagle/ui/welcome.dart';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
     debugShowCheckedModeBanner: false,
         theme: ThemeData(
-        primarySwatch: Colors.amber,
+        //primarySwatch: Colors.yellowAccent,
         appBarTheme: AppBarTheme(
         titleSpacing: 20.0,
         backgroundColor: Colors.white,
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     ),
         ),
         ),
-      home: SignUpScreen(),
+      home: HomeLayout(),
     );
   }
 }

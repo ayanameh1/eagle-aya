@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:eagle/constants/colors.dart';
+import 'package:eagle/ui/login.dart';
 import 'package:eagle/ui/signUp.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +40,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               " Bring your exhibition event\n management to the next level\n with us",
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.red,
+                color: Colors.black,
                 fontFamily: 'Uniform',
               ),
             ),
@@ -53,7 +54,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             child: MaterialButton(
               onPressed: () {
                   Navigator.push(
-                  context,MaterialPageRoute(builder: (context) => SignUpScreen(),
+                  context,MaterialPageRoute(builder: (context) => loginscreen(),
                   ),
                   );
               },
