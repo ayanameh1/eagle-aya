@@ -1,6 +1,7 @@
 import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/addExpo.dart';
 import 'package:eagle/ui/homepage.dart';
+import 'package:eagle/ui/other_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -122,8 +123,9 @@ class _HomeLayoutState extends State<HomeLayout> {
             ),
             title: 'other',
             dotColor: yellow1,
-            onTap: () {
-              //log('Profile');
+            onTap: () {setState(() {
+              currentScreen =Otherscreen();
+            });
             },
           ),
         ],
