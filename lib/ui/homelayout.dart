@@ -46,10 +46,6 @@ class _HomeLayoutState extends State<HomeLayout> {
           width: sizeAware.width * 257 / 1080,
           height: sizeAware.height * 146 / 160,
         ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu),
-        ),
         shadowColor: Colors.black.withOpacity(0.5),
       ),
       body: PageStorage(
