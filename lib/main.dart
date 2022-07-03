@@ -1,5 +1,7 @@
+import 'package:eagle/ui/homelayout.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/login.dart';
+import 'package:eagle/ui/profile.dart';
 import 'package:eagle/ui/welcome.dart';
 
 import 'package:flutter/material.dart';
@@ -15,20 +17,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-    debugShowCheckedModeBanner: false,
-        theme: ThemeData(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
         primarySwatch: Colors.amber,
         appBarTheme: AppBarTheme(
-        titleSpacing: 20.0,
-        backgroundColor: Colors.white,
-        titleTextStyle: TextStyle(
-        color: Colors.white,
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
-    ),
+          titleSpacing: 20.0,
+          backgroundColor: Colors.white,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        ),
-      home: HomePageScreen(),
+      ),
+      home: HomeLayout(),
     );
   }
 }

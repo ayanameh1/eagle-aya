@@ -155,7 +155,7 @@ class _loginscreenState extends State<loginscreen> {
                         // );
                       },
                       child: Text(
-                        "Loginnnnnnnnnn",
+                        "Login",
                         style: TextStyle(
                           color: black,
                           fontFamily: 'Uniform',

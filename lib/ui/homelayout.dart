@@ -1,4 +1,5 @@
 import 'package:eagle/ui/addExpo.dart';
+import 'package:eagle/ui/homepage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -14,11 +15,13 @@ class HomeLayout extends StatefulWidget {
 class _HomeLayoutState extends State<HomeLayout> {
   int currentIndex = 0;
   List<Widget> screens = [
+    HomePageScreen(),
     ProfileScreen(),
     NotificationScreen(),
   ];
   List<String> titles = [
-    'Profile',
+    'Home'
+        'Profile',
     'Notrification',
   ];
   @override
@@ -61,7 +64,7 @@ class _HomeLayoutState extends State<HomeLayout> {
         ),
         backgroundColor: Colors.deepPurple,
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: BottomNavigationBar(
         //shape: CircularNotchedRectangle(),
         type: BottomNavigationBarType.fixed,
@@ -76,6 +79,12 @@ class _HomeLayoutState extends State<HomeLayout> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(
+              Icons.home,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.person,
             ),
             label: '',
@@ -88,11 +97,11 @@ class _HomeLayoutState extends State<HomeLayout> {
           ),
         ],
       ),
-
     );
   }
+
   Future<String> getdata() async {
-    return 'Great a new Product';
+    return 'create a new Expo';
   }
 
   void navigateTo(context, widget) => Navigator.push(

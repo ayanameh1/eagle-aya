@@ -10,15 +10,6 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  int currentIndex = 0;
-  List<Widget> screens = [
-    ProfileScreen(),
-    NotificationScreen(),
-  ];
-  List<String> titles = [
-    'Profile',
-    'Notrification',
-  ];
   @override
   void initState() {
     super.initState();
@@ -31,18 +22,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
     var sizeAware = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(
-        title: SizedBox(
-          child: Image.asset('assets/images/Group 8.png'),
-          width: sizeAware.width * 257 / 1080,
-          height: sizeAware.height * 146 / 160,
-        ),
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu),
-        ),
-        shadowColor: Colors.black.withOpacity(0.5),
-      ),
       body: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(children: [
