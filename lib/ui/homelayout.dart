@@ -1,9 +1,10 @@
+ import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/addExpo.dart';
 import 'package:eagle/ui/homepage.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:eagle/ui/other_menu.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-
+import 'package:floating_bottom_bar/animated_bottom_navigation_bar.dart';
 import 'notification.dart';
 import 'profile.dart';
 
@@ -18,11 +19,15 @@ class _HomeLayoutState extends State<HomeLayout> {
     HomePageScreen(),
     ProfileScreen(),
     NotificationScreen(),
+    HomePageScreen(),
   ];
+
+  final PageStorageBucket bucket = PageStorageBucket();
+
   List<String> titles = [
     'Home'
-        'Profile',
-    'Notrification',
+    'Profile',
+    'Notification',
   ];
   @override
   void initState() {
@@ -46,23 +51,9 @@ class _HomeLayoutState extends State<HomeLayout> {
         ),
         shadowColor: Colors.black.withOpacity(0.5),
       ),
-      body: screens[currentIndex],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          navigateTo(context, AddExpoScreen());
-          try {
-            var data = await getdata();
-            print(data);
-            //throw('error !!!!!!!');
-          } catch (error) {
-            print('error ${error.toString()}');
-          }
-        },
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.deepPurple,
+      body: PageStorage(
+        child: currentScreen,
+        bucket: bucket,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       bottomNavigationBar: BottomNavigationBar(
@@ -86,16 +77,52 @@ class _HomeLayoutState extends State<HomeLayout> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
+              //color: AppColors.cherryRed,
+              //size: example.Dimens.iconNormal
             ),
-            label: '',
+            title: 'profile',
+            dotColor: yellow1,
+            onTap: () {
+              setState(() {
+                currentScreen =ProfileScreen();
+              });
+            },
           ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.notifications_active,
+          BottomBarItemsModel(
+            icon: const Icon(
+              Icons.menu,
             ),
-            label: '',
+            iconSelected: const Icon(
+              Icons.menu,
+              //color: AppColors.cherryRed,
+              //size: example.Dimens.iconNormal
+            ),
+            title: 'other',
+            dotColor: yellow1,
+            onTap: () {setState(() {
+              currentScreen =Otherscreen();
+            });
+            },
           ),
         ],
+        bottomBarCenterModel: BottomBarCenterModel(
+          centerBackgroundColor: darkpurple,
+          centerIcon: const FloatingCenterButton(
+            child: Icon(
+              Icons.add,
+              color: AppColors.white,
+            ),
+          ),
+         centerIconChild: [
+            FloatingCenterButtonChild(
+              child: const Icon(
+                Icons.add,
+                color: AppColors.white,
+              ),
+              onTap: () {},
+            ),
+         ],
+        ),
       ),
     );
   }
