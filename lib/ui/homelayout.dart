@@ -1,8 +1,7 @@
-import 'package:eagle/constants/colors.dart';
+ import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/addExpo.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/other_menu.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:floating_bottom_bar/animated_bottom_navigation_bar.dart';
@@ -16,9 +15,8 @@ class HomeLayout extends StatefulWidget {
 
 class _HomeLayoutState extends State<HomeLayout> {
   int currentIndex = 0;
-  Widget currentScreen =HomePageScreen();
-
-  final List<Widget> screens = [
+  List<Widget> screens = [
+    HomePageScreen(),
     ProfileScreen(),
     NotificationScreen(),
     HomePageScreen(),
@@ -27,8 +25,9 @@ class _HomeLayoutState extends State<HomeLayout> {
   final PageStorageBucket bucket = PageStorageBucket();
 
   List<String> titles = [
+    'Home'
     'Profile',
-    'Notrification',
+    'Notification',
   ];
   @override
   void initState() {
@@ -52,50 +51,27 @@ class _HomeLayoutState extends State<HomeLayout> {
         child: currentScreen,
         bucket: bucket,
       ),
-
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        bottomBarItems: [
-
-          //first :home
-          BottomBarItemsModel(
-            icon: const Icon(
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      bottomNavigationBar: BottomNavigationBar(
+        //shape: CircularNotchedRectangle(),
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Color(0xffffee32),
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        // ignore: prefer_const_literals_to_create_immutables
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.home,
             ),
-            iconSelected: const Icon(
-              Icons.home,
-               //color: yellow1,
-              // size: example.Dimens.iconNormal
-            ),
-            title: ('home'),
-            dotColor: yellow1,
-            onTap: () {
-             setState(() {
-               currentScreen =HomePageScreen();
-             });
-            },
+            label: '',
           ),
-          BottomBarItemsModel(
-            icon: const Icon(
-              Icons.notifications_active_rounded,
-            ),
-            iconSelected: const Icon(
-              Icons.notifications_active_rounded,
-              // color: yellow1,
-              //size: example.Dimens.iconNormal
-            ),
-            title: ('news'),
-            dotColor: yellow1,
-            onTap: () {
-              setState(() {
-                currentScreen =NotificationScreen();
-              });
-            },
-          ),
-          BottomBarItemsModel(
-            icon: const Icon(
-              Icons.person,
-            ),
-            iconSelected: const Icon(
+          BottomNavigationBarItem(
+            icon: Icon(
               Icons.person,
               //color: AppColors.cherryRed,
               //size: example.Dimens.iconNormal
@@ -146,4 +122,15 @@ class _HomeLayoutState extends State<HomeLayout> {
       ),
     );
   }
+
+  Future<String> getdata() async {
+    return 'create a new Expo';
+  }
+
+  void navigateTo(context, widget) => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => widget,
+        ),
+      );
 }

@@ -209,16 +209,37 @@ class loginscreen extends StatelessWidget {
                               ),
                             ]),
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 200 / 1920,
+                  
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 202 / 1920,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 359 / 1080,
+                    height: MediaQuery.of(context).size.height * 82 / 1920,
+                    child: MaterialButton(
+                      onPressed: () {
+                        // Navigator.push(
+                        //   context,MaterialPageRoute(builder: (context) => SignUpScreen(),
+                        // ),
+                        // );
+                      },
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                          color: black,
+                          fontFamily: 'Uniform',
+                        ),
                       ),
-                    ],
+            
+              
                   ),
                 ),
-              ),
+                    ],
+              ), 
             ),
           ),
-        ));
+        ),
+      )));
   }
 }
 
