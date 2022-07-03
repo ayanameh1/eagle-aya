@@ -1,11 +1,7 @@
 import 'package:eagle/ui/homelayout.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/login.dart';
-<<<<<<< HEAD
-import 'package:eagle/ui/profile.dart';
-=======
 import 'package:eagle/ui/signUp.dart';
->>>>>>> 7aecb1b9e528f7052310778f7f3a298a9bda69fa
 import 'package:eagle/ui/welcome.dart';
 import 'package:flutter/material.dart';
 
@@ -20,15 +16,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-<<<<<<< HEAD
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.amber,
-=======
-    debugShowCheckedModeBanner: false,
-        theme: ThemeData(
         //primarySwatch: Colors.yellowAccent,
->>>>>>> 7aecb1b9e528f7052310778f7f3a298a9bda69fa
         appBarTheme: AppBarTheme(
           titleSpacing: 20.0,
           backgroundColor: Colors.white,
@@ -38,11 +28,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-<<<<<<< HEAD
       ),
-=======
-        ),
->>>>>>> 7aecb1b9e528f7052310778f7f3a298a9bda69fa
       home: HomeLayout(),
     );
   }
