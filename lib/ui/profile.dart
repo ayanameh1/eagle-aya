@@ -45,8 +45,9 @@ class _profilebodyState extends State<profilebody> {
           ? Container(
         padding: EdgeInsets.all(20),
               child: Center(
-                  child: SpinKitThreeBounce(
+                  child: SpinKitPouringHourGlassRefined(
               color: yellow1,
+                    size:   MediaQuery.of(context).size.width * 500 / 1080,
             )))
           : Column(
               mainAxisSize: MainAxisSize.max,
@@ -58,7 +59,7 @@ class _profilebodyState extends State<profilebody> {
                     child: CircleAvatar(
                         radius: 60,
                         backgroundImage:
-                            AssetImage('assets/images/Asset 4a.png')),
+                            AssetImage('assets/images/Asset 1@4x.png')),
                   ),
                 ),
                 Padding(
