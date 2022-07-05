@@ -32,11 +32,6 @@ class SignUpScreen extends StatelessWidget {
     } else {
       print("Not validated");
     }
-    // @override
-    // Widget build(BuildContext context) {
-    //   // TODO: implement build
-    //   throw UnimplementedError();
-    // }
   }
 
   @override
@@ -71,9 +66,7 @@ class SignUpScreen extends StatelessWidget {
                               child: Center(
                                   child: SpinKitPouringHourGlassRefined(
                                 color: yellow1,
-                                size: MediaQuery.of(context).size.width *
-                                    500 /
-                                    1080,
+                                size: MediaQuery.of(context).size.width * 500/1080,
                               )))
                           : Column(
                               children: [
@@ -81,12 +74,8 @@ class SignUpScreen extends StatelessWidget {
                                   child: Image(
                                     image: AssetImage(
                                         'assets/images/Asset 6a.png'),
-                                    width: MediaQuery.of(context).size.width *
-                                        630 /
-                                        1080,
-                                    height: MediaQuery.of(context).size.height *
-                                        365 /
-                                        1920,
+                                    width: MediaQuery.of(context).size.width * 630/1080,
+                                    height: MediaQuery.of(context).size.height * 365/1920,
                                   ),
                                 ),
                                 Center(
@@ -95,12 +84,10 @@ class SignUpScreen extends StatelessWidget {
                                   ),),
                                 ),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.height *
-                                      134 /
-                                      1920,
+                                  height: MediaQuery.of(context).size.height * 134/1920,
                                 ),
                                 Container(
-                                  width: sizeAware.width * 820 / 1080,
+                                  width: sizeAware.width * 820/1080,
                                   //height: sizeAware.height * 125 / 1920,
                                   child: TextFormField(
                                     controller: emailcontrller,
@@ -276,7 +263,8 @@ class SignUpScreen extends StatelessWidget {
                                         obscureText:
                                             passwordvisibilty.obscureTextt,
                                         validator: (String? value) {
-                                          if (value!.isEmpty) {
+                                          if (value == null ||
+                                              value.trim().length == 0) {
                                             return " password must not be empty";
                                           }
                                           if (value.length < 8) {
@@ -285,10 +273,10 @@ class SignUpScreen extends StatelessWidget {
                                           if (value.length > 12) {
                                             return " Password is too long";
                                           }
-                                          // if (passwordcontroller.value !=
-                                          //     passworddcontroller.value) {
-                                          //   return " password is not matching";
-                                          // }
+                                          if (passwordcontroller.value !=
+                                              passworddcontroller.value) {
+                                            return " password is not matching";
+                                          }
                                           return null;
                                         },
                                         decoration: InputDecoration(
@@ -328,20 +316,16 @@ class SignUpScreen extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: MediaQuery.of(context).size.height * 90 /1920,
+                                  height: MediaQuery.of(context).size.height * 90/1920,
                                 ),
                                 Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Container(
                                         width:
-                                            MediaQuery.of(context).size.width *
-                                                359 /
-                                                1080,
+                                            MediaQuery.of(context).size.width * 359/1080,
                                         height:
-                                            MediaQuery.of(context).size.height *
-                                                82 /
-                                                1920,
+                                            MediaQuery.of(context).size.height * 82/1920,
                                         child: MaterialButton(
                                           onPressed: () async {
                                             if (_formkey.currentState!
