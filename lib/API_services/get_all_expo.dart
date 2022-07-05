@@ -4,7 +4,7 @@ import 'package:eagle/models/all_expo_data.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-//class GetAll {
+
   Future<List<AllExpoData>?> getallexpo() async {
     try {
       final allexpo = await http.get(
@@ -31,4 +31,4 @@ import 'package:http/http.dart' as http;
     }
 
   }
-//}
+

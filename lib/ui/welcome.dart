@@ -2,7 +2,7 @@
 
 import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/login.dart';
-import 'package:eagle/ui/signUp.dart';
+import 'package:eagle/ui/sign_up.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {

@@ -1,5 +1,5 @@
-import 'package:eagle/API/get_all_expo.dart';
-import 'package:eagle/API/get_profile.dart';
+import 'package:eagle/API_services/get_all_expo.dart';
+import 'package:eagle/API_services/get_profile.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/addExpo.dart';
 import 'package:eagle/ui/homepage.dart';

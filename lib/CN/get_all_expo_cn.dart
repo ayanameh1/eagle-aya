@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:eagle/API/get_all_expo.dart';
+import 'package:eagle/API_services//get_all_expo.dart';
 import 'package:eagle/models/all_expo_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
