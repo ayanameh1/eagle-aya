@@ -1,3 +1,4 @@
+import 'package:eagle/ui/addExpo.dart';
 import 'package:eagle/ui/homelayout.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/login.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: HomeLayout(),
+      home: AddExpoScreen(),
     );
   }
 }
