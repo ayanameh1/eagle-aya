@@ -2,7 +2,7 @@
 
 import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/homepage.dart';
-import 'package:eagle/ui/signUp.dart';
+import 'package:eagle/ui/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:provider/provider.dart';

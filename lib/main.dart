@@ -1,8 +1,7 @@
-import 'package:eagle/ui/addExpo.dart';
 import 'package:eagle/ui/homelayout.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/login.dart';
-import 'package:eagle/ui/signUp.dart';
+import 'package:eagle/ui/sign_up.dart';
 import 'package:eagle/ui/welcome.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        //primarySwatch: Colors.yellowAccent,
+        primaryColor:  Color(0xffffd100),
+        primarySwatch: Colors.grey,
         appBarTheme: AppBarTheme(
           titleSpacing: 20.0,
           backgroundColor: Colors.white,
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: AddExpoScreen(),
+      home: SignUpScreen(),
     );
   }
 }
