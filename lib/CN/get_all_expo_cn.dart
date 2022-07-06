@@ -10,12 +10,15 @@ class GetAllExpo extends ChangeNotifier{
 
 
   late final body;
-  List<AllExpoData> ? data ;
+    List<AllExpoData> ? data ;
   bool loading = false;
 
  getallexpoData() async {
    loading = true;
-   data = await getallexpo();
+   data = (await getallexpo())!;
+   // if(data!.statusCode){
+   //
+   // }
    loading =false;
    notifyListeners();
  }

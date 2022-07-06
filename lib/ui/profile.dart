@@ -35,27 +35,23 @@ class _profilebodyState extends State<profilebody> {
     final profilemodel = Provider.of<Profile>(context, listen: false);
     profilemodel.getprofileInfo();
   }
-  // void initState() {
-  //   super.initState();
-  //   final profilemodel = Provider.of<Profile>(context, listen: false);
-  //   profilemodel.getprofileInfo();
-  // }
 
   @override
   Widget build(BuildContext context) {
     //final profilemodel = Provider.of<Profile>(context);
-    return Consumer<Profile>(
-      builder: (context,profilemodel, child) {
+    return Consumer<Profile>(builder: (context, profilemodel, child) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
         child: profilemodel.loading
             ? Container(
-          padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(20),
                 child: Center(
-                    child: SpinKitPouringHourGlassRefined(
-                color: yellow1,
-                      size:   MediaQuery.of(context).size.width * 500 / 1080,
-              )))
+                  child: SpinKitPouringHourGlassRefined(
+                    color: yellow1,
+                    size: MediaQuery.of(context).size.width * 500 / 1080,
+                  ),
+                ),
+              )
             : Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +100,7 @@ class _profilebodyState extends State<profilebody> {
                   ),
                 ],
               ),
-      );}
-    );
+      );
+    });
   }
 }

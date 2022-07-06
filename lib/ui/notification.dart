@@ -1,21 +1,26 @@
+import 'package:eagle/API_services/get_all_expo.dart';
+import 'package:eagle/API_services/get_all_expo.dart';
+import 'package:eagle/CN/get_all_expo_cn.dart';
+import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
+import 'package:eagle/API_services/get_all_expo.dart';
+import 'homepage.dart';
 
-class NotificationScreen extends StatefulWidget{
-  @override
-  State<NotificationScreen> createState() => _NotificationScreenState();
-}
+class NotificationScreen extends StatelessWidget {
+  const NotificationScreen({Key? key}) : super(key: key);
 
-class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Text('NEWS'),
-          ],
-        ),
+      body: Column(
+        children: [
+          Text('NEWS'),
+        ],
       ),
     );
   }
 }
+
+//Text('title: ${post?.body}\n\n')

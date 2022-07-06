@@ -39,12 +39,12 @@ class SignUpScreen extends StatelessWidget {
     var sizeAware = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        leading: Image(
-          image: AssetImage('assets/images/Group 8.png'),
-          width: sizeAware.width * 299 / 1080,
-          height: sizeAware.height * 131 / 1920,
+        title: SizedBox(
+          child: Image.asset('assets/images/Group 8.png'),
+          width: sizeAware.width * 257 / 1080,
+          height: sizeAware.height * 146 / 160,
         ),
-        shadowColor: Colors.black.withOpacity(0),
+        shadowColor: Colors.black.withOpacity(0.5),
       ),
       body: SingleChildScrollView(
         child: SafeArea(

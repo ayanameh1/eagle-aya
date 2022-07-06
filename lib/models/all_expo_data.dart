@@ -6,8 +6,9 @@ class AllExpoData {
   String? name;
   String? email;
   String? body;
+  String? title;
 
-  AllExpoData({this.postId, this.id, this.name, this.email, this.body});
+  AllExpoData({this.postId, this.id, this.name, this.email, this.body,this.title});
 
   AllExpoData.fromJson(Map<String, dynamic> json) {
     postId = json['postId'];
@@ -15,6 +16,7 @@ class AllExpoData {
     name = json['name'];
     email = json['email'];
     body = json['body'];
+    title =json['title'];
   }
 
   Map<String, dynamic> toJson() {
@@ -24,6 +26,7 @@ class AllExpoData {
     data['name'] = this.name;
     data['email'] = this.email;
     data['body'] = this.body;
+    data['title'] = this.title;
     return data;
   }
 }
