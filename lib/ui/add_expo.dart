@@ -2,7 +2,7 @@ import 'package:eagle/components/components.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-import 'addExpo2.dart';
+import 'add_expo2.dart';
 
 class AddExpoScreen extends StatelessWidget {
   @override
