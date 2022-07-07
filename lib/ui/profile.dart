@@ -87,7 +87,6 @@ class _profilebodyState extends State<profilebody> {
                       children: [
                         Text(
                           'h',
-                          //profilemodel.pf?.body??"",
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -97,6 +96,66 @@ class _profilebodyState extends State<profilebody> {
                         ),
                       ],
                     ),
+                  ),
+                  //language
+                  ListTile(
+                    title: Text(
+                      'My Exhibitions',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Uniform',
+                      ),
+                    ),
+                    onTap: (){
+                      DropdownMenuItem(
+                        child: Text(
+                          'arabic',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Uniform',
+                          ),
+                        ),
+                        value: 'dds',
+                      );
+                    },
+                    trailing:Icon(Icons.keyboard_arrow_down_outlined),
+                  ),
+                  ListTile(
+                    title: Text(
+                      'My Investments',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'Uniform',
+                      ),
+                    ),
+                    trailing: DropdownButton<String>(
+                        value: null,
+                        underline: Container(),
+                        icon: Icon(Icons.keyboard_arrow_down_outlined),
+                        elevation: 16,
+                        onChanged: (value) {},
+                        items: const [
+                          DropdownMenuItem(
+                            child: Text(
+                              'arabic',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Uniform',
+                              ),
+                            ),
+                            value: 'dds',
+                          ),
+                          DropdownMenuItem(
+                            child: Text(
+                              'English',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: 'Uniform',
+                              ),
+                            ),
+                            value: 'dsa',
+                          ),
+                        ]),
                   ),
                 ],
               ),

@@ -1,19 +1,10 @@
 import 'package:eagle/components/components.dart';
 import 'package:eagle/constants/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
-import 'addExpo2.dart';
 
-class AddExpoScreen extends StatefulWidget {
-  @override
-  State<AddExpoScreen> createState() => _AddExpoScreenState();
-}
+import 'add_expo2.dart';
 
-class _AddExpoScreenState extends State<AddExpoScreen> {
-  set value(String? value) {}
-
+class AddExpoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
@@ -28,50 +19,6 @@ class _AddExpoScreenState extends State<AddExpoScreen> {
     TextEditingController busemailcontroller = TextEditingController();
     TextEditingController faxnumcontroller = TextEditingController();
     TextEditingController countrycontroller = TextEditingController();
-    
-     //list
-    String? value;
-    final items = ['Syria','Lebanon','Sudan','Russia','India','Armenia','Belarus','Brazil','Egypt','Iran','Jordan','Oman','palestine','Pakistan','Qatar','United-Arab-Emirates','Philippines'];
-    DropdownMenuItem<String> buildMenuItem(String? item) => DropdownMenuItem(
-      value: item,
-      child: Text(
-        item!,
-        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-      )
-    );
-
-    //images
-    File? image;
-    String? _image;
-    final picker = ImagePicker();
-    Future getImageFromGallery() async {
-      final pickedFile =
-      await picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
-
-      setState(() {
-        if (pickedFile != null) {
-          _image = pickedFile.path;
-        }
-      });
-    }
-    Future showOptions() async {
-      showCupertinoModalPopup(
-        context: context,
-        builder: (context) => CupertinoActionSheet(
-          actions: [
-            CupertinoActionSheetAction(
-              child: Text('Photo Gallery'),
-              onPressed: () {
-                Navigator.of(context).pop();
-                getImageFromGallery();
-              },
-            ),
-          ],
-        ),
-      );
-    }
-
-
     return Scaffold(
       appBar: AppBar(
         leading: Image(
@@ -269,30 +216,16 @@ class _AddExpoScreenState extends State<AddExpoScreen> {
                       SizedBox(
                         height: sizeAware.height * 28 / 1920,
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular((50.0)),
-                          border: Border.all(),
-                        ),
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                             value: value,
-                            iconSize: 36,
-                            hint: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ListTile(
-                                title: Text('Country'),
-                              ),
-                            ),
-                            icon: Icon(Icons.arrow_drop_down),
-                            isExpanded: true,
-                            items: items.map(buildMenuItem).toList(),
-                            onChanged: (value) =>
-                                setState(() => this.value = value),
-                          ),
-                        ),
-                      ),
-                      ],
+                      defaulTexttFormField(
+                          controller: countrycontroller,
+                          label: 'Country',
+                          validate: (String? value) {
+                            if (value == null || value.trim().length == 0) {
+                              return 'fax number must not be empty';
+                            }
+                            return null;
+                          })
+                    ],
                   ),
                 ),
                 decoration: BoxDecoration(
@@ -323,39 +256,6 @@ class _AddExpoScreenState extends State<AddExpoScreen> {
                     ),
                     SizedBox(
                       height: sizeAware.height * 47 / 1920,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 0, left: 0),
-                      child: GestureDetector(
-                        onTap: () {
-                          showOptions();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.grey[200],
-                              border: Border.all(
-                                width: 1,
-                              )),
-                          child: Center(
-                            child: _image == null
-                                ? Padding(
-                              padding:
-                              EdgeInsets.fromLTRB(25, 25, 25, 25),
-                              child: Icon(
-                                Icons.image,
-                                size: 40,
-                                color: Color(0xFF03566E),
-                              ),
-                            )
-                                : CircleAvatar(
-                              radius: 50.0,
-                              backgroundImage:
-                              FileImage(File(_image!)),
-                            ),
-                          ),
-                        ),
-                      ),
                     ),
                   ]),
                 ),
@@ -388,7 +288,6 @@ class _AddExpoScreenState extends State<AddExpoScreen> {
                     SizedBox(
                       height: sizeAware.height * 47 / 1920,
                     ),
-                    Text('')
                   ]),
                 ),
                 decoration: BoxDecoration(
