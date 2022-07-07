@@ -1,39 +1,31 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:eagle/CN/get_all_expo_cn.dart';
+import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/notification.dart';
 import 'package:eagle/ui/profile.dart';
 import 'package:eagle/ui/welcome.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:provider/provider.dart';
 
-class HomePageScreen extends StatefulWidget {
-  @override
-  State<HomePageScreen> createState() => _HomePageScreenState();
-}
 
-class _HomePageScreenState extends State<HomePageScreen> {
-  int currentIndex = 0;
-  List<Widget> screens = [
-    ProfileScreen(),
-    NotificationScreen(),
-  ];
-  List<String> titles = [
-    'Profile',
-    'Notrification',
-  ];
-  @override
-  void initState() {
-    super.initState();
-  }
+
+class HomePageScreen extends StatelessWidget {
+  const HomePageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var sizeAware = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30.0),
-          child: Center(
-            child: Column(children: [
+      body: ChangeNotifierProvider(
+        create: (context) => GetAllExpo(),
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 30.0,
+              ),
               Text(
                 "Happening Now",
                 textAlign: TextAlign.center,
@@ -46,16 +38,58 @@ class _HomePageScreenState extends State<HomePageScreen> {
               SizedBox(
                 height: 30.0,
               ),
-              ExpoCard('Damascus International fair'),
-              SizedBox(
-                height: 30.0,
-              ),
-              ExpoCard('Damascus book fair'),
-            ]),
-          )),
+              expolist(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }}
+
+
+
+//list of all exhibitions
+class expolist extends StatefulWidget {
+  @override
+  State<expolist> createState() => _expolistState();
+}
+class _expolistState extends State<expolist> {
+  @override
+  void initState() {
+    super.initState();
+    final allexpo = Provider.of<GetAllExpo>(context, listen: false);
+    allexpo.getallexpoData();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<GetAllExpo>(
+      builder: (context, allexpo, child) {
+        return allexpo.loading?Center(
+          child: SpinKitPouringHourGlassRefined(
+            color: yellow1,
+            size: MediaQuery.of(context).size.width * 500 / 1080,
+          ),
+        ): Expanded(
+          child: ListView.builder(
+              itemCount: allexpo.data?.length,
+              itemBuilder: (context, i) {
+                final pos = allexpo.data;
+                final post = pos?[i];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: ExpoCard('${post?.id.toString()}'),
+                );
+              }),
+        );
+      },
     );
   }
 }
+
+
+
+//card design
 
 class ExpoCard extends StatelessWidget {
   ExpoCard(this.name);
@@ -64,6 +98,8 @@ class ExpoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Text(
             name,

@@ -1,18 +1,17 @@
 import 'dart:convert';
-
 import 'package:eagle/models/all_expo_data.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-
-  Future<List<AllExpoData>?> getallexpo() async {
+List <AllExpoData> expolist = [];
+  Future<List<AllExpoData>> getallexpo() async {
     try {
       final allexpo = await http.get(
-          Uri.parse("https://jsonplaceholder.typicode.com/posts/1/comments"));
+          Uri.parse("https://jsonplaceholder.typicode.com/posts"));
       //
       if (allexpo.statusCode == 200) {
         var body = jsonDecode(allexpo.body) as List;
-        List <AllExpoData> expolist = [];
+
         body.forEach((element) {
           AllExpoData a = AllExpoData.fromJson(element);
           expolist.add(a);
@@ -23,11 +22,17 @@ import 'package:http/http.dart' as http;
       //
       else {
         print('sorry ');
+        AllExpoData n = AllExpoData(postId:2,id:2,name:'name',email:'email',body:'body');
+        expolist=[n];
+        return expolist;
       }
     }
     //
     catch (e) {
       print(e.toString());
+      AllExpoData n = AllExpoData(postId:2,id:2,name:'name',email:'email',body:'body');
+      expolist=[n];
+      return expolist;
     }
 
   }

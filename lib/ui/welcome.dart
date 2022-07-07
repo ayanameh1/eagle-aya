@@ -37,7 +37,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           ),
           Center(
             child: Text(
-              " Bring your exhibition event\n management to the next level\n with us",
+              "fff Bring your exhibition event\n management to the next level\n with us",
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,
