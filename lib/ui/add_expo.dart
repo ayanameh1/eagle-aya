@@ -1,7 +1,6 @@
 import 'package:eagle/components/components.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
-
 import 'add_expo2.dart';
 
 class AddExpoScreen extends StatelessWidget {
@@ -21,34 +20,37 @@ class AddExpoScreen extends StatelessWidget {
     TextEditingController countrycontroller = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-        leading: Image(
-          image: AssetImage('assets/images/Group 8.png'),
-          width: sizeAware.width * 299 / 1080,
-          height: sizeAware.height * 131 / 1920,
+        title: SizedBox(
+          child: Image.asset('assets/images/Group 8.png'),
+          width: sizeAware.width * 257 / 1080,
+          height: sizeAware.height * 146 / 160,
         ),
-        shadowColor: Colors.black.withOpacity(0),
+        shadowColor: Colors.black.withOpacity(0.5),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.symmetric(vertical: 10.0,horizontal: 20.0),
           child: SafeArea(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              SizedBox(height: sizeAware.height * 40 / 1920),
               Container(
-                width: sizeAware.width * 406 / 1080,
-                height: sizeAware.width * 111 / 1920,
+                width: sizeAware.width * 500 / 1080,
+                height: sizeAware.width * 190 / 1920,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(18),
                   color: darkpurple,
                 ),
-                child: Text(
-                  'Step 1',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: white,
-                    fontFamily: 'Uniform',
-                    fontWeight: FontWeight.bold,
-                    //fontSize: 30,
+                child: Center(
+                  child: Text(
+                    'Step 1',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: white,
+                      fontFamily: 'Uniform',
+                      fontWeight: FontWeight.bold,
+                      //fontSize: 30,
+                    ),
                   ),
                 ),
               ),
@@ -67,15 +69,18 @@ class AddExpoScreen extends StatelessWidget {
                       SizedBox(
                         height: sizeAware.height * 47 / 1920,
                       ),
-                      defaulTexttFormField(
-                        controller: fnamecontroller,
-                        label: 'First name',
-                        validate: (String? value) {
-                          if (value == null || value.trim().length == 0) {
-                            return 'first name  must not be empty';
-                          }
-                          return null;
-                        },
+                      SizedBox(
+                        height:sizeAware.height * 100 / 1920,
+                        child: defaulTexttFormField(
+                          controller: fnamecontroller,
+                          label: 'First name',
+                          validate: (String? value) {
+                            if (value == null || value.trim().length == 0) {
+                              return 'first name  must not be empty';
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                       SizedBox(
                         height: sizeAware.height * 28 / 1920,
@@ -338,4 +343,50 @@ class AddExpoScreen extends StatelessWidget {
       ),
     );
   }
+  Widget defaulTexttFormField({
+    required TextEditingController controller,
+    required String label,
+    IconData? prefix,
+    IconData? suffix,
+    bool? obscuretext,
+    Function()? onTap,
+    Function(String)? onChanged,
+    Function()? suffixPressed,
+    Function(String)? onSubmit,
+    TextInputType? type,
+    String Phone = '',
+    required String? Function(String?)? validate,
+    bool isPassword = false,
+  }) =>
+      TextFormField(
+        validator: validate,
+        keyboardType: type,
+        onTap: onTap,
+        obscureText: isPassword,
+        onChanged: onChanged,
+        onFieldSubmitted: onSubmit,
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: TextStyle(
+            color: black,
+            fontFamily: 'Uniform',
+          ),
+          prefixIcon: Icon(
+            prefix,
+          ),
+          suffixIcon: suffix != null
+              ? IconButton(
+            onPressed: suffixPressed,
+            icon: Icon(
+              suffix,
+            ),
+          )
+              : null,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(54),),),
+          focusColor: Color(0xffffd100),
+        ),
+      );
 }
