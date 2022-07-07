@@ -1,9 +1,6 @@
-import 'package:eagle/ui/homelayout.dart';
-import 'package:eagle/ui/homepage.dart';
-import 'package:eagle/ui/login.dart';
-import 'package:eagle/ui/sign_up.dart';
-import 'package:eagle/ui/welcome.dart';
+import 'package:eagle/ui/addExpo.dart';
 import 'package:flutter/material.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -11,14 +8,15 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
+  static final String title = 'Select Countries';
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor:  Color(0xffffd100),
+        primaryColor:Color(0xffffd100),
+        focusColor: Color(0xffffd100),
         primarySwatch: Colors.grey,
         appBarTheme: AppBarTheme(
           titleSpacing: 20.0,
@@ -30,7 +28,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: SignUpScreen(),
+      home: AddExpoScreen(),
     );
   }
 }
