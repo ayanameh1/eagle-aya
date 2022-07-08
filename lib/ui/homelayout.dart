@@ -1,7 +1,7 @@
 import 'package:eagle/API_services/get_all_expo.dart';
 import 'package:eagle/API_services/get_profile.dart';
 import 'package:eagle/constants/colors.dart';
-import 'package:eagle/ui/add_expo.dart';
+import 'package:eagle/ui/invest/step_1.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/other_menu.dart';
 import 'package:flutter/cupertino.dart';
