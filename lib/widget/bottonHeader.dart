@@ -13,11 +13,14 @@ class ButtonHeaderWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => HeaderWidget(
-    title: title,
-    child: ButtonWidget(
-      text: text,
-      onClicked: onClicked,
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: HeaderWidget(
+      title: title,
+      child: ButtonWidget(
+        text: text,
+        onClicked: onClicked,
+      ),
     ),
   );
 }
@@ -43,7 +46,7 @@ class ButtonWidget extends StatelessWidget {
     child: FittedBox(
       child: Text(
         text,
-        style: TextStyle(fontSize: 20, color: Colors.black),
+        style: TextStyle(fontSize: 20, color: Colors.black,fontFamily: 'Uniform'),
       ),
     ),
     onPressed: onClicked,
