@@ -71,8 +71,9 @@ class _profilebodyState extends State<profilebody> {
                       children: [
                         Text(
                           profilemodel.pf?.title ?? "",
-                          style:Theme.of(context).textTheme.bodyText1,
-
+                          style:TextStyle(
+                            fontSize: 16,
+                          ),
                   ),
                         SizedBox(
                           width: 5,
