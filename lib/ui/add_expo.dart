@@ -1,10 +1,20 @@
 import 'package:eagle/components/components.dart';
 import 'package:eagle/constants/colors.dart';
+import 'package:eagle/ui/add_expo2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+//import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
-import 'add_expo2.dart';
+class AddExpoScreen extends StatefulWidget {
+  @override
+  State<AddExpoScreen> createState() => _AddExpoScreenState();
+}
 
-class AddExpoScreen extends StatelessWidget {
+class _AddExpoScreenState extends State<AddExpoScreen> {
+  String? value;
+
+
   @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
@@ -19,9 +29,71 @@ class AddExpoScreen extends StatelessWidget {
     TextEditingController busemailcontroller = TextEditingController();
     TextEditingController faxnumcontroller = TextEditingController();
     TextEditingController countrycontroller = TextEditingController();
+    
+
+    //list
+    String? value;
+    final items = [
+      'Syria',
+      'Lebanon',
+      'Sudan',
+      'Russia',
+      'India',
+      'Armenia',
+      'Belarus',
+      'Brazil',
+      'Egypt',
+      'Iran',
+      'Jordan',
+      'Oman',
+      'palestine',
+      'Pakistan',
+      'Qatar',
+      'United-Arab-Emirates',
+      'Philippines'
+    ];
+    DropdownMenuItem<String> buildMenuItem(String? item) => DropdownMenuItem(
+        value: item,
+        child: Text(
+          item!,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ));
+
+    //images
+    // File? image;
+    // String? _image;
+    // final picker = ImagePicker();
+    // Future getImageFromGallery() async {
+    //   final pickedFile =
+    //       await picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
+    //
+    //   setState(() {
+    //     if (pickedFile != null) {
+    //       _image = pickedFile.path;
+    //     }
+    //   });
+    // }
+    //
+    // Future showOptions() async {
+    //   showCupertinoModalPopup(
+    //     context: context,
+    //     builder: (context) => CupertinoActionSheet(
+    //       actions: [
+    //         CupertinoActionSheetAction(
+    //           child: Text('Photo Gallery'),
+    //           onPressed: () {
+    //             Navigator.of(context).pop();
+    //             getImageFromGallery();
+    //           },
+    //         ),
+    //       ],
+    //     ),
+    //   );
+    // }
+
     return Scaffold(
       appBar: AppBar(
-        leading: Image(
+        title: Image(
           image: AssetImage('assets/images/Group 8.png'),
           width: sizeAware.width * 299 / 1080,
           height: sizeAware.height * 131 / 1920,
@@ -60,95 +132,169 @@ class AddExpoScreen extends StatelessWidget {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Personl informaiton'),
+                        children: const [
+                          Text('Personal information'),
                         ],
                       ),
                       SizedBox(
                         height: sizeAware.height * 47 / 1920,
                       ),
-                      defaulTexttFormField(
+                      TextFormField(
                         controller: fnamecontroller,
-                        label: 'First name',
-                        validate: (String? value) {
-                          if (value == null || value.trim().length == 0) {
-                            return 'first name  must not be empty';
-                          }
-                          return null;
+                        keyboardType: TextInputType.name,
+                        onFieldSubmitted: (String value) {
+                          print(value);
                         },
-                      ),
+                        onChanged: (String value) {
+                          print(value);
+                        },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'first name is not be empty';
+                            }
+                            return null;
+                          },
+                        decoration: const InputDecoration(
+                          labelText: 'First Name',
+                          border: OutlineInputBorder( borderRadius: BorderRadius.all(
+                            Radius.circular(54),),),
+                          focusColor: Color(0xffffd100),
+                        )),
                       SizedBox(
                         height: sizeAware.height * 28 / 1920,
                       ),
-                      defaulTexttFormField(
-                        controller: lnamecontroller,
-                        label: 'Last Name',
-                        validate: (String? value) {
-                          if (value == null || value.trim().length == 0) {
-                            return 'last name  must not be empty';
-                          }
-                          return null;
-                        },
-                      ),
+                      TextFormField(
+                        controller:lnamecontroller ,
+                          keyboardType: TextInputType.name,
+                          onFieldSubmitted: (String value) {
+                            print(value);
+                          },
+                          onChanged: (String value) {
+                            print(value);
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'last name is not be empty';
+                            }
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                            labelText: 'Last Name',
+                            border: OutlineInputBorder( borderRadius: BorderRadius.all(
+                              Radius.circular(54),),),
+                            focusColor: Color(0xffffd100),
+                          )),
                       SizedBox(
                         height: sizeAware.height * 28 / 1920,
                       ),
-                      defaulTexttFormField(
+                      TextFormField(
                           controller: postitlecontroller,
-                          label: 'Position Title',
-                          validate: (String? value) {
-                            if (value == null || value.trim().length == 0) {
-                              return 'position title must not be empty';
+                          keyboardType: TextInputType.text,
+                          onFieldSubmitted: (String value) {
+                            print(value);
+                          },
+                          onChanged: (String value) {
+                            print(value);
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'position title is not be empty';
                             }
                             return null;
-                          }),
+                          },
+                          decoration:const  InputDecoration(
+                            labelText: 'Position Title',
+                            border: OutlineInputBorder( borderRadius: BorderRadius.all(
+                              Radius.circular(54),),),
+                            focusColor: Color(0xffffd100),
+                          )),
                       SizedBox(
                         height: sizeAware.height * 28 / 1920,
                       ),
-                      defaulTexttFormField(
-                          controller: phone1controller,
-                          label: 'Phone Number',
-                          validate: (String? value) {
-                            if (value == null || value.trim().length == 0) {
-                              return 'phone number must not be empty';
-                            }
-                            return null;
-                          }),
+                      TextFormField(
+                        controller: phone1controller,
+                        keyboardType: TextInputType.phone,
+                        onFieldSubmitted: (String value) {
+                          print(value);
+                        },
+                        onChanged: (String value) {
+                          print(value);
+                        },
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Phone Number is not be empty';
+                          }
+                          return null;
+                        },
+                        decoration:const  InputDecoration(
+                          labelText: 'Phone Number',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.all(
+                            Radius.circular(54),),),
+                          focusColor: Color(0xffffd100),
+                        )),
                       SizedBox(
                         height: sizeAware.height * 28 / 1920,
                       ),
-                      defaulTexttFormField(
-                          controller: curaddresscontroller,
-                          label: 'Current Address',
-                          validate: (String? value) {
-                            if (value == null || value.trim().length == 0) {
-                              return 'current address must not be empty';
-                            }
-                            return null;
-                          }),
+                      TextFormField(
+                        controller: curaddresscontroller,
+                        keyboardType: TextInputType.text,
+                        onFieldSubmitted: (String value) {
+                          print(value);
+                        },
+                        onChanged: (String value) {
+                          print(value);
+                        },
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'current address is not be empty';
+                          }
+                          return null;
+                        },
+                        decoration:const InputDecoration(
+                          labelText: 'Current Address',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.all(
+                            Radius.circular(54),),),
+                          focusColor: Color(0xffffd100),
+                        )),
                       SizedBox(
                         height: sizeAware.height * 28 / 1920,
                       ),
-                      defaulTexttFormField(
-                          controller: emailaddresscontroller,
-                          label: 'Email Address',
-                          validate: (String? value) {
-                            if (value == null || value.trim().length == 0) {
-                              return 'email Addressr must not be empty';
-                            }
-                            return null;
-                          })
+                      TextFormField(
+                        controller: emailaddresscontroller,
+                        keyboardType: TextInputType.emailAddress,
+                        onFieldSubmitted: (String value) {
+                          print(value);
+                        },
+                        onChanged: (String value) {
+                          print(value);
+                        },
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'email address is not be empty';
+                          }
+                          return null;
+                        },
+                        decoration:const InputDecoration(
+                          labelText: 'Email Address',
+
+                          border: OutlineInputBorder(borderRadius: BorderRadius.all(
+                            Radius.circular(54),),),
+                          focusColor: Color(0xffffd100),
+                        )),
+                      SizedBox(
+                        height: sizeAware.height * 28 / 1920,
+                      ),
                     ],
                   ),
                 ),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.grey[200],
+                    color: Colors.grey[400],
                     border: Border.all(
                       width: 1,
                     )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Container(
@@ -158,79 +304,142 @@ class AddExpoScreen extends StatelessWidget {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Company informaiton'),
+                        children: const [
+                          Text('Company information'),
                         ],
                       ),
                       SizedBox(
                         height: sizeAware.height * 47 / 1920,
                       ),
-                      defaulTexttFormField(
+                      TextFormField(
                         controller: compnamecontroller,
-                        label: 'Company name',
-                        validate: (String? value) {
-                          if (value == null || value.trim().length == 0) {
-                            return 'company name  must not be empty';
-                          }
-                          return null;
-                        },
-                      ),
+                          keyboardType: TextInputType.name,
+                          onFieldSubmitted: (String value) {
+                            print(value);
+                          },
+                          onChanged: (String value) {
+                            print(value);
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'company name is not be empty';
+                            }
+                            return null;
+                          },
+                          decoration:const InputDecoration(
+                            labelText: 'Company name',
+
+                            border: OutlineInputBorder(borderRadius: BorderRadius.all(
+                              Radius.circular(54),),),
+                            focusColor: Color(0xffffd100),
+                          )),
                       SizedBox(
                         height: sizeAware.height * 28 / 1920,
                       ),
-                      defaulTexttFormField(
+                      TextFormField(
                         controller: phone2controller,
-                        label: 'Phone Number',
-                        validate: (String? value) {
-                          if (value == null || value.trim().length == 0) {
-                            return 'phone number  must not be empty';
-                          }
-                          return null;
-                        },
-                      ),
+                          keyboardType: TextInputType.phone,
+                          onFieldSubmitted: (String value) {
+                            print(value);
+                          },
+                          onChanged: (String value) {
+                            print(value);
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'phone number is not be empty';
+                            }
+                            return null;
+                          },
+                          decoration:const InputDecoration(
+                            labelText: 'Phone Number',
+
+                            border: OutlineInputBorder(borderRadius: BorderRadius.all(
+                              Radius.circular(54),),),
+                            focusColor: Color(0xffffd100),
+                          )),
                       SizedBox(
                         height: sizeAware.height * 28 / 1920,
                       ),
-                      defaulTexttFormField(
+                      TextFormField(
                         controller: busemailcontroller,
-                        label: 'Business email',
-                        validate: (String? value) {
-                          if (value == null || value.trim().length == 0) {
-                            return 'business email must not be empty';
-                          }
-                          return null;
-                        },
-                      ),
+                          keyboardType: TextInputType.emailAddress,
+                          onFieldSubmitted: (String value) {
+                            print(value);
+                          },
+                          onChanged: (String value) {
+                            print(value);
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'business email is not be empty';
+                            }
+                            return null;
+                          },
+                          decoration:const InputDecoration(
+                            labelText: 'Business Email',
+
+                            border: OutlineInputBorder(borderRadius: BorderRadius.all(
+                              Radius.circular(54),),),
+                            focusColor: Color(0xffffd100),
+                          )),
                       SizedBox(
                         height: sizeAware.height * 28 / 1920,
                       ),
-                      defaulTexttFormField(
-                          controller: faxnumcontroller,
-                          label: 'Fax Number',
-                          validate: (String? value) {
-                            if (value == null || value.trim().length == 0) {
-                              return 'fax number must not be empty';
+                      TextFormField(
+                        controller: faxnumcontroller,
+                          keyboardType: TextInputType.number,
+                          onFieldSubmitted: (String value) {
+                            print(value);
+                          },
+                          onChanged: (String value) {
+                            print(value);
+                          },
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'fax number is not be empty';
                             }
                             return null;
-                          }),
+                          },
+                          decoration:const InputDecoration(
+                            labelText: 'Fax Number',
+
+                            border: OutlineInputBorder(borderRadius: BorderRadius.all(
+                              Radius.circular(54),),),
+                            focusColor: Color(0xffffd100),
+                          )),
                       SizedBox(
                         height: sizeAware.height * 28 / 1920,
                       ),
-                      defaulTexttFormField(
-                          controller: countrycontroller,
-                          label: 'Country',
-                          validate: (String? value) {
-                            if (value == null || value.trim().length == 0) {
-                              return 'fax number must not be empty';
-                            }
-                            return null;
-                          })
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular((50.0)),
+                          border: Border.all(),
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: value,
+                            iconSize: 36,
+                            hint: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: ListTile(
+                                title: Text('Country'),
+                              ),
+                            ),
+                            icon: const Icon(Icons.arrow_drop_down),
+                            isExpanded: true,
+                            items: items.map(buildMenuItem).toList(),
+                            onChanged: (value) =>
+                                setState(() => this.value= value),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.grey[200],
+                    color: Colors.grey[400],
                     border: Border.all(
                       width: 1,
                     )),
@@ -244,10 +453,10 @@ class AddExpoScreen extends StatelessWidget {
                   child: Column(children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                      children: const [
                         Expanded(
                           child: Text(
-                            'Plaese provide a brochure to make it easier for visitor to understand your work and connect with you',
+                            'Please provide a brochure to make it easier for visitor to understand your work and connect with you',
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -257,11 +466,40 @@ class AddExpoScreen extends StatelessWidget {
                     SizedBox(
                       height: sizeAware.height * 47 / 1920,
                     ),
-                  ]),
-                ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(bottom: 0, left: 0),
+                    //   child: GestureDetector(
+                    //     onTap: () {
+                    //       showOptions();
+                    //     },
+                    //     child: Container(
+                    //       decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(30),
+                    //           color: Colors.grey[200],
+                    //           border: Border.all(
+                    //             width: 1,
+                    //           )),
+                    //       child: Center(
+                    //         child: _image == null
+                    //             ? Padding(
+                    //                 padding:
+                    //                     EdgeInsets.fromLTRB(25, 25, 25, 25),
+                    //                 child: Icon(
+                    //                   Icons.image,
+                    //                   size: 40,
+                    //                   color: Color(0xFF03566E),
+                    //                 ),
+                    //               )
+                    //             : Image.file(File(_image!)),
+                    //       ),
+                    //     ),
+               ] ),
+                    ),
+                 // ]),
+                //),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.grey[200],
+                    color: Colors.grey[400],
                     border: Border.all(
                       width: 1,
                     )),
@@ -275,7 +513,7 @@ class AddExpoScreen extends StatelessWidget {
                   child: Column(children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
+                      children: const [
                         Expanded(
                           child: Text(
                             'How to would you like to present your product?',
@@ -288,11 +526,12 @@ class AddExpoScreen extends StatelessWidget {
                     SizedBox(
                       height: sizeAware.height * 47 / 1920,
                     ),
+                    const Text('')
                   ]),
                 ),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.grey[200],
+                    color: Colors.grey[400],
                     border: Border.all(
                       width: 1,
                     )),

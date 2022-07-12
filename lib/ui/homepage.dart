@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:eagle/CN/get_all_expo_cn.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/notification.dart';
@@ -30,11 +29,7 @@ class HomePageScreen extends StatelessWidget {
               Text(
                 "Happening Now",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Cermona',
-                  fontSize: 18,
-                ),
+                style:Theme.of(context).textTheme.bodyText1,
               ),
               SizedBox(
                 height: 30.0,
@@ -105,11 +100,7 @@ class ExpoCard extends StatelessWidget {
           Text(
             name,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Uniform',
-            ),
+            style: Theme.of(context).textTheme.bodyText1,
           ),
           Container(
             width: MediaQuery.of(context).size.width * 844 / 1080,

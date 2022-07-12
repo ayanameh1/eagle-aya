@@ -1,33 +1,32 @@
 import 'package:eagle/API_services/get_all_expo.dart';
 import 'package:eagle/API_services/get_profile.dart';
+import 'package:eagle/CN/theme.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/add_expo.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/other_menu.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:floating_bottom_bar/animated_bottom_navigation_bar.dart';
+import 'package:provider/provider.dart';
 import 'notification.dart';
 import 'profile.dart';
 
 class HomeLayout extends StatefulWidget {
+  const HomeLayout({Key? key}) : super(key: key);
+
   @override
   State<HomeLayout> createState() => _HomeLayoutState();
 }
-
 class _HomeLayoutState extends State<HomeLayout> {
   int currentIndex = 0;
-  Widget currentScreen =HomePageScreen();
-
+  Widget currentScreen = HomePageScreen();
   final List<Widget> screens = [
     ProfileScreen(),
     NotificationScreen(),
     HomePageScreen(),
   ];
-
   final PageStorageBucket bucket = PageStorageBucket();
-
   List<String> titles = [
     'Profile',
     'Notrification',
@@ -36,11 +35,10 @@ class _HomeLayoutState extends State<HomeLayout> {
   void initState() {
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
-
+    ThemeChanger _themeChanger = Provider.of<ThemeChanger>(context);
     return Scaffold(
       appBar: AppBar(
         title: SizedBox(
@@ -49,19 +47,35 @@ class _HomeLayoutState extends State<HomeLayout> {
           height: sizeAware.height * 146 / 160,
         ),
         shadowColor: Colors.black.withOpacity(0.5),
+        actions: [
+          FlatButton(
+            onPressed: () => _themeChanger.setTheme(ThemeData.dark()),
+            child: FlatButton.icon(
+              onPressed: () => _themeChanger.setTheme(ThemeData.dark()),
+              icon: const Icon(Icons.dark_mode_rounded),
+              label: Text(''),
+            ),
+          ), FlatButton(
+            onPressed: () => _themeChanger.setTheme(ThemeData.light()),
+            child: FlatButton.icon(
+              onPressed: () => _themeChanger.setTheme(ThemeData.light()),
+              icon: const Icon(Icons.light_mode_rounded),
+              label: Text(''),
+            ),
+          ),
+        ],
       ),
       body: PageStorage(
         child: currentScreen,
         bucket: bucket,
       ),
-
       bottomNavigationBar: AnimatedBottomNavigationBar(
         bottomBarItems: [
-
           //first :home
           BottomBarItemsModel(
             icon: const Icon(
               Icons.home,
+              color: Colors.black,
             ),
             iconSelected: const Icon(
               Icons.home,
@@ -72,14 +86,13 @@ class _HomeLayoutState extends State<HomeLayout> {
             dotColor: yellow1,
             onTap: () {
               setState(() {
-                currentScreen =HomePageScreen();
+                currentScreen = HomePageScreen();
               });
             },
           ),
           BottomBarItemsModel(
-            icon: const Icon(
-              Icons.notifications_active_rounded,
-            ),
+            icon: const Icon(Icons.notifications_active_rounded,
+                color: Colors.black),
             iconSelected: const Icon(
               Icons.notifications_active_rounded,
               // color: yellow1,
@@ -89,14 +102,12 @@ class _HomeLayoutState extends State<HomeLayout> {
             dotColor: yellow1,
             onTap: () {
               setState(() {
-                currentScreen =NotificationScreen();
+                currentScreen = NotificationScreen();
               });
             },
           ),
           BottomBarItemsModel(
-            icon: const Icon(
-              Icons.person,
-            ),
+            icon: const Icon(Icons.person, color: Colors.black),
             iconSelected: const Icon(
               Icons.person,
               //color: AppColors.cherryRed,
@@ -106,14 +117,12 @@ class _HomeLayoutState extends State<HomeLayout> {
             dotColor: yellow1,
             onTap: () {
               setState(() {
-                currentScreen =ProfileScreen();
+                currentScreen = ProfileScreen();
               });
             },
           ),
           BottomBarItemsModel(
-            icon: const Icon(
-              Icons.menu,
-            ),
+            icon: const Icon(Icons.menu, color: Colors.black),
             iconSelected: const Icon(
               Icons.menu,
               //color: AppColors.cherryRed,
@@ -121,11 +130,11 @@ class _HomeLayoutState extends State<HomeLayout> {
             ),
             title: 'other',
             dotColor: yellow1,
-            onTap: () {setState(() {
-              currentScreen =Otherscreen();
-            });
+            onTap: () {
+              setState(() {
+                currentScreen = const Otherscreen();
+              });
             },
-
           ),
         ],
         bottomBarCenterModel: BottomBarCenterModel(

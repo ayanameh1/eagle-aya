@@ -15,37 +15,33 @@ Widget defaulTexttFormField({
   required String? Function(String?)? validate,
   bool isPassword = false,
 }) =>
-    Container(
-      width:500,
-      child: TextFormField(
-        validator: validate,
-        keyboardType: type,
-        onTap: onTap,
-        obscureText: isPassword,
-        onChanged: onChanged,
-        onFieldSubmitted: onSubmit,
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: label,
-          labelStyle: TextStyle(
-            color: black,
-            fontFamily: 'Uniform',
-          ),
-          prefixIcon: Icon(
-            prefix,
-          ),
-          suffixIcon: suffix != null
-              ? IconButton(
-            onPressed: suffixPressed,
-            icon: Icon(
-              suffix,
-            ),
-          )
-              : null,
-          border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-       Radius.circular(54),),),
-          focusColor: Color(0xffffd100),
+    TextFormField(
+      validator: validate,
+      keyboardType: type,
+      onTap: onTap,
+      obscureText: isPassword,
+      onChanged: onChanged,
+      onFieldSubmitted: onSubmit,
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(
+          fontFamily: 'Uniform',
         ),
+        prefixIcon: Icon(
+          prefix,
+        ),
+        suffixIcon: suffix != null
+            ? IconButton(
+          onPressed: suffixPressed,
+          icon: Icon(
+            suffix,
+          ),
+        )
+            : null,
+        border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(
+     Radius.circular(54),),),
+        focusColor: Color(0xffffd100),
       ),
     );

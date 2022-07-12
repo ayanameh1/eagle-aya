@@ -2,7 +2,6 @@ import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-
 import '../widget/bottonHeader.dart';
 import 'homepage.dart';
 
@@ -12,9 +11,8 @@ class AddExpo2Screen extends StatefulWidget {
 }
 
 class _AddExpo2ScreenState extends State<AddExpo2Screen> {
-
   //date
-  DateTime? date1,date2;
+  DateTime? date1, date2;
   String getText() {
     if (date1 == null) {
       return 'From';
@@ -31,13 +29,9 @@ class _AddExpo2ScreenState extends State<AddExpo2Screen> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    var sizeAware = MediaQuery
-        .of(context)
-        .size;
+    var sizeAware = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -59,153 +53,144 @@ class _AddExpo2ScreenState extends State<AddExpo2Screen> {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          width: sizeAware.width * 406 / 1080,
-                          height: sizeAware.width * 111 / 1920,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: darkpurple,
-                          ),
-                          child: Text(
-                            'Step 2',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: white,
-                              fontFamily: 'Uniform',
-                              fontWeight: FontWeight.bold,
+                    Container(
+                      width: sizeAware.width * 406 / 1080,
+                      height: sizeAware.width * 111 / 1920,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: darkpurple,
+                      ),
+                      child: Text(
+                        'Step 2',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: white,
+                          fontFamily: 'Uniform',
+                          fontWeight: FontWeight.bold,
 //fontSize: 30,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: sizeAware.height * 124 / 1920),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Choose booth',
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: sizeAware.height * 47 / 1920,
+                          ),
+                        ]),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.grey[200],
+                          border: Border.all(
+                            width: 1,
+                          )),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'Time period',
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: sizeAware.height * 47 / 1920,
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  (54),
+                                ),
+                                color: Colors.black),
+                            child: ButtonWidget(
+                              text: getText(),
+                              onClicked: () => pickDate1(context),
                             ),
                           ),
-                        ),
-                        SizedBox(height: sizeAware.height * 124 / 1920),
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Column(children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      'Choose booth',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: sizeAware.height * 47 / 1920,
-                              ),
-                            ]),
+                          SizedBox(
+                            height: 30.0,
                           ),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.grey[200],
-                              border: Border.all(
-                                width: 1,
-                              )),
-                        ),
-                        SizedBox(
-                          height: 30,
-                        ),
-                        Container(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Column(children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      'Time period',
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: sizeAware.height * 47 / 1920,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                      (54),
-                                    ),
-                                    color: Colors.black),
-                                child: ButtonWidget(
-                                  text: getText(),
-                                  onClicked: () => pickDate1(context),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  (54),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 30.0,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                      (54),
-                                    ),
-                                    color: Colors.black),
-                                child: ButtonWidget(
-                                  text: getText2(),
-                                  onClicked: () => pickDate2(context),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 30.0,
-                              ),
-                            ]),
-                          ),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.grey[200],
-                              border: Border.all(
-                                width: 1,
-                              )),
-                        ),
-                        SizedBox(
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 202 / 1920,
-                        ),
-                        Container(
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width * 359 / 1080,
-                          height: MediaQuery
-                              .of(context)
-                              .size
-                              .height * 82 / 1920,
-                          child: MaterialButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomePageScreen(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "Apply",
-                              style: TextStyle(
-                                color: black,
-                                fontFamily: 'Uniform',
-                              ),
+                                color: Colors.black),
+                            child: ButtonWidget(
+                              text: getText2(),
+                              onClicked: () => pickDate2(context),
                             ),
                           ),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(54),
-                              color: yellow1,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0xff565656),
-                                  spreadRadius: 0,
-                                  blurRadius: 0,
-                                  offset: Offset(2, 4),
-                                ),
-                              ]),
+                          SizedBox(
+                            height: 30.0,
+                          ),
+                        ]),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.grey[200],
+                          border: Border.all(
+                            width: 1,
+                          )),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 202 / 1920,
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 359 / 1080,
+                      height: MediaQuery.of(context).size.height * 82 / 1920,
+                      child: MaterialButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePageScreen(),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          "Apply",
+                          style: TextStyle(
+                            color: black,
+                            fontFamily: 'Uniform',
+                          ),
                         ),
-                      ])))),
+                      ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(54),
+                          color: yellow1,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xff565656),
+                              spreadRadius: 0,
+                              blurRadius: 0,
+                              offset: Offset(2, 4),
+                            ),
+                          ]),
+                    ),
+                  ])))),
     );
   }
 
@@ -214,18 +199,12 @@ class _AddExpo2ScreenState extends State<AddExpo2Screen> {
   }
 
   Future pickDate1(BuildContext context) async {
-    final initialDate = DateTime(DateTime
-        .now()
-        .year);
+    final initialDate = DateTime(DateTime.now().year);
     final newDate = await showDatePicker(
       context: context,
       initialDate: date1 ?? initialDate,
-      firstDate: DateTime(DateTime
-          .now()
-          .day),
-      lastDate: DateTime(DateTime
-          .now()
-          .year + 3),
+      firstDate: DateTime(DateTime.now().day),
+      lastDate: DateTime(DateTime.now().year + 3),
     );
 
     if (newDate == null) {
@@ -236,18 +215,12 @@ class _AddExpo2ScreenState extends State<AddExpo2Screen> {
   }
 
   Future pickDate2(BuildContext context) async {
-    final initialDate = DateTime(DateTime
-        .now()
-        .day);
+    final initialDate = DateTime(DateTime.now().year);
     final newDate = await showDatePicker(
       context: context,
       initialDate: date2 ?? initialDate,
-      firstDate: DateTime(DateTime
-          .now()
-          .day),
-      lastDate: DateTime(DateTime
-          .now()
-          .year + 3),
+      firstDate: DateTime(DateTime.now().year),
+      lastDate: DateTime(DateTime.now().year + 3),
     );
 
     if (newDate == null) {
