@@ -1,7 +1,10 @@
 import 'package:eagle/CN/theme.dart';
 import 'package:eagle/ui/add_expo.dart';
+import 'package:eagle/ui/add_expo/step1.dart';
 import 'package:eagle/ui/homelayout.dart';
 import 'package:eagle/ui/homepage.dart';
+import 'package:eagle/ui/invest/step_1.dart';
+import 'package:eagle/ui/invest/step_2.dart';
 import 'package:eagle/ui/login.dart';
 import 'package:eagle/ui/profile.dart';
 import 'package:eagle/ui/sign_up.dart';
@@ -100,7 +103,7 @@ class MaterialAppWithTheme extends StatelessWidget{
        // ),
      ),
      theme: theme.getTheme(),
-     home: HomeLayout(),
+     home:  AddExpo2Screen(),
    );
   }
 }
