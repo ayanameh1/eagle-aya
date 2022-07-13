@@ -41,6 +41,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     ThemeChanger _themeChanger = Provider.of<ThemeChanger>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xffffd100),
         title: SizedBox(
           child: Image.asset('assets/images/Group 8.png'),
           width: sizeAware.width * 257 / 1080,
@@ -49,16 +50,16 @@ class _HomeLayoutState extends State<HomeLayout> {
         shadowColor: Colors.black.withOpacity(0.5),
         actions: [
           FlatButton(
-            onPressed: () => _themeChanger.setTheme(ThemeData.dark()),
+            onPressed: () => _themeChanger.setTheme2(ThemeData.dark()),
             child: FlatButton.icon(
-              onPressed: () => _themeChanger.setTheme(ThemeData.dark()),
+              onPressed: () => _themeChanger.setTheme2(ThemeData.dark()),
               icon: const Icon(Icons.dark_mode_rounded),
               label: Text(''),
             ),
           ), FlatButton(
-            onPressed: () => _themeChanger.setTheme(ThemeData.light()),
+            onPressed: () => _themeChanger.setTheme1(ThemeData.light()),
             child: FlatButton.icon(
-              onPressed: () => _themeChanger.setTheme(ThemeData.light()),
+              onPressed: () => _themeChanger.setTheme1(ThemeData.light()),
               icon: const Icon(Icons.light_mode_rounded),
               label: Text(''),
             ),
