@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 //import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+import 'package:image_picker/image_picker.dart';
+
 class AddExpoStep1Screen extends StatefulWidget {
   @override
   State<AddExpoStep1Screen> createState() => _AddExpoStep1ScreenState();
@@ -23,18 +25,48 @@ class _AddExpoStep1ScreenState extends State<AddExpoStep1Screen> {
   TextEditingController faxcontroller = TextEditingController();
   TextEditingController phonecontroller = TextEditingController();
   TextEditingController emailcontroller = TextEditingController();
+
+  //image functions
+  File? _image;
+  final picker = ImagePicker();
+  //image from camera
+  Future imagefromCamera() async {
+    final pickedimage = await picker.pickImage(source: ImageSource.camera);
+    setState(() {
+      if (pickedimage != null) {
+        _image = File(pickedimage.path);
+      } else {
+        print('null');
+      }
+    });
+  }
+
+  //image from gallery
+  Future imagefromGallery() async {
+    final pickedimage = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedimage != null) {
+        _image = File(pickedimage.path);
+      } else {
+        print('null');
+      }
+    });
+  }
+
+
+  //checkboxes values
+  bool valueI = false;
+  bool valueA = false;
+  bool valueM = false;
+  bool valueT = false;
+  bool valueB = false;
   @override
+
   Widget build(BuildContext context) {
+
     var sizeAware = MediaQuery.of(context).size;
     var sizeAwareh = MediaQuery.of(context).size.height;
 
-
-    //checkboxes values
-    bool valueI = false;
-    bool valueA = false;
-    bool valueM = false;
-    bool valueT = false;
-    bool valueB = false;
 
     return Scaffold(
       appBar: AppBar(
@@ -88,7 +120,7 @@ class _AddExpoStep1ScreenState extends State<AddExpoStep1Screen> {
                                   ),
                                 ),
                                 defaulTexttFormField(
-                                  controller : titlecontroller,
+                                  controller: titlecontroller,
                                   prefix: Icons.title,
                                   sizeaware1: sizeAwareh,
                                   label: 'EXPO title',
@@ -240,7 +272,7 @@ class _AddExpoStep1ScreenState extends State<AddExpoStep1Screen> {
                                               title: 'Industrial',
                                               value1: valueI),
                                           buildCheckBox(
-                                              title: 'Agricultral',
+                                              title: 'Agricultural',
                                               value1: valueA),
                                           buildCheckBox(
                                               title: 'Medical', value1: valueM),
@@ -314,33 +346,74 @@ class _AddExpoStep1ScreenState extends State<AddExpoStep1Screen> {
                               Padding(
                                 padding:
                                     const EdgeInsets.only(bottom: 0, left: 0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    //  showOptions();
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(30),
-                                        color: Colors.grey[200],
-                                        border: Border.all(
-                                          width: 1,
-                                        )),
-                                    // child: Center(
-                                    //   child: _image == null
-                                    //       ? Padding(
-                                    //           padding:
-                                    //               EdgeInsets.fromLTRB(25, 25, 25, 25),
-                                    //           child: Icon(
-                                    //             Icons.image,
-                                    //             size: 40,
-                                    //             color: Color(0xFF03566E),
-                                    //           ),
-                                    //         )
-                                    //       : Image.file(File(_image!)),
-                                    // ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        imagefromCamera();
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[200],
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black38,
+                                              blurRadius: 2,
+                                              offset: Offset(2, 3), // Shadow position
+                                            ),
+                                          ],
+                                          borderRadius: BorderRadius.circular(10),
+                                          border: Border.all(
+                                            width: 3,
+                                            color: darkpurple,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8),
+                                          child: Icon(Icons.camera_alt_outlined,color: darkpurple,),
+                                        ),
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        imagefromGallery();
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[200],
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black38,
+                                              blurRadius: 2,
+                                              offset: Offset(2, 3), // Shadow position
+                                            ),
+                                          ],
+                                          borderRadius: BorderRadius.circular(10),
+                                          border: Border.all(
+                                            width: 3,
+                                            color:darkpurple,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Icon(Icons.photo,color:darkpurple),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Container(
+                                  child: Center(
+                                    child: _image == null
+                                        ? Text('no image was selected')
+                                        : Image.file(_image!),
                                   ),
                                 ),
-                              )
+                              ),
                             ]),
                           ),
                           decoration: BoxDecoration(
@@ -448,8 +521,6 @@ class _AddExpoStep1ScreenState extends State<AddExpoStep1Screen> {
         },
       );
 }
-
-
 
 class checkbox {
   late final String title;

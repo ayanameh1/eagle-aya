@@ -1,6 +1,7 @@
 import 'package:eagle/CN/theme.dart';
 import 'package:eagle/ui/add_expo.dart';
 import 'package:eagle/ui/add_expo/step1.dart';
+import 'package:eagle/ui/company_details.dart';
 import 'package:eagle/ui/homelayout.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/invest/step_1.dart';
@@ -12,7 +13,6 @@ import 'package:eagle/ui/welcome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
 import 'constants/colors.dart';
 
 void main() {
@@ -65,45 +65,45 @@ class MaterialAppWithTheme extends StatelessWidget{
            bodyText1: TextStyle(
              fontSize: 18,
              color: Colors.black,
-           )
+           ),
        ),
      ),
-     darkTheme: ThemeData(
-       scaffoldBackgroundColor: Color(0xff333039),
-       primaryColor: const Color(0xffffd100),
-       primarySwatch: Colors.grey,
-       appBarTheme: const AppBarTheme(
-         systemOverlayStyle: SystemUiOverlayStyle(
-           statusBarColor: Color(0xff333039),
-           statusBarBrightness: Brightness.light,
-         ),
-         titleSpacing: 20.0,
-         backgroundColor: Color(0xff333039),
-         titleTextStyle: TextStyle(
-           color: Colors.white,
-           fontSize: 20.0,
-           fontWeight: FontWeight.bold,
-         ),
-         iconTheme: IconThemeData(color: Colors.white),
-       ),
-       floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xff5C0099)),
-       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-         type: BottomNavigationBarType.fixed,
-         selectedItemColor: Color(0xffffd100),
-         unselectedItemColor: Colors.grey,
-         elevation: 0.0,
-         backgroundColor: Color(0xff333039),
-       ),
-       // textTheme: TextTheme(
-       //     bodyText1: TextStyle(
-       //       fontSize: 18,
-       //       color: Colors.black,
-       //         fontFamily: 'Uniform'
-       //     )
-       // ),
-     ),
-     theme: theme.getTheme(),
-     home:  AddExpo2Screen(),
+     // darkTheme: ThemeData(
+     //   scaffoldBackgroundColor: Color(0xff333039),
+     //   primaryColor: const Color(0xffffd100),
+     //   primarySwatch: Colors.grey,
+     //   appBarTheme: const AppBarTheme(
+     //     systemOverlayStyle: SystemUiOverlayStyle(
+     //       statusBarColor: Color(0xff333039),
+     //       statusBarBrightness: Brightness.light,
+     //     ),
+     //     titleSpacing: 20.0,
+     //     backgroundColor: Color(0xff333039),
+     //     titleTextStyle: TextStyle(
+     //       color: Colors.white,
+     //       fontSize: 20.0,
+     //       fontWeight: FontWeight.bold,
+     //     ),
+     //     iconTheme: IconThemeData(color: Colors.white),
+     //   ),
+     //   floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xff5C0099)),
+     //   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+     //     type: BottomNavigationBarType.fixed,
+     //     selectedItemColor: Color(0xffffd100),
+     //     unselectedItemColor: Colors.grey,
+     //     elevation: 0.0,
+     //     backgroundColor: Color(0xff333039),
+     //   ),
+     //   // textTheme: TextTheme(
+     //   //     bodyText1: TextStyle(
+     //   //       fontSize: 18,
+     //   //       color: Colors.black,
+     //   //         fontFamily: 'Uniform'
+     //   //     )
+     //   // ),
+     // ),
+     //theme: theme.getTheme(),
+     home:  InvestStep1Screen(),
    );
   }
 }

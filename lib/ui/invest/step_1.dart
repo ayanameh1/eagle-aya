@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 //import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+import 'package:image_picker/image_picker.dart';
+
 class InvestStep1Screen extends StatefulWidget {
   @override
   State<InvestStep1Screen> createState() => _InvestStep1ScreenState();
@@ -14,6 +16,8 @@ class InvestStep1Screen extends StatefulWidget {
 
 class _InvestStep1ScreenState extends State<InvestStep1Screen> {
   set value(String? value) {}
+
+  //controllers
   TextEditingController fnamecontroller = TextEditingController();
   TextEditingController lnamecontroller = TextEditingController();
   TextEditingController postitlecontroller = TextEditingController();
@@ -25,11 +29,30 @@ class _InvestStep1ScreenState extends State<InvestStep1Screen> {
   TextEditingController busemailcontroller = TextEditingController();
   TextEditingController faxnumcontroller = TextEditingController();
   TextEditingController countrycontroller = TextEditingController();
+
+  //expo brochure images
+  final ImagePicker imagePicker = ImagePicker();
+  List<XFile?>? imageFileList = [];
+
+  Future selectImages() async {
+    //imageFileList![...]??= "Fallback Value" as XFile?;
+    final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
+    if (selectedImages!.isNotEmpty) {
+      setState(() {
+        imageFileList!.addAll(selectedImages);
+
+        //imageFileList!.forEach((element) { File((element).path);});
+      });
+    }
+    imageFileList!.forEach((element) {
+      if (element == null) element = "Fallback Value" as XFile?;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
     var sizeAwareh = MediaQuery.of(context).size.height;
-
 
     //list
     String? value;
@@ -59,39 +82,6 @@ class _InvestStep1ScreenState extends State<InvestStep1Screen> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ));
 
-    //images
-    // File? image;
-    // String? _image;
-    // final picker = ImagePicker();
-    // Future getImageFromGallery() async {
-    //   final pickedFile =
-    //       await picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
-    //
-    //   setState(() {
-    //     if (pickedFile != null) {
-    //       _image = pickedFile.path;
-    //     }
-    //   });
-    // }
-    //
-    // Future showOptions() async {
-    //   showCupertinoModalPopup(
-    //     context: context,
-    //     builder: (context) => CupertinoActionSheet(
-    //       actions: [
-    //         CupertinoActionSheetAction(
-    //           child: Text('Photo Gallery'),
-    //           onPressed: () {
-    //             Navigator.of(context).pop();
-    //             getImageFromGallery();
-    //           },
-    //         ),
-    //       ],
-    //     ),
-    //   );
-    // }
-//padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 20),
-
     return Scaffold(
       appBar: AppBar(
         title: SizedBox(
@@ -101,8 +91,8 @@ class _InvestStep1ScreenState extends State<InvestStep1Screen> {
         ),
         shadowColor: Colors.black.withOpacity(0.5),
       ),
-      body: Stack(
-        children: [SingleChildScrollView(
+      body: Stack(children: [
+        SingleChildScrollView(
           child: SafeArea(
             child: Column(
               children: [
@@ -121,7 +111,7 @@ class _InvestStep1ScreenState extends State<InvestStep1Screen> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.center,
+                          //mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             SizedBox(height: sizeAware.height * 90 / 1920),
                             Container(
@@ -136,7 +126,7 @@ class _InvestStep1ScreenState extends State<InvestStep1Screen> {
                                         style: TextStyle(
                                           fontFamily: 'Uniform',
                                           fontWeight: FontWeight.bold,
-                                          fontSize:  sizeAware.width * 46 / 1080,
+                                          fontSize: sizeAware.width * 46 / 1080,
                                         ),
                                       ),
                                     ),
@@ -240,7 +230,7 @@ class _InvestStep1ScreenState extends State<InvestStep1Screen> {
                                         style: TextStyle(
                                           fontFamily: 'Uniform',
                                           fontWeight: FontWeight.bold,
-                                          fontSize:  sizeAware.width * 46 / 1080,
+                                          fontSize: sizeAware.width * 46 / 1080,
                                         ),
                                       ),
                                     ),
@@ -294,7 +284,7 @@ class _InvestStep1ScreenState extends State<InvestStep1Screen> {
                                     Container(
                                       decoration: BoxDecoration(
                                         borderRadius:
-                                        BorderRadius.circular((50.0)),
+                                            BorderRadius.circular((50.0)),
                                         border: Border.all(),
                                       ),
                                       child: DropdownButtonHideUnderline(
@@ -310,9 +300,9 @@ class _InvestStep1ScreenState extends State<InvestStep1Screen> {
                                           icon: Icon(Icons.arrow_drop_down),
                                           isExpanded: true,
                                           items:
-                                          items.map(buildMenuItem).toList(),
-                                          onChanged: (value) =>
-                                              setState(() => this.value = value),
+                                              items.map(buildMenuItem).toList(),
+                                          onChanged: (value) => setState(
+                                              () => this.value = value),
                                         ),
                                       ),
                                     ),
@@ -354,36 +344,89 @@ class _InvestStep1ScreenState extends State<InvestStep1Screen> {
                                     height: sizeAware.height * 47 / 1920,
                                   ),
                                   Padding(
-                                    padding:
-                                    const EdgeInsets.only(bottom: 0, left: 0),
+                                    padding: const EdgeInsets.only(
+                                        bottom: 0, left: 0),
                                     child: GestureDetector(
                                       onTap: () {
-                                        //  showOptions();
+                                        selectImages();
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(30),
-                                            color: Colors.grey[200],
-                                            border: Border.all(
-                                              width: 1,
-                                            )),
-                                        // child: Center(
-                                        //   child: _image == null
-                                        //       ? Padding(
-                                        //           padding:
-                                        //               EdgeInsets.fromLTRB(25, 25, 25, 25),
-                                        //           child: Icon(
-                                        //             Icons.image,
-                                        //             size: 40,
-                                        //             color: Color(0xFF03566E),
-                                        //           ),
-                                        //         )
-                                        //       : Image.file(File(_image!)),
-                                        // ),
+                                          color: Colors.grey[200],
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black38,
+                                              blurRadius: 2,
+                                              offset: Offset(
+                                                  2, 3), // Shadow position
+                                            ),
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          border: Border.all(
+                                            width: 3,
+                                            color: darkpurple,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Icon(Icons.photo,
+                                              color: darkpurple),
+                                        ),
                                       ),
                                     ),
-                                  )
+                                  ),
+                                  SizedBox(
+                                    height: sizeAware.height * 55 / 1920,
+                                  ),
+                                  Divider(
+                                    thickness: 2,
+                                  ),
+                                  imageFileList!.isEmpty
+                                      ? Text(
+                                          'no image was selected',
+                                          style: TextStyle(color: Colors.black),
+                                        )
+                                      : GridView.builder(
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          padding: EdgeInsets.all(0),
+                                          shrinkWrap: true,
+                                          itemCount: imageFileList!.length,
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 3),
+                                          itemBuilder: (BuildContext context,
+                                              int index) {
+                                            return imageFileList![index] !=null ? Stack(
+                                              children: [
+                                                Image.file(
+                                                  File(imageFileList![index]!
+                                                      .path),
+                                                ),
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    setState(() {
+                                                      imageFileList![index] =
+                                                          null;
+                                                    });
+                                                    // if(imageFileList == null)
+                                                    // print('done');
+                                                  },
+                                                  child: Container(
+                                                    child: Icon(
+                                                        Icons.highlight_remove),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50),
+                                                      color: Colors.redAccent,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ):Container();
+                                          }),
                                 ]),
                               ),
                               decoration: BoxDecoration(
@@ -436,16 +479,19 @@ class _InvestStep1ScreenState extends State<InvestStep1Screen> {
                               ),
                             ),
                             SizedBox(
-                              height:
-                              MediaQuery.of(context).size.height * 202 / 1920,
+                              height: MediaQuery.of(context).size.height *
+                                  202 /
+                                  1920,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(5),
                               child: Container(
-                                width:
-                                MediaQuery.of(context).size.width * 359 / 1080,
-                                height:
-                                MediaQuery.of(context).size.height * 82 / 1920,
+                                width: MediaQuery.of(context).size.width *
+                                    359 /
+                                    1080,
+                                height: MediaQuery.of(context).size.height *
+                                    82 /
+                                    1920,
                                 child: MaterialButton(
                                   onPressed: () {
                                     // Navigator.push(
@@ -484,36 +530,33 @@ class _InvestStep1ScreenState extends State<InvestStep1Screen> {
             ),
           ),
         ),
-          Container(
-            width: sizeAware.width * 1080 / 1080,
-            height: sizeAware.height * 170 / 1920,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(bottomLeft:Radius.circular(70),bottomRight: Radius.circular(70)),
-              color: darkpurple,
-            ),
-            child: Center(
-              child: Text(
-                'Step 1',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: white,
-                  fontFamily: 'Uniform',
-                  fontWeight: FontWeight.bold,
-                  fontSize:  sizeAware.width * 60 / 1080,
-                  //fontSize: 30,
-                ),
+        Container(
+          width: sizeAware.width * 1080 / 1080,
+          height: sizeAware.height * 170 / 1920,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(70),
+                bottomRight: Radius.circular(70)),
+            color: darkpurple,
+          ),
+          child: Center(
+            child: Text(
+              'Step 1',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: white,
+                fontFamily: 'Uniform',
+                fontWeight: FontWeight.bold,
+                fontSize: sizeAware.width * 60 / 1080,
+                //fontSize: 30,
               ),
             ),
           ),
-        ]
-      ),
+        ),
+      ]),
     );
   }
 }
-
-
-
-
 
 // // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 //

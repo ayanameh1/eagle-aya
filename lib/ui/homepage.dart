@@ -29,7 +29,10 @@ class HomePageScreen extends StatelessWidget {
               Text(
                 "Happening Now",
                 textAlign: TextAlign.center,
-                style:Theme.of(context).textTheme.bodyText1,
+                style: TextStyle(
+                  fontFamily: 'Cermona',fontSize: MediaQuery.of(context).size.width * 60 / 1080,
+                ),
+                //style:Theme.of(context).textTheme.bodyText1,
               ),
               SizedBox(
                 height: 30.0,
