@@ -5,8 +5,10 @@ import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/invest/step_2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+
+
 
 class AddExpoScreen extends StatefulWidget {
   @override
@@ -61,37 +63,37 @@ class _AddExpoScreenState extends State<AddExpoScreen> {
         ));
 
     //images
-    // File? image;
-    // String? _image;
-    // final picker = ImagePicker();
-    // Future getImageFromGallery() async {
-    //   final pickedFile =
-    //       await picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
-    //
-    //   setState(() {
-    //     if (pickedFile != null) {
-    //       _image = pickedFile.path;
-    //     }
-    //   });
-    // }
-    //
-    // Future showOptions() async {
-    //   showCupertinoModalPopup(
-    //     context: context,
-    //     builder: (context) => CupertinoActionSheet(
-    //       actions: [
-    //         CupertinoActionSheetAction(
-    //           child: Text('Photo Gallery'),
-    //           onPressed: () {
-    //             Navigator.of(context).pop();
-    //             getImageFromGallery();
-    //           },
-    //         ),
-    //       ],
-    //     ),
-    //   );
-    // }
-//padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 20),
+    File? image;
+    String? _image;
+    final picker = ImagePicker();
+    Future getImageFromGallery() async {
+      final pickedFile =
+          await picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
+
+      setState(() {
+        if (pickedFile != null) {
+          _image = pickedFile.path;
+        }
+      });
+    }
+
+    Future showOptions() async {
+      showCupertinoModalPopup(
+        context: context,
+        builder: (context) => CupertinoActionSheet(
+          actions: [
+            CupertinoActionSheetAction(
+              child: Text('Photo Gallery'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                getImageFromGallery();
+              },
+            ),
+          ],
+        ),
+      );
+    }
+padding: const EdgeInsets.symmetric(vertical: 0.0,horizontal: 20);
 
     return Scaffold(
       appBar: AppBar(
@@ -389,19 +391,19 @@ class _AddExpoScreenState extends State<AddExpoScreen> {
                                           border: Border.all(
                                             width: 1,
                                           )),
-                                      // child: Center(
-                                      //   child: _image == null
-                                      //       ? Padding(
-                                      //           padding:
-                                      //               EdgeInsets.fromLTRB(25, 25, 25, 25),
-                                      //           child: Icon(
-                                      //             Icons.image,
-                                      //             size: 40,
-                                      //             color: Color(0xFF03566E),
-                                      //           ),
-                                      //         )
-                                      //       : Image.file(File(_image!)),
-                                      // ),
+                                      child: Center(
+                                        child: _image == null
+                                            ? Padding(
+                                                padding:
+                                                    EdgeInsets.fromLTRB(25, 25, 25, 25),
+                                                child: Icon(
+                                                  Icons.image,
+                                                  size: 40,
+                                                  color: Color(0xFF03566E),
+                                                ),
+                                              )
+                                            : Image.file(File(_image!)),
+                                      ),
                                     ),
                                   ),
                                 )

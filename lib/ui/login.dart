@@ -32,8 +32,8 @@ class loginscreen extends StatelessWidget {
         appBar: AppBar(
           leading: Image(
             image: AssetImage('assets/images/Group 8.png'),
-            width: sizeAware.width * 299 / 1080,
-            height: sizeAware.height * 131 / 1920,
+            width: sizeAware.width * 257 / 1080,
+            height: sizeAware.height * 146 / 160,
           ),
           shadowColor: Colors.black.withOpacity(0),
         ),

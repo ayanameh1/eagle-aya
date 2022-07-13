@@ -2,6 +2,7 @@ import 'package:eagle/CN/theme.dart';
 import 'package:eagle/ui/add_expo.dart';
 import 'package:eagle/ui/homelayout.dart';
 import 'package:eagle/ui/homepage.dart';
+import 'package:eagle/ui/invest/step_1.dart';
 import 'package:eagle/ui/login.dart';
 import 'package:eagle/ui/profile.dart';
 import 'package:eagle/ui/sign_up.dart';
@@ -21,8 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ThemeChanger>(
       create: (_) => ThemeChanger(ThemeData.dark()),
-      child: new MaterialAppWithTheme(),
-    );
+      child:new MaterialAppWithTheme(),
+      );
   }
 }
 
@@ -37,7 +38,7 @@ class MaterialAppWithTheme extends StatelessWidget{
        primarySwatch: Colors.grey,
        scaffoldBackgroundColor: Colors.white,
        appBarTheme: const AppBarTheme(
-         systemOverlayStyle: SystemUiOverlayStyle(
+           systemOverlayStyle: SystemUiOverlayStyle(
            statusBarColor: Colors.white,
            statusBarBrightness: Brightness.dark,
          ),
@@ -65,7 +66,9 @@ class MaterialAppWithTheme extends StatelessWidget{
            )
        ),
      ),
-     darkTheme: ThemeData(
+
+
+      darkTheme:ThemeData(
        scaffoldBackgroundColor: Color(0xff333039),
        primaryColor: const Color(0xffffd100),
        primarySwatch: Colors.grey,
@@ -83,7 +86,7 @@ class MaterialAppWithTheme extends StatelessWidget{
          ),
          iconTheme: IconThemeData(color: Colors.white),
        ),
-       floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xff5C0099)),
+       floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor:  Color(0xff5C0099)),
        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
          type: BottomNavigationBarType.fixed,
          selectedItemColor: Color(0xffffd100),
@@ -91,16 +94,16 @@ class MaterialAppWithTheme extends StatelessWidget{
          elevation: 0.0,
          backgroundColor: Color(0xff333039),
        ),
-       // textTheme: TextTheme(
-       //     bodyText1: TextStyle(
-       //       fontSize: 18,
-       //       color: Colors.black,
-       //         fontFamily: 'Uniform'
-       //     )
-       // ),
-     ),
+       textTheme: TextTheme(
+           bodyText1: TextStyle(
+             fontSize: 18,
+             color: Colors.black,
+               fontFamily: 'Uniform'
+           )
+       ),
+      ),
      theme: theme.getTheme(),
-     home: HomeLayout(),
+     home:  AddExpoScreen(),
    );
   }
 }

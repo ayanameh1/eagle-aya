@@ -1,4 +1,3 @@
-import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 Widget defaulTexttFormField({
   required TextEditingController controller,
@@ -14,34 +13,39 @@ Widget defaulTexttFormField({
   String Phone = '',
   required String? Function(String?)? validate,
   bool isPassword = false,
+  required var sizeaware1,
 }) =>
-    TextFormField(
-      validator: validate,
-      keyboardType: type,
-      onTap: onTap,
-      obscureText: isPassword,
-      onChanged: onChanged,
-      onFieldSubmitted: onSubmit,
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: label,
-        labelStyle: TextStyle(
-          fontFamily: 'Uniform',
-        ),
-        prefixIcon: Icon(
-          prefix,
-        ),
-        suffixIcon: suffix != null
-            ? IconButton(
-          onPressed: suffixPressed,
-          icon: Icon(
-            suffix,
+    SizedBox(
+      height: sizeaware1 *70/1080,
+      child: TextFormField(
+        validator: validate,
+        keyboardType: type,
+        onTap: onTap,
+        obscureText: isPassword,
+        onChanged: onChanged,
+        onFieldSubmitted: onSubmit,
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: TextStyle(
+            fontFamily: 'Uniform',
           ),
-        )
-            : null,
-        border: OutlineInputBorder(
-        borderRadius: BorderRadius.all(
-     Radius.circular(54),),),
-        focusColor: Color(0xffffd100),
+          prefixIcon: Icon(
+            prefix,
+          ),
+          suffixIcon: suffix != null
+              ? IconButton(
+            onPressed: suffixPressed,
+            icon: Icon(
+              suffix,
+            ),
+          )
+              : null,
+          border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+       Radius.circular(54),),),
+          focusColor: Color(0xffffd100),
+        ),
       ),
     );
+
