@@ -133,7 +133,7 @@ class _HomeLayoutState extends State<HomeLayout> {
             dotColor: yellow1,
             onTap: () {
               setState(() {
-                currentScreen = const Otherscreen();
+                currentScreen = Otherscreen();
               });
             },
           ),

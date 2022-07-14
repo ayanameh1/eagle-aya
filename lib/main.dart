@@ -102,7 +102,7 @@ class MaterialAppWithTheme extends StatelessWidget{
      //   // ),
      // ),
      // theme: theme.getTheme(),
-     initialRoute: 'Companydetails',
+     initialRoute: 'home',
      routes: {
        'welcome': (context) => WelcomeScreen(),
        'login': (context) => loginscreen(),
