@@ -86,16 +86,13 @@ class CompanyDetails extends StatelessWidget {
                     ]),
               ),
               Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TabBarView(children: [
-                    Aboutlist(),
-                    BrochureTab(),
-                    productslist(),
-                    AnnouncTab(),
-                    ReviewsTab(), //هون بتشتغلي التعليقات (الكلاس تعريفو تحت )
-                  ]),
-                ),
+                child: TabBarView(children: [
+                  Aboutlist(),
+                  BrochureTab(),
+                  productslist(),
+                  AnnouncTab(),
+                  ReviewsTab(), //هون بتشتغلي التعليقات (الكلاس تعريفو تحت )
+                ]),
               ),
             ],
           ),
@@ -243,7 +240,7 @@ class _BrochureTabState extends State<BrochureTab> {
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
           mainAxisSpacing: 1.0,
-         // crossAxisSpacing: 2.0,
+          // crossAxisSpacing: 2.0,
           childAspectRatio: 2.0,
         ),
         itemBuilder: (BuildContext context, int index) {
@@ -267,46 +264,79 @@ class _AnnouncTabState extends State<AnnouncTab> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(child: Text('Conferences')),
+        SizedBox(height: MediaQuery.of(context).size.height * 4 / 1000,),
+        Expanded(
+          child: Container(
+              width: MediaQuery.of(context).size.width * 50 / 50,
+              child: Center(
+                child: Text('Conferences',
+                    style: TextStyle(
+                        fontFamily: 'Uniform',
+                        fontSize: MediaQuery.of(context).size.width * 50 / 1080,
+                        fontWeight: FontWeight.bold)),
+              )),
+        ),
         Container(
           height: MediaQuery.of(context).size.height * 45 / 160,
           child: ListView.builder(
+            scrollDirection: Axis.horizontal,
               itemCount: 10,
               itemBuilder: (context, i) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 1),
+                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
                   child: Container(
-                    decoration: BoxDecoration(border:Border(bottom: BorderSide(color: Colors.black12,width: 2))),
-                    child: ListTile(
-                      title: Text('product $i'),
-                      subtitle: Text('this is product $i'),
-                      leading: CircleAvatar(
-                        //radius: 60,
-                          backgroundImage:
-                          AssetImage('assets/images/Asset 1@4x.png')),
+                    width: MediaQuery.of(context).size.width * 40 / 50,
+                    height: MediaQuery.of(context).size.height * 45 / 160,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black38,
+                          blurRadius: 2,
+                          offset: Offset(3, 3), // Shadow position
+                        ),
+                      ],
                     ),
-                  ),
-                );
+                    child: Center(child: Text('product $i')),
+                        ),
+                  );
               }),
         ),
-        Container(child: Text('Sales')),
+        Expanded(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 50 / 50,
+          child: Center(
+            child: Text('Sales',
+                style: TextStyle(
+                    fontFamily: 'Uniform',
+                    fontSize: MediaQuery.of(context).size.width * 50 / 1080,
+                    fontWeight: FontWeight.bold)),
+          ),
+        )),
         Container(
           height: MediaQuery.of(context).size.height * 45 / 160,
           child: ListView.builder(
+              scrollDirection: Axis.horizontal,
               itemCount: 10,
               itemBuilder: (context, i) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 1),
+                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
                   child: Container(
-                    decoration: BoxDecoration(border:Border(bottom: BorderSide(color: Colors.black12,width: 2))),
-                    child: ListTile(
-                      title: Text('product $i'),
-                      subtitle: Text('this is product $i'),
-                      leading: CircleAvatar(
-                        //radius: 60,
-                          backgroundImage:
-                          AssetImage('assets/images/Asset 1@4x.png')),
+                    width: MediaQuery.of(context).size.width * 40 / 50,
+                    height: MediaQuery.of(context).size.height * 45 / 160,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black38,
+                          blurRadius: 2,
+                          offset: Offset(3, 3), // Shadow position
+                        ),
+                      ],
                     ),
+                    child: Center(child: Text('product $i')),
                   ),
                 );
               }),
@@ -327,7 +357,8 @@ class ReviewsTab extends StatefulWidget {
 class _ReviewsTabState extends State<ReviewsTab> {
   @override
   Widget build(BuildContext context) {
-    return Container(color: Colors.red,);
+    return Container(
+      color: Colors.red,
+    );
   }
 }
-
