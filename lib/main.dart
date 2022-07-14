@@ -102,7 +102,17 @@ class MaterialAppWithTheme extends StatelessWidget{
      //   // ),
      // ),
      // theme: theme.getTheme(),
-     home: InvestStep1Screen(),
+     initialRoute: 'Companydetails',
+     routes: {
+       'welcome': (context) => WelcomeScreen(),
+       'login': (context) => loginscreen(),
+       'signup': (context) => SignUpScreen(),
+       'home': (context) => HomeLayout(),
+       'Companydetails': (context) =>CompanyDetails(),
+       'invest': (context) => InvestStep1Screen(),
+       'addexpo': (context) => AddExpoStep1Screen(),
+       //'ten': (context) => outsplashScreen(),
+     },
    );
   }
 }
