@@ -102,8 +102,8 @@ class MaterialAppWithTheme extends StatelessWidget{
      //   //     )
      //   // ),
      // ),
-     //theme: theme.getTheme(),
-     home: CompanyDetails(),
+     // theme: theme.getTheme(),
+     home: InvestStep1Screen(),
    );
   }
 }
