@@ -30,12 +30,13 @@ class loginscreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          leading: Image(
-            image: AssetImage('assets/images/Group 8.png'),
+          backgroundColor: Color(0xff5C0099),
+          title: SizedBox(
+            child: Image.asset('assets/images/Group 8.png'),
             width: sizeAware.width * 257 / 1080,
             height: sizeAware.height * 146 / 160,
           ),
-          shadowColor: Colors.black.withOpacity(0),
+          shadowColor: Colors.black.withOpacity(0.5),
         ),
         body: SingleChildScrollView(
           child: SafeArea(

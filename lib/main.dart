@@ -35,75 +35,75 @@ class MaterialAppWithTheme extends StatelessWidget{
    final theme= Provider.of<ThemeChanger>(context);
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     highContrastTheme: ThemeData(
-       primaryColor: const Color(0xffffd100),
-       primarySwatch: Colors.grey,
-       scaffoldBackgroundColor: Colors.white,
-       appBarTheme: const AppBarTheme(
-         systemOverlayStyle: SystemUiOverlayStyle(
-           statusBarColor: Colors.white,
-           statusBarBrightness: Brightness.dark,
-         ),
-         titleSpacing: 20.0,
-         backgroundColor: Colors.white,
-         titleTextStyle: TextStyle(
-           color: Colors.white,
-           fontSize: 20.0,
-           fontWeight: FontWeight.bold,
-         ),
-       ),
-       floatingActionButtonTheme: FloatingActionButtonThemeData(
-           backgroundColor: Color(0xff5C0099)),
-       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-         type: BottomNavigationBarType.fixed,
-         selectedItemColor: Color(0xffffd100),
-         unselectedItemColor: Colors.grey,
-         elevation: 20.0,
-         backgroundColor: Colors.white,
-       ),
-       textTheme: const TextTheme(
-           bodyText1: TextStyle(
-             fontSize: 18,
-             color: Colors.black,
-           )
-       ),
-     ),
-     darkTheme: ThemeData(
-       scaffoldBackgroundColor: Color(0xff333039),
-       primaryColor: const Color(0xffffd100),
-       primarySwatch: Colors.grey,
-       appBarTheme: const AppBarTheme(
-         systemOverlayStyle: SystemUiOverlayStyle(
-           statusBarColor: Color(0xff333039),
-           statusBarBrightness: Brightness.light,
-         ),
-         titleSpacing: 20.0,
-         backgroundColor: Color(0xff333039),
-         titleTextStyle: TextStyle(
-           color: Colors.white,
-           fontSize: 20.0,
-           fontWeight: FontWeight.bold,
-         ),
-         iconTheme: IconThemeData(color: Colors.white),
-       ),
-       floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xff5C0099)),
-       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-         type: BottomNavigationBarType.fixed,
-         selectedItemColor: Color(0xffffd100),
-         unselectedItemColor: Colors.grey,
-         elevation: 0.0,
-         backgroundColor: Color(0xff333039),
-       ),
-       // textTheme: TextTheme(
-       //     bodyText1: TextStyle(
-       //       fontSize: 18,
-       //       color: Colors.black,
-       //         fontFamily: 'Uniform'
-       //     )
-       // ),
-     ),
+     // highContrastTheme: ThemeData(
+     //   primaryColor: const Color(0xffffd100),
+     //   primarySwatch: Colors.grey,
+     //   scaffoldBackgroundColor: Colors.white,
+     //   appBarTheme: const AppBarTheme(
+     //     systemOverlayStyle: SystemUiOverlayStyle(
+     //       statusBarColor: Colors.white,
+     //       statusBarBrightness: Brightness.dark,
+     //     ),
+     //     titleSpacing: 20.0,
+     //     backgroundColor: Colors.white,
+     //     titleTextStyle: TextStyle(
+     //       color: Colors.white,
+     //       fontSize: 20.0,
+     //       fontWeight: FontWeight.bold,
+     //     ),
+     //   ),
+     //   floatingActionButtonTheme: FloatingActionButtonThemeData(
+     //       backgroundColor: Color(0xff5C0099)),
+     //   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+     //     type: BottomNavigationBarType.fixed,
+     //     selectedItemColor: Color(0xffffd100),
+     //     unselectedItemColor: Colors.grey,
+     //     elevation: 20.0,
+     //     backgroundColor: Colors.white,
+     //   ),
+     //   textTheme: const TextTheme(
+     //       bodyText1: TextStyle(
+     //         fontSize: 18,
+     //         color: Colors.black,
+     //       )
+     //   ),
+     // ),
+     // darkTheme: ThemeData(
+     //   scaffoldBackgroundColor: Color(0xff333039),
+     //   primaryColor: const Color(0xffffd100),
+     //   primarySwatch: Colors.grey,
+     //   appBarTheme: const AppBarTheme(
+     //     systemOverlayStyle: SystemUiOverlayStyle(
+     //       statusBarColor: Color(0xff333039),
+     //       statusBarBrightness: Brightness.light,
+     //     ),
+     //     titleSpacing: 20.0,
+     //     backgroundColor: Color(0xff333039),
+     //     titleTextStyle: TextStyle(
+     //       color: Colors.white,
+     //       fontSize: 20.0,
+     //       fontWeight: FontWeight.bold,
+     //     ),
+     //     iconTheme: IconThemeData(color: Colors.white),
+     //   ),
+     //   floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xff5C0099)),
+     //   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+     //     type: BottomNavigationBarType.fixed,
+     //     selectedItemColor: Color(0xffffd100),
+     //     unselectedItemColor: Colors.grey,
+     //     elevation: 0.0,
+     //     backgroundColor: Color(0xff333039),
+     //   ),
+     //   // textTheme: TextTheme(
+     //   //     bodyText1: TextStyle(
+     //   //       fontSize: 18,
+     //   //       color: Colors.black,
+     //   //         fontFamily: 'Uniform'
+     //   //     )
+     //   // ),
+     // ),
      theme: theme.getTheme(),
-     home:  AddExpo2Screen(),
+     home:  loginscreen(),
    );
   }
 }

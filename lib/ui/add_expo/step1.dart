@@ -38,6 +38,7 @@ class _AddExpoStep1ScreenState extends State<AddExpoStep1Screen> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff5C0099),
         leading: Icon(Icons.arrow_back_ios_rounded),
         title: SizedBox(
             child: Text(
