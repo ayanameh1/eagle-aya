@@ -88,8 +88,7 @@ class _expolistState extends State<expolist> {
 
 
 
-//card design
-
+//CARD DESIGN_____________________________________________________________
 class ExpoCard extends StatelessWidget {
   ExpoCard(this.name);
   var name;

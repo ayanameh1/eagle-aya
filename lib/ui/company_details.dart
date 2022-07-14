@@ -93,7 +93,7 @@ class CompanyDetails extends StatelessWidget {
                     BrochureTab(),
                     productslist(),
                     AnnouncTab(),
-                    Icon(Icons.directions_car, size: 350),
+                    ReviewsTab(), //هون بتشتغلي التعليقات (الكلاس تعريفو تحت )
                   ]),
                 ),
               ),
@@ -315,3 +315,19 @@ class _AnnouncTabState extends State<AnnouncTab> {
     );
   }
 }
+
+//REVIEWS TAB_________________________________________________________
+class ReviewsTab extends StatefulWidget {
+  const ReviewsTab({Key? key}) : super(key: key);
+
+  @override
+  State<ReviewsTab> createState() => _ReviewsTabState();
+}
+
+class _ReviewsTabState extends State<ReviewsTab> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: Colors.red,);
+  }
+}
+

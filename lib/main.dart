@@ -67,42 +67,52 @@ class MaterialAppWithTheme extends StatelessWidget{
            ),
        ),
      ),
-     darkTheme: ThemeData(
-       scaffoldBackgroundColor: Color(0xff333039),
-       primaryColor: const Color(0xffffd100),
-       primarySwatch: Colors.grey,
-       appBarTheme: const AppBarTheme(
-         systemOverlayStyle: SystemUiOverlayStyle(
-           statusBarColor: Color(0xff333039),
-           statusBarBrightness: Brightness.light,
-         ),
-         titleSpacing: 20.0,
-         backgroundColor: Color(0xff333039),
-         titleTextStyle: TextStyle(
-           color: Colors.white,
-           fontSize: 20.0,
-           fontWeight: FontWeight.bold,
-         ),
-         iconTheme: IconThemeData(color: Colors.white),
-       ),
-       floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xff5C0099)),
-       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-         type: BottomNavigationBarType.fixed,
-         selectedItemColor: Color(0xffffd100),
-         unselectedItemColor: Colors.grey,
-         elevation: 0.0,
-         backgroundColor: Color(0xff333039),
-       ),
-        textTheme: TextTheme(
-           bodyText1: TextStyle(
-             fontSize: 18,
-             color: Colors.white,
-               fontFamily: 'Uniform'
-           )
-       ),
-     ),
-     theme: theme.getTheme(),
-     home: InvestStep1Screen(),
+     // darkTheme: ThemeData(
+     //   scaffoldBackgroundColor: Color(0xff333039),
+     //   primaryColor: const Color(0xffffd100),
+     //   primarySwatch: Colors.grey,
+     //   appBarTheme: const AppBarTheme(
+     //     systemOverlayStyle: SystemUiOverlayStyle(
+     //       statusBarColor: Color(0xff333039),
+     //       statusBarBrightness: Brightness.light,
+     //     ),
+     //     titleSpacing: 20.0,
+     //     backgroundColor: Color(0xff333039),
+     //     titleTextStyle: TextStyle(
+     //       color: Colors.white,
+     //       fontSize: 20.0,
+     //       fontWeight: FontWeight.bold,
+     //     ),
+     //     iconTheme: IconThemeData(color: Colors.white),
+     //   ),
+     //   floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xff5C0099)),
+     //   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+     //     type: BottomNavigationBarType.fixed,
+     //     selectedItemColor: Color(0xffffd100),
+     //     unselectedItemColor: Colors.grey,
+     //     elevation: 0.0,
+     //     backgroundColor: Color(0xff333039),
+     //   ),
+     //    textTheme: TextTheme(
+     //       bodyText1: TextStyle(
+     //         fontSize: 18,
+     //         color: Colors.white,
+     //           fontFamily: 'Uniform'
+     //       )
+     //   ),
+     // ),
+     // theme: theme.getTheme(),
+     initialRoute: 'Companydetails',
+     routes: {
+       'welcome': (context) => WelcomeScreen(),
+       'login': (context) => loginscreen(),
+       'signup': (context) => SignUpScreen(),
+       'home': (context) => HomeLayout(),
+       'Companydetails': (context) =>CompanyDetails(),
+       'invest': (context) => InvestStep1Screen(),
+       'addexpo': (context) => AddExpoStep1Screen(),
+       //'ten': (context) => outsplashScreen(),
+     },
    );
   }
 }

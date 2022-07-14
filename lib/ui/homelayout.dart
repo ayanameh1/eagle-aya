@@ -45,7 +45,7 @@ class _HomeLayoutState extends State<HomeLayout> {
         title: SizedBox(
           child: Image.asset('assets/images/Group 8.png'),
           width: sizeAware.width * 257 / 1080,
-          height: sizeAware.height * 146 / 160,
+          height: sizeAware.height * 150 / 160,
         ),
         shadowColor: Colors.black.withOpacity(0.5),
         actions: [
