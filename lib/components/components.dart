@@ -29,6 +29,7 @@ Widget defaulTexttFormField(
           controller: controller,
           onTap: onTap,
           decoration: InputDecoration(
+            focusColor: Colors.deepPurple,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(54),

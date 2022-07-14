@@ -37,7 +37,7 @@ class CompanyDetails extends StatelessWidget {
                     CircleAvatar(
                         radius: 48,
                         backgroundImage:
-                        AssetImage('assets/images/Asset 1@4x.png')),
+                            AssetImage('assets/images/Asset 1@4x.png')),
                     Text('company name'),
                   ],
                 ),
@@ -52,7 +52,8 @@ class CompanyDetails extends StatelessWidget {
                 child: TabBar(
                     indicator: BoxDecoration(
                       borderRadius: BorderRadius.circular(22), // Creates border
-                      color: Color(0xffd7d7d7),),
+                      color: Color(0xffd7d7d7),
+                    ),
                     indicatorPadding: EdgeInsets.all(0),
                     labelColor: darkpurple,
                     labelStyle: TextStyle(
@@ -86,36 +87,154 @@ class CompanyDetails extends StatelessWidget {
                           'Reviews',
                         ),
                       ),
-                    ]
-                ),
+                    ]),
               ),
               Flexible(
-                child: TabBarView(
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(Icons.email),
-                          Text('email')
-                        ],
-                      ),
-                      SingleChildScrollView(child: Column(
-                        children: [
-                          Icon(Icons.flight, size: 350),
-                          Icon(Icons.flight, size: 350),
-                          Icon(Icons.flight, size: 350),
-                        ],
-                      )),
-                      Icon(Icons.directions_car, size: 350),
-                      Icon(Icons.directions_car, size: 350),
-                      Icon(Icons.directions_car, size: 350),
-                    ]),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TabBarView(children: [
+                    Aboutlist(),
+                    SingleChildScrollView(
+                        child: Column(
+                      children: [
+                        Icon(Icons.flight, size: 350),
+                        Icon(Icons.flight, size: 350),
+                        Icon(Icons.flight, size: 350),
+                      ],
+                    )),
+                    productslist(),
+                    Icon(Icons.directions_car, size: 350),
+                    Icon(Icons.directions_car, size: 350),
+                  ]),
+                ),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+}
+
+//ABOUT TAB_______________________________________________________
+class Aboutlist extends StatefulWidget {
+  const Aboutlist({Key? key}) : super(key: key);
+
+  @override
+  State<Aboutlist> createState() => _AboutlistState();
+}
+
+class _AboutlistState extends State<Aboutlist> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+         // mainAxisSize :MainAxisSize.min,
+        children: [
+          Card(
+            child: Column(
+              mainAxisSize :MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Icon(Icons.people_alt_outlined),
+                        ),
+                        Text('About us'),
+
+                      ],
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Icon(Icons.email),
+                        ),
+                        Text('email'),
+
+                      ],
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Icon(Icons.phone),
+                        ),
+                        Text('phone'),
+                      ],
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Icon(Icons.local_phone_outlined),
+                        ),
+                        Text('fax'),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//PRODUCTS LIST ___________________________________________________
+class productslist extends StatefulWidget {
+  const productslist({Key? key}) : super(key: key);
+
+  @override
+  State<productslist> createState() => _productslistState();
+}
+
+class _productslistState extends State<productslist> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, i) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 1),
+            child: Card(
+              child: ListTile(
+                title: Text('product $i'),
+                subtitle: Text('this is product $i'),
+                trailing: Column(
+                  children: [
+                    Icon(Icons.monetization_on_outlined),
+                    Text('$i'),
+                  ],
+                ),
+                leading: CircleAvatar(
+                    //radius: 60,
+                    backgroundImage:
+                        AssetImage('assets/images/Asset 1@4x.png')),
+              ),
+            ),
+          );
+        });
   }
 }
