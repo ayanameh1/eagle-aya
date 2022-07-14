@@ -18,6 +18,7 @@ class InvestStep1Screen extends StatelessWidget {
     var sizeAware = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff5C0099),
         title: SizedBox(
           child: Image.asset('assets/images/Group 8.png'),
           width: sizeAware.width * 257 / 1080,

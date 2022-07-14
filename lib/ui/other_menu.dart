@@ -17,7 +17,7 @@ class Otherscreen extends StatelessWidget {
               title: Text(
                 'Settings',
                 style: TextStyle(
-                  color: Colors.black,
+                  //color: Colors.black,
                   fontFamily: 'Uniform',
                 ),
               ),
@@ -30,7 +30,7 @@ class Otherscreen extends StatelessWidget {
               title: Text(
                 'Language',
                 style: TextStyle(
-                  color: Colors.black,
+                  //color: Colors.black,
                   fontFamily: 'Uniform',
                 ),
               ),
@@ -45,7 +45,7 @@ class Otherscreen extends StatelessWidget {
                       child: Text(
                         'arabic',
                         style: TextStyle(
-                          color: Colors.black,
+                          //color: Colors.black,
                           fontFamily: 'Uniform',
                         ),
                       ),
@@ -55,7 +55,7 @@ class Otherscreen extends StatelessWidget {
                       child: Text(
                         'English',
                         style: TextStyle(
-                          color: Colors.black,
+                         // color: Colors.black,
                           fontFamily: 'Uniform',
                         ),
                       ),
@@ -70,7 +70,7 @@ class Otherscreen extends StatelessWidget {
               title: Text(
                 'About us',
                 style: TextStyle(
-                  color: Colors.black,
+                  //color: Colors.black,
                   fontFamily: 'Uniform',
                 ),
               ),
@@ -82,7 +82,7 @@ class Otherscreen extends StatelessWidget {
                 title: Text(
                   'Logout',
                   style: TextStyle(
-                    color: Colors.black,
+                  //  color: Colors.black,
                     fontFamily: 'Uniform',
                   ),
                 ),
