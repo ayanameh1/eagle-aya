@@ -76,6 +76,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
     // }
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff5C0099),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios_rounded),
           onTap: () {

@@ -41,7 +41,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     ThemeChanger _themeChanger = Provider.of<ThemeChanger>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xffffd100),
+        backgroundColor: Color(0xff5C0099),
         title: SizedBox(
           child: Image.asset('assets/images/Group 8.png'),
           width: sizeAware.width * 257 / 1080,

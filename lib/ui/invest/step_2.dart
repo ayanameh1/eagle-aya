@@ -33,6 +33,7 @@ class _AddExpo2ScreenState extends State<AddExpo2Screen> {
     var sizeAware = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff5C0099),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);

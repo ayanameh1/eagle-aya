@@ -18,6 +18,7 @@ class InvestStep1Screen extends StatelessWidget {
     var sizeAware = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff5C0099),
         title: SizedBox(
           child: Image.asset('assets/images/Group 8.png'),
           width: sizeAware.width * 257 / 1080,
@@ -40,7 +41,27 @@ class InvestStep1Screeno extends StatefulWidget {
   State<InvestStep1Screeno> createState() => _InvestStep1ScreenoState();
 }
 class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
-  set value(String? value) {}
+  //list
+  String? value;
+  final items = [
+    'Syria',
+    'Lebanon',
+    'Sudan',
+    'Russia',
+    'India',
+    'Armenia',
+    'Belarus',
+    'Brazil',
+    'Egypt',
+    'Iran',
+    'Jordan',
+    'Oman',
+    'palestine',
+    'Pakistan',
+    'Qatar',
+    'United-Arab-Emirates',
+    'Philippines'
+  ];
 
 
   @override
@@ -48,32 +69,15 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
     var sizeAware = MediaQuery.of(context).size;
     var sizeAwareh = MediaQuery.of(context).size.height;
 
-    //list
-    String? value;
-    final items = [
-      'Syria',
-      'Lebanon',
-      'Sudan',
-      'Russia',
-      'India',
-      'Armenia',
-      'Belarus',
-      'Brazil',
-      'Egypt',
-      'Iran',
-      'Jordan',
-      'Oman',
-      'palestine',
-      'Pakistan',
-      'Qatar',
-      'United-Arab-Emirates',
-      'Philippines'
-    ];
+
     DropdownMenuItem<String> buildMenuItem(String? item) => DropdownMenuItem(
         value: item,
-        child: Text(
-          item!,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            item!,
+            style: TextStyle(color: Colors.black, fontSize: 20),
+          ),
         ));
     return Stack(children: [
       SingleChildScrollView(
@@ -280,7 +284,7 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                                         hint: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: ListTile(
-                                            title: Text('Country'),
+                                            title: Text('Country',),
                                           ),
                                         ),
                                         icon: Icon(Icons.arrow_drop_down),

@@ -101,7 +101,7 @@ class _profilebodyState extends State<profilebody> {
                     title: Text(
                       'My Exhibitions',
                       style: TextStyle(
-                        color: Colors.black,
+                        //color: Colors.black,
                         fontFamily: 'Uniform',
                       ),
                     ),
@@ -110,7 +110,7 @@ class _profilebodyState extends State<profilebody> {
                         child: Text(
                           'arabic',
                           style: TextStyle(
-                            color: Colors.black,
+                            //color: Colors.black,
                             fontFamily: 'Uniform',
                           ),
                         ),
@@ -123,7 +123,7 @@ class _profilebodyState extends State<profilebody> {
                     title: Text(
                       'My Investments',
                       style: TextStyle(
-                        color: Colors.black,
+                      //  color: Colors.black,
                         fontFamily: 'Uniform',
                       ),
                     ),
@@ -138,7 +138,7 @@ class _profilebodyState extends State<profilebody> {
                             child: Text(
                               'arabic',
                               style: TextStyle(
-                                color: Colors.black,
+                               // color: Colors.black,
                                 fontFamily: 'Uniform',
                               ),
                             ),
@@ -148,7 +148,7 @@ class _profilebodyState extends State<profilebody> {
                             child: Text(
                               'English',
                               style: TextStyle(
-                                color: Colors.black,
+                               // color: Colors.black,
                                 fontFamily: 'Uniform',
                               ),
                             ),
