@@ -9,7 +9,7 @@ class MultiImages extends ChangeNotifier{
   List<XFile?>? imageFileList = [];
 
 
-  //
+  //___________________________________________________________
   Future selectImages() async {
     final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
     if (selectedImages!.isNotEmpty) {
@@ -18,7 +18,7 @@ class MultiImages extends ChangeNotifier{
     }}
 
 
-    //
+  //____________________________________________________________
   Future deleteimage(indexx, imageFileList) async {
       await imageFileList.removeAt(indexx);
       print(imageFileList.length);

@@ -2,14 +2,13 @@
 import 'package:eagle/CN/pick_multiple_images.dart';
 import 'package:eagle/components/components.dart';
 import 'package:eagle/constants/colors.dart';
+import 'package:eagle/ui/add_expo/step1.dart';
 import 'package:eagle/ui/invest/step_2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+
 
 class InvestStep1Screen extends StatelessWidget {
   const InvestStep1Screen({Key? key}) : super(key: key);
@@ -17,7 +16,6 @@ class InvestStep1Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
-    //var sizeAwareh = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: SizedBox(
@@ -35,43 +33,15 @@ class InvestStep1Screen extends StatelessWidget {
   }
 }
 
+
+
 class InvestStep1Screeno extends StatefulWidget {
   @override
   State<InvestStep1Screeno> createState() => _InvestStep1ScreenoState();
 }
-
 class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
   set value(String? value) {}
 
-  //controllers
-  TextEditingController fnamecontroller = TextEditingController();
-  TextEditingController lnamecontroller = TextEditingController();
-  TextEditingController postitlecontroller = TextEditingController();
-  TextEditingController phone1controller = TextEditingController();
-  TextEditingController curaddresscontroller = TextEditingController();
-  TextEditingController emailaddresscontroller = TextEditingController();
-  TextEditingController compnamecontroller = TextEditingController();
-  TextEditingController phone2controller = TextEditingController();
-  TextEditingController busemailcontroller = TextEditingController();
-  TextEditingController faxnumcontroller = TextEditingController();
-  TextEditingController countrycontroller = TextEditingController();
-
-  //expo brochure images
-  // final ImagePicker imagePicker = ImagePicker();
-  // List<XFile?>? imageFileList = [];
-
-  // Future selectImages() async {
-  //   //imageFileList![...]??= "Fallback Value" as XFile?;
-  //   final List<XFile>? selectedImages = await imagePicker.pickMultiImage();
-  //   if (selectedImages!.isNotEmpty) {
-  //     setState(() {
-  //       imageFileList!.addAll(selectedImages);
-  //     });
-  //   }
-  //   imageFileList!.forEach((element) {
-  //     if (element == null) element = "Fallback Value" as XFile?;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -142,6 +112,7 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                                         fontWeight: FontWeight.bold,
                                         fontSize: sizeAware.width * 46 / 1080,
                                       ),
+                                      textAlign: TextAlign.center,
                                     ),
                                   ),
                                   defaulTexttFormField(
@@ -246,6 +217,7 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                                         fontWeight: FontWeight.bold,
                                         fontSize: sizeAware.width * 46 / 1080,
                                       ),
+                                      textAlign: TextAlign.center,
                                     ),
                                   ),
                                   defaulTexttFormField(
@@ -338,23 +310,23 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                           SizedBox(
                             height: 30,
                           ),
+                          //INVESTOR BROCHURE____________________________________________________________
                           Consumer<MultiImages>(
                               builder: (context, allimages, child) {
                             return Container(
                               child: Padding(
                                 padding: const EdgeInsets.all(12),
                                 child: Column(children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          'Please provide a brochure to make it easier for visitor to understand your work and connect with you',
-                                          maxLines: 3,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                    ],
+                                  Text(
+                                    'Please provide a brochure to make it easier for visitor to understand your work and connect with you',
+                                    style: TextStyle(
+                                      fontFamily: 'Uniform',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: sizeAware.width * 46 / 1080,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    //maxLines: 3,
+                                    //overflow: TextOverflow.ellipsis,
                                   ),
                                   SizedBox(
                                     height: sizeAware.height * 47 / 1920,
@@ -415,9 +387,7 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                                               itemBuilder:
                                                   (BuildContext context,
                                                       int index) {
-                                                return allimages.imageFileList![index] !=
-                                                        null
-                                                    ? Stack(
+                                                return Stack(
                                                         children: [
                                                           Image.file(
                                                             File(allimages.imageFileList![
@@ -443,8 +413,7 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                                                             ),
                                                           ),
                                                         ],
-                                                      )
-                                                    : Container();
+                                                      );
                                               }),
                                 ]),
                               ),
@@ -464,26 +433,40 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                           SizedBox(
                             height: 30,
                           ),
+                          //______________________________________________________________________
+                          //How to would you like to present your product?
                           Container(
                             child: Padding(
                               padding: const EdgeInsets.all(12),
                               child: Column(children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        'How to would you like to present your product?',
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
+                                Text(
+                                  'How to would you like to present your product?',
+                                  style: TextStyle(
+                                    fontFamily: 'Uniform',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: sizeAware.width * 46 / 1080,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                 // maxLines: 2,
+                                  //overflow: TextOverflow.ellipsis,
                                 ),
                                 SizedBox(
                                   height: sizeAware.height * 47 / 1920,
                                 ),
-                                Text('')
+                                Row(
+                                  children: [
+                                    Flexible(
+                                      child: Column(
+                                        children: [
+                                          buildCheckBox(title: 'pictures'),
+                                          buildCheckBox(title: 'videos'),
+                                          buildCheckBox(title: 'real samples'),
+                                          buildCheckBox(title: 'schemes'),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ]),
                             ),
                             decoration: BoxDecoration(
@@ -574,4 +557,44 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
       ),
     ]);
   }
+
+  Widget buildCheckBox({bool value1 = false, required String title}) =>
+      StatefulBuilder(
+        builder: (BuildContext context, StateSetter setState) {
+          return CheckboxListTile(
+              value: value1,
+              contentPadding: EdgeInsets.all(0),
+              checkColor: Colors.white,
+              activeColor: darkpurple,
+              title: Text(title),
+              controlAffinity: ListTileControlAffinity.leading,
+              onChanged: (value) {
+                setState(() {
+                  value1 = value!;
+                });
+              });
+        },
+      );
+
+
+  //controllers
+  TextEditingController fnamecontroller = TextEditingController();
+  TextEditingController lnamecontroller = TextEditingController();
+  TextEditingController postitlecontroller = TextEditingController();
+  TextEditingController phone1controller = TextEditingController();
+  TextEditingController curaddresscontroller = TextEditingController();
+  TextEditingController emailaddresscontroller = TextEditingController();
+  TextEditingController compnamecontroller = TextEditingController();
+  TextEditingController phone2controller = TextEditingController();
+  TextEditingController busemailcontroller = TextEditingController();
+  TextEditingController faxnumcontroller = TextEditingController();
+  TextEditingController countrycontroller = TextEditingController();
+
+  //checkboxes values
+  bool valueI = false;
+  bool valueA = false;
+  bool valueM = false;
+  bool valueT = false;
+  bool valueB = false;
+
 }

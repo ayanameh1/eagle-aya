@@ -38,7 +38,6 @@ class _profilebodyState extends State<profilebody> {
 
   @override
   Widget build(BuildContext context) {
-    //final profilemodel = Provider.of<Profile>(context);
     return Consumer<Profile>(builder: (context, profilemodel, child) {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),

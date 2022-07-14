@@ -10,7 +10,7 @@ Future<ProfileInfo?> getProfile() async {
     headers: {
       HttpHeaders.contentTypeHeader :"application/json"
     });
-    //
+    //_______________________________________________________
     if (profile.statusCode == 200) {
       var profilebody = jsonDecode(profile.body);
 
@@ -19,7 +19,7 @@ Future<ProfileInfo?> getProfile() async {
       print('done');
       return p;
     }
-    //
+    //________________________________________________________
     else {
       print('sorry ');
     }
