@@ -102,7 +102,7 @@ class MaterialAppWithTheme extends StatelessWidget{
        ),
      ),
      theme: theme.getTheme(),
-     home: HomeLayout(),
+     home: InvestStep1Screen(),
    );
   }
 }
