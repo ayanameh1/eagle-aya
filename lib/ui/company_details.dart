@@ -1,7 +1,11 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'dart:convert';
+
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class CompanyDetails extends StatelessWidget {
   const CompanyDetails({Key? key}) : super(key: key);
@@ -264,7 +268,9 @@ class _AnnouncTabState extends State<AnnouncTab> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: MediaQuery.of(context).size.height * 4 / 1000,),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 4 / 1000,
+        ),
         Expanded(
           child: Container(
               width: MediaQuery.of(context).size.width * 50 / 50,
@@ -279,11 +285,12 @@ class _AnnouncTabState extends State<AnnouncTab> {
         Container(
           height: MediaQuery.of(context).size.height * 45 / 160,
           child: ListView.builder(
-            scrollDirection: Axis.horizontal,
+              scrollDirection: Axis.horizontal,
               itemCount: 10,
               itemBuilder: (context, i) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                   child: Container(
                     width: MediaQuery.of(context).size.width * 40 / 50,
                     height: MediaQuery.of(context).size.height * 45 / 160,
@@ -299,13 +306,13 @@ class _AnnouncTabState extends State<AnnouncTab> {
                       ],
                     ),
                     child: Center(child: Text('product $i')),
-                        ),
-                  );
+                  ),
+                );
               }),
         ),
         Expanded(
             child: Container(
-              width: MediaQuery.of(context).size.width * 50 / 50,
+          width: MediaQuery.of(context).size.width * 50 / 50,
           child: Center(
             child: Text('Sales',
                 style: TextStyle(
@@ -321,7 +328,8 @@ class _AnnouncTabState extends State<AnnouncTab> {
               itemCount: 10,
               itemBuilder: (context, i) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                   child: Container(
                     width: MediaQuery.of(context).size.width * 40 / 50,
                     height: MediaQuery.of(context).size.height * 45 / 160,
@@ -348,17 +356,133 @@ class _AnnouncTabState extends State<AnnouncTab> {
 
 //REVIEWS TAB_________________________________________________________
 class ReviewsTab extends StatefulWidget {
-  const ReviewsTab({Key? key}) : super(key: key);
-
+ final companyid;
+  ReviewsTab({this.companyid});
   @override
   State<ReviewsTab> createState() => _ReviewsTabState();
 }
 
 class _ReviewsTabState extends State<ReviewsTab> {
+  Future getReviews() async {
+    var url = '';
+    var uri = Uri.parse(url);
+    var data = {'companyid' :widget.companyid};
+    var response = await http.post(uri, body:data );
+    var responsebody = jsonDecode(response.body);
+    return responsebody;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red,
+      child: Stack(children: [
+        Container(
+          color: Colors.white,
+          width: MediaQuery
+              .of(context)
+              .size
+              .width,
+        ),
+        Positioned(
+          bottom: 0,
+          child: Container(
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
+            height: 60,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          border: Border(top: BorderSide(color: Colors.grey))),
+                      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: 'Write a review',
+                          filled: true,
+                          fillColor: Colors.grey[200],
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              Icons.send,
+                              color: (Color(0xff5C0099)),
+                            ),
+                            onPressed: () {},
+                          ),
+                          contentPadding: EdgeInsets.all(5),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(60),
+                              borderSide: BorderSide(style: BorderStyle.none)),
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(60),
+                              borderSide: BorderSide(style: BorderStyle.none)),
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(30)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+        FutureBuilder(
+          future: getReviews(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasData) {
+              return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (int i = 0; i < snapshot.data.length; i++)
+                      ReviewsList(
+                        review: snapshot.data[i]['review'],
+                        username: snapshot.data[i]['username'],
+                      ),
+                  ]);
+            }
+            return Center(
+             child: CircularProgressIndicator(),
+            );
+          },
+        ),
+      ]),
     );
+  }
+}
+//-----------------------------------
+class ReviewsList extends StatelessWidget {
+  final username;
+  final review;
+  ReviewsList({this.username, this.review});
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      top: 30,
+      child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height - 70,
+          child: SingleChildScrollView(
+          child: ListTile(
+          title: Container(
+          margin: EdgeInsets.only(top: 15),
+      child: Text(username),
+    ),
+    subtitle: Container(
+    padding: EdgeInsets.all(10),
+    child: Text(review),
+    color: Colors.grey[100],
+    ),
+    leading: CircleAvatar(
+    //radius: 60,
+    backgroundImage: AssetImage('assets/images/Asset 1@4x.png')),
+    ))));
   }
 }
