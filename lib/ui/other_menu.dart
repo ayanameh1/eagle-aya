@@ -34,34 +34,7 @@ class Otherscreen extends StatelessWidget {
                   fontFamily: 'Uniform',
                 ),
               ),
-              trailing: DropdownButton<String>(
-                  value: null,
-                  underline: Container(),
-                  icon: Icon(Icons.keyboard_arrow_down_outlined),
-                  elevation: 16,
-                  onChanged: (value) {},
-                  items: const [
-                    DropdownMenuItem(
-                      child: Text(
-                        'arabic',
-                        style: TextStyle(
-                          //color: Colors.black,
-                          fontFamily: 'Uniform',
-                        ),
-                      ),
-                      value: 'dds',
-                    ),
-                    DropdownMenuItem(
-                      child: Text(
-                        'English',
-                        style: TextStyle(
-                         // color: Colors.black,
-                          fontFamily: 'Uniform',
-                        ),
-                      ),
-                      value: 'dsa',
-                    ),
-                  ]),
+              trailing: dropdownlanguage(),
             ),
 
             //about us
@@ -91,5 +64,51 @@ class Otherscreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+
+
+// LANGUAGE DROPDOWN MENU BUTTON _______________________________________________
+class dropdownlanguage extends StatefulWidget {
+  const dropdownlanguage({Key? key}) : super(key: key);
+
+  @override
+  State<dropdownlanguage> createState() => _dropdownlanguageState();
+}
+
+class _dropdownlanguageState extends State<dropdownlanguage> {
+  String value ='English';
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+        value: value,
+        icon: Icon(Icons.keyboard_arrow_down_outlined),
+        elevation: 16,
+        onChanged: (value) {setState(() {
+          this.value=value!;
+        });},
+        items: const [
+          DropdownMenuItem(
+            child: Text(
+              'arabic',
+              style: TextStyle(
+                color: Colors.black,
+                fontFamily: 'Uniform',
+              ),
+            ),
+            value: 'arabic',
+          ),
+          DropdownMenuItem(
+            child: Text(
+              'English',
+              style: TextStyle(
+                color: Colors.black,
+                fontFamily: 'Uniform',
+              ),
+            ),
+            value: 'English',
+          ),
+        ]);
   }
 }

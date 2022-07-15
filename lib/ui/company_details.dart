@@ -26,24 +26,20 @@ class CompanyDetails extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 40 / 1080,
-              ),
               Container(
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    CircleAvatar(
-                        radius: 48,
-                        backgroundImage:
-                            AssetImage('assets/images/Asset 1@4x.png')),
-                    Text('company name'),
+                    Padding(
+                      padding: const EdgeInsets.all(25),
+                      child: CircleAvatar(
+                          radius: 48,
+                          backgroundImage:
+                              AssetImage('assets/images/Asset 1@4x.png')),
+                    ),
+                    Expanded(child: Text('company name')),
                   ],
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 35 / 1080,
               ),
               Container(
                 decoration: BoxDecoration(
@@ -90,23 +86,13 @@ class CompanyDetails extends StatelessWidget {
                     ]),
               ),
               Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TabBarView(children: [
-                    Aboutlist(),
-                    SingleChildScrollView(
-                        child: Column(
-                      children: [
-                        Icon(Icons.flight, size: 350),
-                        Icon(Icons.flight, size: 350),
-                        Icon(Icons.flight, size: 350),
-                      ],
-                    )),
-                    productslist(),
-                    Icon(Icons.directions_car, size: 350),
-                    Icon(Icons.directions_car, size: 350),
-                  ]),
-                ),
+                child: TabBarView(children: [
+                  Aboutlist(),
+                  BrochureTab(),
+                  productslist(),
+                  AnnouncTab(),
+                  ReviewsTab(), //هون بتشتغلي التعليقات (الكلاس تعريفو تحت )
+                ]),
               ),
             ],
           ),
@@ -116,7 +102,7 @@ class CompanyDetails extends StatelessWidget {
   }
 }
 
-//ABOUT TAB_______________________________________________________
+//ABOUT TAB__________________________________________________________
 class Aboutlist extends StatefulWidget {
   const Aboutlist({Key? key}) : super(key: key);
 
@@ -129,11 +115,11 @@ class _AboutlistState extends State<Aboutlist> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-         // mainAxisSize :MainAxisSize.min,
+        // mainAxisSize :MainAxisSize.min,
         children: [
           Card(
             child: Column(
-              mainAxisSize :MainAxisSize.min,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Flexible(
                   child: Padding(
@@ -144,8 +130,7 @@ class _AboutlistState extends State<Aboutlist> {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Icon(Icons.people_alt_outlined),
                         ),
-                        Text('About us'),
-
+                        Expanded(child: Text('About us')),
                       ],
                     ),
                   ),
@@ -159,8 +144,7 @@ class _AboutlistState extends State<Aboutlist> {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Icon(Icons.email),
                         ),
-                        Text('email'),
-
+                        Expanded(child: Text('email')),
                       ],
                     ),
                   ),
@@ -174,7 +158,7 @@ class _AboutlistState extends State<Aboutlist> {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Icon(Icons.phone),
                         ),
-                        Text('phone'),
+                        Expanded(child: Text('phone')),
                       ],
                     ),
                   ),
@@ -188,7 +172,7 @@ class _AboutlistState extends State<Aboutlist> {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Icon(Icons.local_phone_outlined),
                         ),
-                        Text('fax'),
+                        Expanded(child: Text('fax')),
                       ],
                     ),
                   ),
@@ -202,7 +186,7 @@ class _AboutlistState extends State<Aboutlist> {
   }
 }
 
-//PRODUCTS LIST ___________________________________________________
+//PRODUCTS LIST TAB___________________________________________________
 class productslist extends StatefulWidget {
   const productslist({Key? key}) : super(key: key);
 
@@ -236,5 +220,145 @@ class _productslistState extends State<productslist> {
             ),
           );
         });
+  }
+}
+
+//BROCHURE TAB________________________________________________________
+class BrochureTab extends StatefulWidget {
+  const BrochureTab({Key? key}) : super(key: key);
+
+  @override
+  State<BrochureTab> createState() => _BrochureTabState();
+}
+
+class _BrochureTabState extends State<BrochureTab> {
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+        padding: EdgeInsets.zero,
+        itemCount: 5,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+          mainAxisSpacing: 1.0,
+          // crossAxisSpacing: 2.0,
+          childAspectRatio: 2.0,
+        ),
+        itemBuilder: (BuildContext context, int index) {
+          return Image(
+            image: AssetImage('assets/images/kkk.png'),
+          );
+        });
+  }
+}
+
+//ANNOUNCEMENT TAB____________________________________________________
+class AnnouncTab extends StatefulWidget {
+  const AnnouncTab({Key? key}) : super(key: key);
+
+  @override
+  State<AnnouncTab> createState() => _AnnouncTabState();
+}
+
+class _AnnouncTabState extends State<AnnouncTab> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(height: MediaQuery.of(context).size.height * 4 / 1000,),
+        Expanded(
+          child: Container(
+              width: MediaQuery.of(context).size.width * 50 / 50,
+              child: Center(
+                child: Text('Conferences',
+                    style: TextStyle(
+                        fontFamily: 'Uniform',
+                        fontSize: MediaQuery.of(context).size.width * 50 / 1080,
+                        fontWeight: FontWeight.bold)),
+              )),
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 45 / 160,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (context, i) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 40 / 50,
+                    height: MediaQuery.of(context).size.height * 45 / 160,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black38,
+                          blurRadius: 2,
+                          offset: Offset(3, 3), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Center(child: Text('product $i')),
+                        ),
+                  );
+              }),
+        ),
+        Expanded(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 50 / 50,
+          child: Center(
+            child: Text('Sales',
+                style: TextStyle(
+                    fontFamily: 'Uniform',
+                    fontSize: MediaQuery.of(context).size.width * 50 / 1080,
+                    fontWeight: FontWeight.bold)),
+          ),
+        )),
+        Container(
+          height: MediaQuery.of(context).size.height * 45 / 160,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (context, i) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 40 / 50,
+                    height: MediaQuery.of(context).size.height * 45 / 160,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black38,
+                          blurRadius: 2,
+                          offset: Offset(3, 3), // Shadow position
+                        ),
+                      ],
+                    ),
+                    child: Center(child: Text('product $i')),
+                  ),
+                );
+              }),
+        ),
+      ],
+    );
+  }
+}
+
+//REVIEWS TAB_________________________________________________________
+class ReviewsTab extends StatefulWidget {
+  const ReviewsTab({Key? key}) : super(key: key);
+
+  @override
+  State<ReviewsTab> createState() => _ReviewsTabState();
+}
+
+class _ReviewsTabState extends State<ReviewsTab> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.red,
+    );
   }
 }

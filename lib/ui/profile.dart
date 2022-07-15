@@ -22,8 +22,6 @@ class ProfileScreen extends StatelessWidget {
 }
 
 class profilebody extends StatefulWidget {
-  const profilebody({Key? key}) : super(key: key);
-
   @override
   _profilebodyState createState() => _profilebodyState();
 }
@@ -36,6 +34,7 @@ class _profilebodyState extends State<profilebody> {
     profilemodel.getprofileInfo();
   }
 
+  List<ListItem> _items = generateItems();
   @override
   Widget build(BuildContext context) {
     return Consumer<Profile>(builder: (context, profilemodel, child) {
@@ -70,10 +69,10 @@ class _profilebodyState extends State<profilebody> {
                       children: [
                         Text(
                           profilemodel.pf?.title ?? "",
-                          style:TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
                           ),
-                  ),
+                        ),
                         SizedBox(
                           width: 5,
                         ),
@@ -96,69 +95,66 @@ class _profilebodyState extends State<profilebody> {
                       ],
                     ),
                   ),
-                  //language
-                  ListTile(
-                    title: Text(
-                      'My Exhibitions',
-                      style: TextStyle(
-                        //color: Colors.black,
-                        fontFamily: 'Uniform',
-                      ),
-                    ),
-                    onTap: (){
-                      DropdownMenuItem(
-                        child: Text(
-                          'arabic',
-                          style: TextStyle(
-                            //color: Colors.black,
-                            fontFamily: 'Uniform',
-                          ),
-                        ),
-                        value: 'dds',
-                      );
+                  ExpansionPanelList(
+                    animationDuration: Duration(milliseconds: 800),
+                    children: _getExpansionPanels(_items),
+                    expansionCallback: (panelIndex, isExpanded) {
+                      _items[panelIndex].isExpanded = !isExpanded;
+                      setState(() {});
                     },
-                    trailing:Icon(Icons.keyboard_arrow_down_outlined),
-                  ),
-                  ListTile(
-                    title: Text(
-                      'My Investments',
-                      style: TextStyle(
-                      //  color: Colors.black,
-                        fontFamily: 'Uniform',
-                      ),
-                    ),
-                    trailing: DropdownButton<String>(
-                        value: null,
-                        underline: Container(),
-                        icon: Icon(Icons.keyboard_arrow_down_outlined),
-                        elevation: 16,
-                        onChanged: (value) {},
-                        items: const [
-                          DropdownMenuItem(
-                            child: Text(
-                              'arabic',
-                              style: TextStyle(
-                               // color: Colors.black,
-                                fontFamily: 'Uniform',
-                              ),
-                            ),
-                            value: 'dds',
-                          ),
-                          DropdownMenuItem(
-                            child: Text(
-                              'English',
-                              style: TextStyle(
-                               // color: Colors.black,
-                                fontFamily: 'Uniform',
-                              ),
-                            ),
-                            value: 'dsa',
-                          ),
-                        ]),
                   ),
                 ],
               ),
       );
     });
   }
+}
+
+class ListItem {
+  String headerName;
+  bool isExpanded;
+  //String exhibitionName //String exhibition(booth name)
+  ListItem({
+    required this.headerName,
+    this.isExpanded = false,
+  });
+}
+
+List<ListItem> generateItems() {
+  return <ListItem>[
+    ListItem(
+      headerName: 'My Exhibition',
+    ),
+    ListItem(
+      headerName: 'My Booths',
+    ),
+  ];
+}
+
+List<ExpansionPanel> _getExpansionPanels(List<ListItem> _items) {
+  return _items.map<ExpansionPanel>((ListItem item) {
+    return ExpansionPanel(
+      //backgroundColor: Colors.white38,
+      headerBuilder: (BuildContext context, bool isExpanded) {
+        return ListTile(
+          title: Text(item.headerName),
+        );
+      },
+      body: Container(
+        height: 100,
+        child: ListView.builder(
+          itemCount: 5,
+          itemBuilder: (context, i) {
+            return Container(
+              decoration: BoxDecoration(border:Border(top: BorderSide(color: Colors.black12,width: 2))),
+              child: ListTile(
+                title: Text('$i'),//here we put exhibitionsName
+              ),
+            );
+          },
+        ),
+      ),
+      isExpanded: item.isExpanded,
+    );
+  }).toList();
 }
