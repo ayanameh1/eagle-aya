@@ -9,13 +9,16 @@ import 'package:eagle/ui/login.dart';
 import 'package:eagle/ui/profile.dart';
 import 'package:eagle/ui/sign_up.dart';
 import 'package:eagle/ui/welcome.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'constants/colors.dart';
 
-void main() {
-  runApp( MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -102,7 +105,7 @@ class MaterialAppWithTheme extends StatelessWidget{
      //   ),
      // ),
      // theme: theme.getTheme(),
-     initialRoute: 'Companydetails',
+     initialRoute: 'home',
      routes: {
        'welcome': (context) => WelcomeScreen(),
        'login': (context) => loginscreen(),

@@ -2,6 +2,7 @@ import 'package:eagle/CN/theme.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/other_menu.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:floating_bottom_bar/animated_bottom_navigation_bar.dart';
@@ -31,6 +32,14 @@ class _HomeLayoutState extends State<HomeLayout> {
   ];
   @override
   void initState() {
+    FirebaseMessaging.instance.getInitialMessage();
+
+    FirebaseMessaging.onMessage.listen((message) {
+      if(message.notification!= null){
+        print(message.notification!.body);
+        print(message.notification!.title);
+      }
+    });
     super.initState();
   }
   @override
