@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:eagle/constants/colors.dart';
+import 'package:eagle/ui/homelayout.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/sign_up.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class loginscreen extends StatelessWidget {
           description:
               'way to walk around the\n exhibition and keep up with the\n latest news and the biggest\n sales .')
     ];
+
 
     return Scaffold(
         appBar: AppBar(
@@ -168,7 +170,7 @@ class loginscreen extends StatelessWidget {
                             child: Text(
                               'Signup here',
                               style: TextStyle(
-                                color: Colors.black,
+                                color: Color(0xff5C0099),
                                 fontFamily: 'Uniform',
                               ),
                             ),
@@ -186,7 +188,7 @@ class loginscreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => HomePageScreen(),
+                                builder: (context) => HomeLayout(),
                               ),
                             );
                           },
@@ -224,14 +226,14 @@ class loginscreen extends StatelessWidget {
                         // ),
                         // );
                       },
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                          color: black,
-                          fontFamily: 'Uniform',
-                        ),
-                      ),
-            
+                      // child: Text(
+                      //   "Login",
+                      //   style: TextStyle(
+                      //     color: black,
+                      //     fontFamily: 'Uniform',
+                      //   ),
+                      // ),
+                      //
               
                   ),
                 ),

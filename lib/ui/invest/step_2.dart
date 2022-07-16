@@ -4,12 +4,12 @@ import 'package:intl/intl.dart';
 import '../../widget/bottonHeader.dart';
 import '../homepage.dart';
 
-class AddExpo2Screen extends StatefulWidget {
+class InvestStep2Screen extends StatefulWidget {
   @override
-  State<AddExpo2Screen> createState() => _AddExpo2ScreenState();
+  State<InvestStep2Screen> createState() => _InvestStep2ScreenState();
 }
 
-class _AddExpo2ScreenState extends State<AddExpo2Screen> {
+class _InvestStep2ScreenState extends State<InvestStep2Screen> {
   //date
   DateTime? date1, date2;
   String getText() {

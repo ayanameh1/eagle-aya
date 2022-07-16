@@ -500,12 +500,12 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                                   1920,
                               child: MaterialButton(
                                 onPressed: () {
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) => InvestStep2Screen(),
-                                  //   ),
-                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => InvestStep2Screen(),
+                                    ),
+                                  );
                                 },
                                 child: Text(
                                   "Next",
