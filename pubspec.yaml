@@ -28,6 +28,7 @@ dependencies:
   intl: ^0.17.0
   firebase_core:
   image_picker:
+  firebase_messaging:
 
 
 dev_dependencies:

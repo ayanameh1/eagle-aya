@@ -1,8 +1,5 @@
-import 'package:eagle/API_services/get_all_expo.dart';
-import 'package:eagle/API_services/get_profile.dart';
 import 'package:eagle/CN/theme.dart';
 import 'package:eagle/constants/colors.dart';
-import 'package:eagle/ui/invest/step_1.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/other_menu.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +8,7 @@ import 'package:floating_bottom_bar/animated_bottom_navigation_bar.dart';
 import 'package:provider/provider.dart';
 import 'notification.dart';
 import 'profile.dart';
+//import 'package:firebase_messaging/firebase_messaging.dart';
 
 class HomeLayout extends StatefulWidget {
   const HomeLayout({Key? key}) : super(key: key);
