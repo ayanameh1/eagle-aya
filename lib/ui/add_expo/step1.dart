@@ -71,7 +71,7 @@ class _AddExpoStep1ScreenoState extends State<AddExpoStep1Screeno> {
                     padding: const EdgeInsets.symmetric(horizontal: 15),
                     child: Column(children: [
                       SizedBox(height: sizeAware.height * 90 / 1920),
-                      // first box (EXPO INFORMATION)
+                      // FIRST BOX (EXPO INFORMATION)
                       Container(
                         child: Padding(
                           padding: const EdgeInsets.all(12),
@@ -129,12 +129,12 @@ class _AddExpoStep1ScreenoState extends State<AddExpoStep1Screeno> {
                           ],
                         ),
                       ),
-                      // END of first box
+                      // END of FIRST BOX
                       SizedBox(
                         height: 30,
                       ),
 
-                      //Second box (CONTACT INFORMATION)
+                      // SECOND BOX (CONTACT INFORMATION)
                       Container(
                         child: Padding(
                           padding: const EdgeInsets.all(12),
@@ -279,11 +279,11 @@ class _AddExpoStep1ScreenoState extends State<AddExpoStep1Screeno> {
                           ],
                         ),
                       ),
-                      // END of second box
+                      // END of SECOND BOX
                       SizedBox(
                         height: 30,
                       ),
-                      // third box (EXPO poster)
+                      // THIRD BOX (EXPO poster)
                       Consumer<SingleImage>(
                           builder: (context, oneimage, child) {
                         return Container(
@@ -415,10 +415,11 @@ class _AddExpoStep1ScreenoState extends State<AddExpoStep1Screeno> {
                           ),
                         );
                       }),
-                      // END of third box
+                      // END of THIRD BOX
                       SizedBox(
                         height: 30,
                       ),
+                      //THE BUTTON
                       Container(
                         width: MediaQuery.of(context).size.width * 359 / 1080,
                         height: MediaQuery.of(context).size.height * 82 / 1920,
@@ -462,6 +463,8 @@ class _AddExpoStep1ScreenoState extends State<AddExpoStep1Screeno> {
           ),
         ),
       ),
+
+      //the 'STEP ONE' CONTAINER
       Container(
         width: sizeAware.width * 1080 / 1080,
         height: sizeAware.height * 170 / 1920,
@@ -488,6 +491,7 @@ class _AddExpoStep1ScreenoState extends State<AddExpoStep1Screeno> {
     ]);
   }
 
+  // CHECKBOX WIDGET
   Widget buildCheckBox({bool value1 = false, required String title}) =>
       StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) {
