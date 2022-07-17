@@ -30,26 +30,7 @@ class _HomeLayoutState extends State<HomeLayout> {
     'Profile',
     'Notrification',
   ];
-  @override
-  void initState() {
-    FirebaseMessaging.instance.getInitialMessage();
 
-    ////when app is on foreground
-    FirebaseMessaging.onMessage.listen((message) {
-      if(message.notification!= null){
-        print(message.notification!.body);
-        print(message.notification!.title);
-      }
-    });
-
-    ////when the app is on background and user taps on the notification
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      final routFromMessage = message.data['route'];
-      print(routFromMessage);
-      Navigator.of(context).pushNamed(routFromMessage);
-    });
-    super.initState();
-  }
   @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
