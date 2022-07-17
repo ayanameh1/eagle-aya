@@ -10,14 +10,22 @@ import 'package:eagle/ui/profile.dart';
 import 'package:eagle/ui/sign_up.dart';
 import 'package:eagle/ui/welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'constants/colors.dart';
 
+Future<void> backgroundhandler (RemoteMessage message) async{
+  print(message.data.toString());
+  print(message.notification!.title);
+}
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(backgroundhandler);
   runApp(MyApp());
 }
 
@@ -31,7 +39,39 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MaterialAppWithTheme extends StatelessWidget{
+class MaterialAppWithTheme extends StatefulWidget{
+  @override
+  State<MaterialAppWithTheme> createState() => _MaterialAppWithThemeState();
+}
+
+class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
+  @override
+  void initState() {
+    super.initState();
+
+    FirebaseMessaging.instance.getInitialMessage().then((message){
+      if(message!= null){
+        final routFromMessage = message.data['route'];
+        Navigator.of(context).pushNamed(routFromMessage);
+      };
+    });
+
+    ////when app is on foreground
+    FirebaseMessaging.onMessage.listen((message) {
+      if(message.notification!= null){
+        print(message.notification!.body);
+        print(message.notification!.title);
+      }
+    });
+
+    ////when the app is on background and user taps on the notification
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      final routFromMessage = message.data['route'];
+      print(routFromMessage);
+      Navigator.of(context).pushNamed(routFromMessage);
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
    final theme= Provider.of<ThemeChanger>(context);
