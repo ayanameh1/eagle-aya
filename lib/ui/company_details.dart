@@ -2,8 +2,10 @@
 
 import 'dart:convert';
 
+import 'package:eagle/CN/get_reviews_cn.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -23,6 +25,8 @@ class CompanyDetails extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider<ReviewPost>(create: (context) => ReviewPost()),
+          ChangeNotifierProvider<GetAllReviews>(
+              create: (context) => GetAllReviews()),
         ],
         child: Scaffold(
           appBar: AppBar(
@@ -391,92 +395,116 @@ class _ReviewsTabState extends State<ReviewsTab> {
   @override
   void initState() {
     super.initState();
-    // final allreviews = Provider.of<ReviewPost>(context, listen: false);
-    //allreviews.reviewpost(rdata);
+    final allreviews = Provider.of<GetAllReviews>(context, listen: false);
+    allreviews.getallReviewsData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ReviewPost>(builder: (context, reviewf, child) {
-      return Stack(children: [
-        ListView.builder(
-            itemCount: 10,
-            itemBuilder: (context, i) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 1),
-                child: Card(
-                  child: ListTile(
-                    title: Text('product $i'),
-                    subtitle: Text('this is product $i'),
-                    leading: CircleAvatar(
-                        //radius: 60,
-                        backgroundImage:
-                            AssetImage('assets/images/Asset 1@4x.png')),
+      return Consumer<GetAllReviews>(
+          builder: (context, allReviewf, child) {
+     return Stack(children: [
+          reviewf.loading || allReviewf.loading
+              ? Container(
+                  child: SpinKitCircle(
+                    color: darkpurple,
                   ),
-                ),
-              );
-            }),
-        Positioned(
-          bottom: 0,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 60,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          border: Border(top: BorderSide(color: Colors.grey))),
-                      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                      width: MediaQuery.of(context).size.width,
-                      child: TextFormField(
-                        controller: reviewcontrller,
-                        decoration: InputDecoration(
-                          hintText: 'Write a review',
-                          filled: true,
-                          fillColor: Colors.grey[200],
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              Icons.send,
-                              color: (Color(0xff5C0099)),
+                )
+              :ListView.builder(
+                        itemCount: allReviewf.data?.length,
+                        itemBuilder: (context, i) {
+                          final pos = allReviewf.data;
+                          final post = pos?[i];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 1),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                      width: 1, color: Color(0xfff1f1f1)),
+                                ),
+                              ),
+                              child: ListTile(
+                                title: Text('${post?.username}'),
+                                subtitle: Container(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(3),
+                                    child: Text(' ${post?.body}'),
+                                  ),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color(0xffd7d7d7)),
+                                ),
+                                leading: CircleAvatar(
+                                    backgroundImage: AssetImage(
+                                        'assets/images/Asset 1@4x.png')),
+                              ),
                             ),
-                            onPressed: ()async {
-                              String p = reviewcontrller.text.trim();
-                             Review r= Review(userId: 1,body: p);
-                              await reviewf.reviewpost(r);
-                              if (reviewf.isback) {
-                                print('aya');
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) =>
-                                //         HomeLayout(),
-                                //   ),
-                                // );
-                              }
-                            },
+                          );
+                        }),
+          Positioned(
+            bottom: 0,
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white70,
+                  ),
+                  height: 70,
+                  width: MediaQuery.of(context).size.width,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                    child: TextFormField(
+                      controller: reviewcontrller,
+                      decoration: InputDecoration(
+                        hintText: 'Write a review',
+                        filled: true,
+                        fillColor: Colors.grey[200],
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            Icons.send,
+                            color: (Color(0xff5C0099)),
                           ),
-                          contentPadding: EdgeInsets.all(5),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(60),
-                              borderSide: BorderSide(style: BorderStyle.none)),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(60),
-                              borderSide: BorderSide(style: BorderStyle.none)),
-                          border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                              borderRadius: BorderRadius.circular(30)),
+                          onPressed: () async {
+                            String p = reviewcontrller.text.trim();
+                            Review r = Review(userId: 1, body: p);
+                            await reviewf.reviewpost(r);
+                            if (reviewf.isback) {
+                              print('aya');
+                              setState(() {
+                                reviewcontrller.clear();
+                              });
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) =>
+                              //         HomeLayout(),
+                              //   ),
+                              // );
+                            }
+                          },
                         ),
+                        contentPadding: EdgeInsets.all(5),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(60),
+                            borderSide: BorderSide(style: BorderStyle.none)),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(60),
+                            borderSide: BorderSide(style: BorderStyle.none)),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(30)),
                       ),
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
           ),
-        ),
-      ]);
+        ]);}
+      );
     });
   }
 }
