@@ -7,6 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:provider/provider.dart';
+
+import '../CN/post_review_cn.dart';
+import '../models/review_comment.dart';
+
 class CompanyDetails extends StatelessWidget {
   const CompanyDetails({Key? key}) : super(key: key);
 
@@ -15,90 +20,96 @@ class CompanyDetails extends StatelessWidget {
     var sizeAware = MediaQuery.of(context).size;
     return DefaultTabController(
       length: 5,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: (Color(0xff5C0099)),
-          leading: Icon(Icons.arrow_back_ios_rounded),
-          title: SizedBox(
-            child: Image.asset('assets/images/Group 8.png'),
-            width: sizeAware.width * 257 / 1080,
-            height: sizeAware.height * 146 / 160,
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<ReviewPost>(create: (context) => ReviewPost()),
+        ],
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: (Color(0xff5C0099)),
+            leading: Icon(Icons.arrow_back_ios_rounded),
+            title: SizedBox(
+              child: Image.asset('assets/images/Group 8.png'),
+              width: sizeAware.width * 257 / 1080,
+              height: sizeAware.height * 146 / 160,
+            ),
+            shadowColor: Colors.black.withOpacity(0.5),
           ),
-          shadowColor: Colors.black.withOpacity(0.5),
-        ),
-        body: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(25),
-                      child: CircleAvatar(
-                          radius: 48,
-                          backgroundImage:
-                              AssetImage('assets/images/Asset 1@4x.png')),
-                    ),
-                    Expanded(child: Text('company name')),
-                  ],
+          body: SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(25),
+                        child: CircleAvatar(
+                            radius: 48,
+                            backgroundImage:
+                                AssetImage('assets/images/Asset 1@4x.png')),
+                      ),
+                      Expanded(child: Text('company name')),
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Color(0xfff1f1f1),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xfff1f1f1),
+                  ),
+                  child: TabBar(
+                      indicator: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(22), // Creates border
+                        color: Color(0xffd7d7d7),
+                      ),
+                      indicatorPadding: EdgeInsets.all(0),
+                      labelColor: darkpurple,
+                      labelStyle: TextStyle(
+                          fontFamily: 'Uniform', fontWeight: FontWeight.w600),
+                      isScrollable: true,
+                      unselectedLabelColor: Colors.black,
+                      indicatorColor: darkpurple,
+                      tabs: [
+                        Tab(
+                          child: Text(
+                            'About',
+                          ),
+                        ),
+                        Tab(
+                          child: Text(
+                            'Brochure',
+                          ),
+                        ),
+                        Tab(
+                          child: Text(
+                            'Products',
+                          ),
+                        ),
+                        Tab(
+                          child: Text(
+                            'Announcement',
+                          ),
+                        ),
+                        Tab(
+                          child: Text(
+                            'Reviews',
+                          ),
+                        ),
+                      ]),
                 ),
-                child: TabBar(
-                    indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22), // Creates border
-                      color: Color(0xffd7d7d7),
-                    ),
-                    indicatorPadding: EdgeInsets.all(0),
-                    labelColor: darkpurple,
-                    labelStyle: TextStyle(
-                        fontFamily: 'Uniform', fontWeight: FontWeight.w600),
-                    isScrollable: true,
-                    unselectedLabelColor: Colors.black,
-                    indicatorColor: darkpurple,
-                    tabs: [
-                      Tab(
-                        child: Text(
-                          'About',
-                        ),
-                      ),
-                      Tab(
-                        child: Text(
-                          'Brochure',
-                        ),
-                      ),
-                      Tab(
-                        child: Text(
-                          'Products',
-                        ),
-                      ),
-                      Tab(
-                        child: Text(
-                          'Announcement',
-                        ),
-                      ),
-                      Tab(
-                        child: Text(
-                          'Reviews',
-                        ),
-                      ),
-                    ]),
-              ),
-              Flexible(
-                child: TabBarView(children: [
-                  Aboutlist(),
-                  BrochureTab(),
-                  productslist(),
-                  AnnouncTab(),
-                  ReviewsTab(), //هون بتشتغلي التعليقات (الكلاس تعريفو تحت )
-                ]),
-              ),
-            ],
+                Flexible(
+                  child: TabBarView(children: [
+                    Aboutlist(),
+                    BrochureTab(),
+                    productslist(),
+                    AnnouncTab(),
+                    ReviewsTab(), //هون بتشتغلي التعليقات (الكلاس تعريفو تحت )
+                  ]),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -359,40 +370,56 @@ class _AnnouncTabState extends State<AnnouncTab> {
 
 //REVIEWS TAB_________________________________________________________
 class ReviewsTab extends StatefulWidget {
- final companyid;
+  final companyid;
   ReviewsTab({this.companyid});
   @override
   State<ReviewsTab> createState() => _ReviewsTabState();
 }
 
+TextEditingController reviewcontrller = TextEditingController();
+
 class _ReviewsTabState extends State<ReviewsTab> {
   Future getReviews() async {
     var url = '';
     var uri = Uri.parse(url);
-    var data = {'companyid' :widget.companyid};
-    var response = await http.post(uri, body:data );
+    var data = {'companyid': widget.companyid};
+    var response = await http.post(uri, body: data);
     var responsebody = jsonDecode(response.body);
     return responsebody;
   }
 
   @override
+  void initState() {
+    super.initState();
+    // final allreviews = Provider.of<ReviewPost>(context, listen: false);
+    //allreviews.reviewpost(rdata);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(children: [
-        Container(
-          color: Colors.white,
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
-        ),
+    return Consumer<ReviewPost>(builder: (context, reviewf, child) {
+      return Stack(children: [
+        ListView.builder(
+            itemCount: 10,
+            itemBuilder: (context, i) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 1),
+                child: Card(
+                  child: ListTile(
+                    title: Text('product $i'),
+                    subtitle: Text('this is product $i'),
+                    leading: CircleAvatar(
+                        //radius: 60,
+                        backgroundImage:
+                            AssetImage('assets/images/Asset 1@4x.png')),
+                  ),
+                ),
+              );
+            }),
         Positioned(
           bottom: 0,
           child: Container(
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            width: MediaQuery.of(context).size.width,
             height: 60,
             child: Column(
               children: [
@@ -402,11 +429,9 @@ class _ReviewsTabState extends State<ReviewsTab> {
                       decoration: BoxDecoration(
                           border: Border(top: BorderSide(color: Colors.grey))),
                       padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       child: TextFormField(
+                        controller: reviewcontrller,
                         decoration: InputDecoration(
                           hintText: 'Write a review',
                           filled: true,
@@ -416,7 +441,21 @@ class _ReviewsTabState extends State<ReviewsTab> {
                               Icons.send,
                               color: (Color(0xff5C0099)),
                             ),
-                            onPressed: () {},
+                            onPressed: ()async {
+                              String p = reviewcontrller.text.trim();
+                             Review r= Review(userId: 1,body: p);
+                              await reviewf.reviewpost(r);
+                              if (reviewf.isback) {
+                                print('aya');
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) =>
+                                //         HomeLayout(),
+                                //   ),
+                                // );
+                              }
+                            },
                           ),
                           contentPadding: EdgeInsets.all(5),
                           focusedBorder: OutlineInputBorder(
@@ -437,29 +476,11 @@ class _ReviewsTabState extends State<ReviewsTab> {
             ),
           ),
         ),
-        FutureBuilder(
-          future: getReviews(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    for (int i = 0; i < snapshot.data.length; i++)
-                      ReviewsList(
-                        review: snapshot.data[i]['review'],
-                        username: snapshot.data[i]['username'],
-                      ),
-                  ]);
-            }
-            return Center(
-             child: CircularProgressIndicator(),
-            );
-          },
-        ),
-      ]),
-    );
+      ]);
+    });
   }
 }
+
 //-----------------------------------
 class ReviewsList extends StatelessWidget {
   final username;
@@ -468,24 +489,24 @@ class ReviewsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 30,
-      child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height - 70,
-          child: SingleChildScrollView(
-          child: ListTile(
-          title: Container(
-          margin: EdgeInsets.only(top: 15),
-      child: Text(username),
-    ),
-    subtitle: Container(
-    padding: EdgeInsets.all(10),
-    child: Text(review),
-    color: Colors.grey[100],
-    ),
-    leading: CircleAvatar(
-    //radius: 60,
-    backgroundImage: AssetImage('assets/images/Asset 1@4x.png')),
-    ))));
+        top: 30,
+        child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height - 70,
+            child: SingleChildScrollView(
+                child: ListTile(
+              title: Container(
+                margin: EdgeInsets.only(top: 15),
+                child: Text(username),
+              ),
+              subtitle: Container(
+                padding: EdgeInsets.all(10),
+                child: Text(review),
+                color: Colors.grey[100],
+              ),
+              leading: CircleAvatar(
+                  //radius: 60,
+                  backgroundImage: AssetImage('assets/images/Asset 1@4x.png')),
+            ))));
   }
 }

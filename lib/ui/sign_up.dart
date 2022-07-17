@@ -335,8 +335,6 @@ class SignUpScreen extends StatelessWidget {
                                                   emailcontrller.text.trim();
                                               String n =
                                                   namecontrller.text.trim();
-                                              String p = passwordcontroller.text
-                                                  .trim();
                                               SignupBody s =
                                                   SignupBody(title: e, body: n);
                                               await SignupPost.Signpost(s);
