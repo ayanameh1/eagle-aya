@@ -68,7 +68,7 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       final routFromMessage = message.data['route'];
       print(routFromMessage);
-      Navigator.of(context).pushNamed(routFromMessage);
+      Navigator.of(context).pushNamed('welcome');
     });
 
   }
