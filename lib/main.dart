@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'constants/colors.dart';
+import'package:eagle/services/local_notificatios_services.dart';
 
 Future<void> backgroundhandler (RemoteMessage message) async{
   print(message.data.toString());
@@ -24,6 +25,7 @@ Future<void> backgroundhandler (RemoteMessage message) async{
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LocalNotificationServices.initialize();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(backgroundhandler);
   runApp(MyApp());
@@ -62,13 +64,15 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
         print(message.notification!.body);
         print(message.notification!.title);
       }
-    });
+      LocalNotificationServices.display(message);
+    }
+    );
 
     ////when the app is on background and user taps on the notification
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       final routFromMessage = message.data['route'];
       print(routFromMessage);
-      Navigator.of(context).pushNamed(routFromMessage);
+      Navigator.of(context).pushNamed('welcome');
     });
 
   }
