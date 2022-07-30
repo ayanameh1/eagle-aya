@@ -149,7 +149,7 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
      //   ),
      // ),
       //theme: theme.getTheme(),
-     initialRoute: 'Companydetails',
+     initialRoute: 'addexpo',
      routes: {
        'welcome': (context) => WelcomeScreen(),
        'login': (context) => loginscreen(),

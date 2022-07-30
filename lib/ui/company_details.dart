@@ -25,8 +25,7 @@ class CompanyDetails extends StatelessWidget {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider<ReviewPost>(create: (context) => ReviewPost()),
-          ChangeNotifierProvider<GetAllReviews>(
-              create: (context) => GetAllReviews()),
+          ChangeNotifierProvider<GetAllReviews>(create: (context) => GetAllReviews()),
         ],
         child: Scaffold(
           appBar: AppBar(
