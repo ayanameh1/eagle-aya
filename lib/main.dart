@@ -6,8 +6,7 @@ import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/invest/step_1.dart';
 import 'package:eagle/ui/invest/step_2.dart';
 import 'package:eagle/ui/login.dart';
-import 'package:eagle/ui/manager_requests/requests.dart';
-import 'package:eagle/ui/notification.dart';
+import 'package:eagle/ui/manage_booth.dart';
 import 'package:eagle/ui/profile.dart';
 import 'package:eagle/ui/sign_up.dart';
 import 'package:eagle/ui/welcome.dart';
@@ -52,7 +51,6 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
   @override
   void initState() {
     super.initState();
-
 
     FirebaseMessaging.instance.getInitialMessage().then((message){
       if(message!= null){
@@ -152,16 +150,16 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
      //   ),
      // ),
       //theme: theme.getTheme(),
-     initialRoute: 'home',
+     initialRoute: '1',
      routes: {
        'welcome': (context) => WelcomeScreen(),
        'login': (context) => loginscreen(),
        'signup': (context) => SignUpScreen(),
        'home': (context) => HomeLayout(),
-       'addexpo': (context) => AddExpoStep1Screen(),
        'Companydetails': (context) =>CompanyDetails(),
        'invest': (context) => InvestStep1Screen(),
-       'requests':(context)=> Requestss(),
+       'addexpo': (context) => AddExpoStep1Screen(),
+       '1': (context) => ManageBooth(),
        //'ten': (context) => outsplashScreen(),
      },
    );
