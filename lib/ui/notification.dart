@@ -13,14 +13,56 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var sizeAware = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
-        children: [
-          Text('NEWS'),
-        ],
+      appBar: AppBar(
+        backgroundColor: (Color(0xff5C0099)),
+        title: SizedBox(
+          child: Image.asset('assets/images/Group 8.png'),
+          width: sizeAware.width * 257 / 1080,
+          height: sizeAware.height * 146 / 160,
+        ),
+        shadowColor: Colors.black.withOpacity(0.5),
+      ),
+      body: const SafeArea(
+        child: notificationlist(),
       ),
     );
   }
 }
 
-//Text('title: ${post?.body}\n\n')
+class notificationlist extends StatefulWidget {
+  const notificationlist({Key? key}) : super(key: key);
+
+  @override
+  State<notificationlist> createState() => _notificationlistState();
+}
+
+class _notificationlistState extends State<notificationlist> {
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, i) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 1),
+                  child: Card(
+                    child: ListTile(
+                      title: Text('Eagle'),
+                      subtitle: Text('hi '),
+                      leading: CircleAvatar(
+                          //radius: 60,
+                          backgroundImage:
+                              AssetImage('assets/images/Asset 1@4x.png')),
+                    ),
+                  ),
+                );
+              }),
+        ],
+      ),
+    );
+  }
+}

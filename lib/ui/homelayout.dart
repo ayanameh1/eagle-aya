@@ -1,5 +1,6 @@
 import 'package:eagle/CN/theme.dart';
 import 'package:eagle/constants/colors.dart';
+import 'package:eagle/ui/add_expo/step1.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/other_menu.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -17,6 +18,7 @@ class HomeLayout extends StatefulWidget {
   @override
   State<HomeLayout> createState() => _HomeLayoutState();
 }
+
 class _HomeLayoutState extends State<HomeLayout> {
   int currentIndex = 0;
   Widget currentScreen = HomePageScreen();
@@ -52,7 +54,8 @@ class _HomeLayoutState extends State<HomeLayout> {
               icon: const Icon(Icons.dark_mode_rounded),
               label: Text(''),
             ),
-          ), FlatButton(
+          ),
+          FlatButton(
             onPressed: () => _themeChanger.setTheme1(ThemeData.light()),
             child: FlatButton.icon(
               onPressed: () => _themeChanger.setTheme1(ThemeData.light()),
@@ -144,12 +147,18 @@ class _HomeLayoutState extends State<HomeLayout> {
           ),
           centerIconChild: [
             FloatingCenterButtonChild(
-              child: const Icon(
-                Icons.add,
-                color: AppColors.white,
-              ),
-              onTap: () {},
-            ),
+                child: const Icon(
+                  Icons.add,
+                  color: AppColors.white,
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AddExpoStep1Screen(),
+                    ),
+                  );
+                }),
           ],
         ),
       ),
