@@ -433,7 +433,7 @@ class _ReviewsTabState extends State<ReviewsTab> {
                                     child: Text(' ${post?.body}'),
                                   ),
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
+                                      borderRadius: BorderRadius.only(topRight: Radius.circular(12),bottomRight: Radius.circular(12),bottomLeft:  Radius.circular(12) ),
                                       color: Color(0xffd7d7d7)),
                                 ),
                                 leading: CircleAvatar(
@@ -476,6 +476,8 @@ class _ReviewsTabState extends State<ReviewsTab> {
                               setState(() {
                                 reviewcontrller.clear();
                               });
+                              final allreviews = Provider.of<GetAllReviews>(context, listen: false);
+                              allreviews.getallReviewsData();
                               // Navigator.push(
                               //   context,
                               //   MaterialPageRoute(
@@ -510,31 +512,31 @@ class _ReviewsTabState extends State<ReviewsTab> {
 }
 
 //-----------------------------------
-class ReviewsList extends StatelessWidget {
-  final username;
-  final review;
-  ReviewsList({this.username, this.review});
-  @override
-  Widget build(BuildContext context) {
-    return Positioned(
-        top: 30,
-        child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height - 70,
-            child: SingleChildScrollView(
-                child: ListTile(
-              title: Container(
-                margin: EdgeInsets.only(top: 15),
-                child: Text(username),
-              ),
-              subtitle: Container(
-                padding: EdgeInsets.all(10),
-                child: Text(review),
-                color: Colors.grey[100],
-              ),
-              leading: CircleAvatar(
-                  //radius: 60,
-                  backgroundImage: AssetImage('assets/images/Asset 1@4x.png')),
-            ))));
-  }
-}
+// class ReviewsList extends StatelessWidget {
+//   final username;
+//   final review;
+//   ReviewsList({this.username, this.review});
+//   @override
+//   Widget build(BuildContext context) {
+//     return Positioned(
+//         top: 30,
+//         child: Container(
+//             width: MediaQuery.of(context).size.width,
+//             height: MediaQuery.of(context).size.height - 70,
+//             child: SingleChildScrollView(
+//                 child: ListTile(
+//               title: Container(
+//                 margin: EdgeInsets.only(top: 15),
+//                 child: Text(username),
+//               ),
+//               subtitle: Container(
+//                 padding: EdgeInsets.all(10),
+//                 child: Text(review),
+//                 color: Colors.grey[100],
+//               ),
+//               leading: CircleAvatar(
+//                   //radius: 60,
+//                   backgroundImage: AssetImage('assets/images/Asset 1@4x.png')),
+//             ))));
+//   }
+// }

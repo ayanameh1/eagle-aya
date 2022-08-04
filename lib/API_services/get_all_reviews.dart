@@ -22,17 +22,11 @@ Future<List<Review>> getallreviews() async {
     }
     //
     else {
-      // print('sorry ');
-      // AllExpoData n = AllExpoData(postId:2,id:2,name:'name',email:'email',body:'body');
-      // expolist=[n];
       return  reviewlist;
     }
   }
   //
   catch (e) {
-    // print(e.toString());
-    // AllExpoData n = AllExpoData(postId:2,id:2,name:'name',email:'email',body:'body');
-    // expolist=[n];
     return  reviewlist;
   }
 
