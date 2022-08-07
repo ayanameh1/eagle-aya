@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:eagle/CN/get_investor_info_cn.dart';
 import 'package:eagle/CN/get_reviews_cn.dart';
+import 'package:eagle/CN/pick_single_image.dart';
+import 'package:eagle/components/date_picker.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -19,6 +21,8 @@ class ManageBooth extends StatelessWidget {
       length: 5,
       child: MultiProvider(
         providers: [
+          ChangeNotifierProvider<productSingleImage>(
+              create: (context) => productSingleImage()),
           ChangeNotifierProvider<ReviewPost>(create: (context) => ReviewPost()),
           ChangeNotifierProvider<InvestorProfile>(
               create: (context) => InvestorProfile()),
@@ -27,7 +31,8 @@ class ManageBooth extends StatelessWidget {
         ],
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: (Color(0xff5C0099)),
+            backgroundColor: Colors.white,
+            //backgroundColor: (Color(0xff5C0099)),
             leading: Icon(Icons.arrow_back_ios_rounded),
             title: SizedBox(
               child: Image.asset('assets/images/Group 8.png'),
@@ -106,7 +111,7 @@ class ManageBooth extends StatelessWidget {
                     BrochureTab(),
                     productslist(),
                     AnnouncTab(),
-                    ReviewsTab(), //هون بتشتغلي التعليقات (الكلاس تعريفو تحت )
+                    ReviewsTab(),
                   ]),
                 ),
               ],
@@ -553,8 +558,7 @@ class _productslistState extends State<productslist> {
                                       builder: (context) => AlertDialog(
                                             title: Text('Delete'),
                                             content: Text(
-                                              ' Are you sure you want to delete this product?'
-                                            ),
+                                                ' Are you sure you want to delete this product?'),
                                             actions: [
                                               TextButton(
                                                 child: Text(
@@ -616,81 +620,183 @@ class addProduct extends StatefulWidget {
 class _addProductState extends State<addProduct> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Product name',
-              style: TextStyle(fontFamily: 'Uniform'),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                ),
+    return Consumer<productSingleImage>(
+        builder: (context, productImage, child) {
+      return SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Product name',
+                style: TextStyle(fontFamily: 'Uniform'),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'Product price',
-              style: TextStyle(
-                fontFamily: 'Uniform',
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Center(
-              child: Container(
-                height: MediaQuery.of(context).size.height * 82 / 1920,
-                child: MaterialButton(
-                  onPressed: () async {},
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.add),
-                      Text(
-                        "add the product",
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30)),
                   ),
                 ),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(54),
-                    color: Color(0xffffee32),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0xff565656),
-                        spreadRadius: 0,
-                        blurRadius: 0,
-                        offset: Offset(2, 4),
-                      ),
-                    ]),
               ),
-            ),
-          ],
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Product price',
+                style: TextStyle(
+                  fontFamily: 'Uniform',
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                'Add Product photo',
+                style: TextStyle(
+                  fontFamily: 'Uniform',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      productImage.imagefromCamera();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black38,
+                            blurRadius: 2,
+                            offset: Offset(2, 3), // Shadow position
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 3,
+                          color: Colors.black45,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Icon(
+                          Icons.camera_alt_outlined,
+                          color: Colors.black45,
+                        ),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      productImage.imagefromGallery();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black38,
+                            blurRadius: 2,
+                            offset: Offset(2, 3), // Shadow position
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 3,
+                          color: Colors.black45,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.photo,
+                          color: Colors.black45,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Center(
+                child: productImage.proimage != null
+                    ? CircleAvatar(
+                        radius: MediaQuery.of(context).size.height * 150 / 1920,
+                        backgroundImage:
+                            FileImage(productImage.proimage!) as ImageProvider,
+                      )
+                    : CircleAvatar(
+                        radius: MediaQuery.of(context).size.height * 150 / 1920,
+                        backgroundColor: Colors.black45,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'no image was selected',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontFamily: 'Uniform',
+                                color: white,
+                                fontSize: MediaQuery.of(context).size.width *
+                                    90 /
+                                    1920),
+                          ),
+                        )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 82 / 1920,
+                  child: MaterialButton(
+                    onPressed: () async {},
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.add),
+                        Text(
+                          "add the product",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(54),
+                      color: Color(0xffffee32),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xff565656),
+                          spreadRadius: 0,
+                          blurRadius: 0,
+                          offset: Offset(2, 4),
+                        ),
+                      ]),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 
@@ -733,6 +839,186 @@ class AnnouncTab extends StatefulWidget {
 class _AnnouncTabState extends State<AnnouncTab> {
   @override
   Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: Column(
+        children: [
+          TabBar(
+            labelColor: Colors.black,
+            indicatorColor: darkpurple,
+            unselectedLabelColor: Colors.black45,
+            labelStyle:
+                TextStyle(fontFamily: 'Uniform', fontWeight: FontWeight.w600),
+            tabs: [
+              Tab(
+                child: Text(
+                  'My Announcements',
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Make Announcement',
+                ),
+              ),
+            ],
+          ),
+          Flexible(
+            child: TabBarView(children: [
+              MyAnnouncements(),
+              AddAN(),
+            ]),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//ADD ANNOUNCEMENT___________________________________________________
+class AddAN extends StatefulWidget {
+  const AddAN({Key? key}) : super(key: key);
+
+  @override
+  State<AddAN> createState() => _AddANState();
+}
+
+class _AddANState extends State<AddAN> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(30),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30),
+                child: Text(
+                  'Add a sale',
+                  style: TextStyle(
+                      fontFamily: 'Uniform',
+                      fontSize: MediaQuery.of(context).size.width * 100 / 1920),
+                ),
+              ),
+              GestureDetector(
+                child: CircleAvatar(
+                  backgroundColor: darkpurple,
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: white,
+                  ),
+                ),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                            insetPadding: EdgeInsets.symmetric(
+                                vertical: 20, horizontal: 1),
+                            title: Text('Hold a conference'),
+                            content: Container(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    'Step 1',
+                                    style: TextStyle(
+                                        color: darkpurple,
+                                        fontFamily: 'Uniform',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        60 /
+                                        1920,
+                                  ),
+                                  Text(
+                                    'choose date',
+                                    style: TextStyle(
+                                      fontFamily: 'Uniform',
+                                    ),
+                                  ),
+                                  DatePicker(),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        60 /
+                                        1920,
+                                  ),
+                                  Text(
+                                    'choose time',
+                                    style: TextStyle(
+                                      fontFamily: 'Uniform',
+                                    ),
+                                  ),
+                                  Timepicker(),
+                                ],
+                              ),
+                            ),
+                            actions: [
+                              TextButton(
+                                child: Text(
+                                  'Cancel',
+                                  style: TextStyle(
+                                      color: darkpurple, fontFamily: 'Uniform'),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              TextButton(
+                                child: Text(
+                                  'OK',
+                                  style: TextStyle(
+                                      color: darkpurple, fontFamily: 'Uniform'),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          ));
+                },
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 30),
+                child: Text(
+                  'Hold a conference',
+                  style: TextStyle(
+                      fontFamily: 'Uniform',
+                      fontSize: MediaQuery.of(context).size.width * 100 / 1920),
+                ),
+              ),
+              CircleAvatar(
+                backgroundColor: darkpurple,
+                child: Icon(
+                  Icons.arrow_forward_ios,
+                  color: white,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// MY ANNOUNCEMETS ___________________________________________________
+class MyAnnouncements extends StatefulWidget {
+  const MyAnnouncements({Key? key}) : super(key: key);
+
+  @override
+  State<MyAnnouncements> createState() => _MyAnnouncementsState();
+}
+
+class _MyAnnouncementsState extends State<MyAnnouncements> {
+  @override
+  Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
@@ -750,7 +1036,7 @@ class _AnnouncTabState extends State<AnnouncTab> {
               )),
         ),
         Container(
-          height: MediaQuery.of(context).size.height * 45 / 160,
+          height: MediaQuery.of(context).size.height * 40 / 160,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 10,
@@ -789,7 +1075,7 @@ class _AnnouncTabState extends State<AnnouncTab> {
           ),
         )),
         Container(
-          height: MediaQuery.of(context).size.height * 45 / 160,
+          height: MediaQuery.of(context).size.height * 40 / 160,
           child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 10,
@@ -815,7 +1101,7 @@ class _AnnouncTabState extends State<AnnouncTab> {
                   ),
                 );
               }),
-        ),
+        )
       ],
     );
   }
@@ -899,33 +1185,3 @@ class _ReviewsTabState extends State<ReviewsTab> {
     });
   }
 }
-
-//-----------------------------------
-// class ReviewsList extends StatelessWidget {
-//   final username;
-//   final review;
-//   ReviewsList({this.username, this.review});
-//   @override
-//   Widget build(BuildContext context) {
-//     return Positioned(
-//         top: 30,
-//         child: Container(
-//             width: MediaQuery.of(context).size.width,
-//             height: MediaQuery.of(context).size.height - 70,
-//             child: SingleChildScrollView(
-//                 child: ListTile(
-//               title: Container(
-//                 margin: EdgeInsets.only(top: 15),
-//                 child: Text(username),
-//               ),
-//               subtitle: Container(
-//                 padding: EdgeInsets.all(10),
-//                 child: Text(review),
-//                 color: Colors.grey[100],
-//               ),
-//               leading: CircleAvatar(
-//                   //radius: 60,
-//                   backgroundImage: AssetImage('assets/images/Asset 1@4x.png')),
-//             ))));
-//   }
-// }

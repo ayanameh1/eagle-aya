@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:floating_bottom_bar/animated_bottom_navigation_bar.dart';
 import 'package:provider/provider.dart';
+import 'add_expo/step1.dart';
 import 'notification.dart';
 import 'profile.dart';
 //import 'package:firebase_messaging/firebase_messaging.dart';
@@ -37,7 +38,8 @@ class _HomeLayoutState extends State<HomeLayout> {
     ThemeChanger _themeChanger = Provider.of<ThemeChanger>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff5C0099),
+        backgroundColor: Colors.white,
+        //backgroundColor: Color(0xff5C0099),
         title: SizedBox(
           child: Image.asset('assets/images/Group 8.png'),
           width: sizeAware.width * 257 / 1080,
@@ -148,7 +150,9 @@ class _HomeLayoutState extends State<HomeLayout> {
                 Icons.add,
                 color: AppColors.white,
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => AddExpoStep1Screen()));
+              },
             ),
           ],
         ),

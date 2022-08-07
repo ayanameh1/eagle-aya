@@ -30,7 +30,8 @@ class CompanyDetails extends StatelessWidget {
         ],
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: (Color(0xff5C0099)),
+            backgroundColor: Colors.white,
+            //backgroundColor: (Color(0xff5C0099)),
             leading: Icon(Icons.arrow_back_ios_rounded),
             title: SizedBox(
               child: Image.asset('assets/images/Group 8.png'),

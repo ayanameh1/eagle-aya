@@ -14,13 +14,44 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Text('NEWS'),
-        ],
+      body: SafeArea(
+        child:NotificationScreen1(),
       ),
     );
   }
 }
 
-//Text('title: ${post?.body}\n\n')
+class NotificationScreen1 extends StatefulWidget {
+  const NotificationScreen1({Key? key}) : super(key: key);
+
+  @override
+  State<NotificationScreen1> createState() => _NotificationScreen1State();
+
+}
+
+class _NotificationScreen1State extends State<NotificationScreen1> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.builder(
+      itemCount: 50,
+      itemBuilder: (context, i) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 1),
+          child: Card(
+            child: ListTile(
+              title: Text('notification $i'),
+              subtitle: Text('$i'),
+              leading: CircleAvatar(
+                //radius: 60,
+                  backgroundImage:
+                  AssetImage('assets/images/Asset 1@4x.png')),
+            ),
+          ),
+        );
+      }),
+    );
+  }
+
+}

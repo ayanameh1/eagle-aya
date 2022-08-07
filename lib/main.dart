@@ -82,39 +82,39 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
    final theme= Provider.of<ThemeChanger>(context);
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     // highContrastTheme: ThemeData(
-     //   primaryColor: const Color(0xffffd100),
-     //   primarySwatch: Colors.grey,
-     //   scaffoldBackgroundColor: Colors.white,
-     //   appBarTheme: const AppBarTheme(
-     //     systemOverlayStyle: SystemUiOverlayStyle(
-     //       statusBarColor: Colors.white,
-     //       statusBarBrightness: Brightness.dark,
-     //     ),
-     //     titleSpacing: 20.0,
-     //     backgroundColor: Colors.white,
-     //     titleTextStyle: TextStyle(
-     //       color: Colors.white,
-     //       fontSize: 20.0,
-     //       fontWeight: FontWeight.bold,
-     //     ),
-     //   ),
-     //   floatingActionButtonTheme: FloatingActionButtonThemeData(
-     //       backgroundColor: Color(0xff5C0099)),
-     //   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-     //     type: BottomNavigationBarType.fixed,
-     //     selectedItemColor: Color(0xffffd100),
-     //     unselectedItemColor: Colors.grey,
-     //     elevation: 20.0,
-     //     backgroundColor: Colors.white,
-     //   ),
-     //   textTheme: const TextTheme(
-     //       bodyText1: TextStyle(
-     //         fontSize: 18,
-     //         color: Colors.black,
-     //       ),
-     //   ),
-     //),
+     theme: ThemeData(
+       primaryColor: const Color(0xffffd100),
+       primarySwatch: Colors.grey,
+       scaffoldBackgroundColor: Colors.white,
+       appBarTheme: const AppBarTheme(
+         systemOverlayStyle: SystemUiOverlayStyle(
+           statusBarColor: Colors.white,
+           statusBarBrightness: Brightness.dark,
+         ),
+         titleSpacing: 20.0,
+         backgroundColor: Colors.white,
+         titleTextStyle: TextStyle(
+           color: Colors.white,
+           fontSize: 20.0,
+           fontWeight: FontWeight.bold,
+         ),
+       ),
+       floatingActionButtonTheme: FloatingActionButtonThemeData(
+           backgroundColor: Color(0xff5C0099)),
+       bottomNavigationBarTheme: BottomNavigationBarThemeData(
+         type: BottomNavigationBarType.fixed,
+         selectedItemColor: Color(0xffffd100),
+         unselectedItemColor: Colors.grey,
+         elevation: 20.0,
+         backgroundColor: Colors.white,
+       ),
+       textTheme: const TextTheme(
+           bodyText1: TextStyle(
+             fontSize: 18,
+             color: Colors.black,
+           ),
+       ),
+     ),
      // darkTheme: ThemeData(
      //   scaffoldBackgroundColor: Color(0xff333039),
      //   primaryColor: const Color(0xffffd100),
@@ -148,9 +148,9 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
      //           fontFamily: 'Uniform'
      //       )
      //   ),
-     // ),
+     // ),1
       //theme: theme.getTheme(),
-     initialRoute: '1',
+     initialRoute: 'Companydetails',
      routes: {
        'welcome': (context) => WelcomeScreen(),
        'login': (context) => loginscreen(),
