@@ -13,56 +13,45 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var sizeAware = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: (Color(0xff5C0099)),
-        title: SizedBox(
-          child: Image.asset('assets/images/Group 8.png'),
-          width: sizeAware.width * 257 / 1080,
-          height: sizeAware.height * 146 / 160,
-        ),
-        shadowColor: Colors.black.withOpacity(0.5),
-      ),
-      body: const SafeArea(
-        child: notificationlist(),
+      body: SafeArea(
+        child:NotificationScreen1(),
       ),
     );
   }
 }
 
-class notificationlist extends StatefulWidget {
-  const notificationlist({Key? key}) : super(key: key);
+class NotificationScreen1 extends StatefulWidget {
+  const NotificationScreen1({Key? key}) : super(key: key);
 
   @override
-  State<notificationlist> createState() => _notificationlistState();
+  State<NotificationScreen1> createState() => _NotificationScreen1State();
+
 }
 
-class _notificationlistState extends State<notificationlist> {
+class _NotificationScreen1State extends State<NotificationScreen1> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, i) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 1),
-                  child: Card(
-                    child: ListTile(
-                      title: Text('Eagle'),
-                      subtitle: Text('hi '),
-                      leading: CircleAvatar(
-                          //radius: 60,
-                          backgroundImage:
-                              AssetImage('assets/images/Asset 1@4x.png')),
-                    ),
-                  ),
-                );
-              }),
-        ],
-      ),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.builder(
+      itemCount: 50,
+      itemBuilder: (context, i) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 1),
+          child: Card(
+            child: ListTile(
+              title: Text('notification $i'),
+              subtitle: Text('$i'),
+              leading: CircleAvatar(
+                //radius: 60,
+                  backgroundImage:
+                  AssetImage('assets/images/Asset 1@4x.png')),
+            ),
+          ),
+        );
+      }),
     );
   }
+
 }

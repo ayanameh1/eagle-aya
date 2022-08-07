@@ -1,6 +1,5 @@
 import 'package:eagle/CN/theme.dart';
 import 'package:eagle/constants/colors.dart';
-import 'package:eagle/ui/add_expo/step1.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/other_menu.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:floating_bottom_bar/animated_bottom_navigation_bar.dart';
 import 'package:provider/provider.dart';
+import 'add_expo/step1.dart';
 import 'notification.dart';
 import 'profile.dart';
 //import 'package:firebase_messaging/firebase_messaging.dart';
@@ -18,7 +18,6 @@ class HomeLayout extends StatefulWidget {
   @override
   State<HomeLayout> createState() => _HomeLayoutState();
 }
-
 class _HomeLayoutState extends State<HomeLayout> {
   int currentIndex = 0;
   Widget currentScreen = HomePageScreen();
@@ -39,7 +38,8 @@ class _HomeLayoutState extends State<HomeLayout> {
     ThemeChanger _themeChanger = Provider.of<ThemeChanger>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff5C0099),
+        backgroundColor: Colors.white,
+        //backgroundColor: Color(0xff5C0099),
         title: SizedBox(
           child: Image.asset('assets/images/Group 8.png'),
           width: sizeAware.width * 257 / 1080,
@@ -54,8 +54,7 @@ class _HomeLayoutState extends State<HomeLayout> {
               icon: const Icon(Icons.dark_mode_rounded),
               label: Text(''),
             ),
-          ),
-          FlatButton(
+          ), FlatButton(
             onPressed: () => _themeChanger.setTheme1(ThemeData.light()),
             child: FlatButton.icon(
               onPressed: () => _themeChanger.setTheme1(ThemeData.light()),
@@ -147,18 +146,14 @@ class _HomeLayoutState extends State<HomeLayout> {
           ),
           centerIconChild: [
             FloatingCenterButtonChild(
-                child: const Icon(
-                  Icons.add,
-                  color: AppColors.white,
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AddExpoStep1Screen(),
-                    ),
-                  );
-                }),
+              child: const Icon(
+                Icons.add,
+                color: AppColors.white,
+              ),
+              onTap: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => AddExpoStep1Screen()));
+              },
+            ),
           ],
         ),
       ),

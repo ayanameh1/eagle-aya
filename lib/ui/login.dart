@@ -32,7 +32,8 @@ class loginscreen extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xff5C0099),
+          backgroundColor: Colors.white,
+          //backgroundColor: Color(0xff5C0099),
           title: SizedBox(
             child: Image.asset('assets/images/Group 8.png'),
             width: sizeAware.width * 257 / 1080,
@@ -212,10 +213,9 @@ class loginscreen extends StatelessWidget {
                               ),
                             ]),
                       ),
-                  
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 202 / 1920,
-                  ),
+                   SizedBox(
+                    height: MediaQuery.of(context).size.height * 50 / 1920,
+                   ),
                   Container(
                     width: MediaQuery.of(context).size.width * 359 / 1080,
                     height: MediaQuery.of(context).size.height * 82 / 1920,

@@ -67,8 +67,8 @@ class _profilebodyState extends State<profilebody> {
                     padding: const EdgeInsets.all(10),
                     child: Row(
                       children: [
-                        Text(
-                          profilemodel.pf?.title ?? "",
+                        Text("Lana Halak",
+                          //profilemodel.pf?.title ?? "",
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -84,7 +84,7 @@ class _profilebodyState extends State<profilebody> {
                     child: Row(
                       children: [
                         Text(
-                          'h',
+                          'lana.ha1@gmail.com',
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -149,7 +149,7 @@ List<ExpansionPanel> _getExpansionPanels(List<ListItem> _items) {
             return Container(
               decoration: BoxDecoration(border:Border(top: BorderSide(color: Colors.black12,width: 2))),
               child: ListTile(
-                title: Text('$i'),//here we put exhibitionsName
+                title: Text('Expo $i'),//here we put exhibitionsName
               ),
             );
           },

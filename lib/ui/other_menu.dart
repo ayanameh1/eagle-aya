@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'about_us.dart';
+
 class Otherscreen extends StatelessWidget {
   const Otherscreen({Key? key}) : super(key: key);
 
@@ -11,19 +13,6 @@ class Otherscreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            //setting
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text(
-                'Settings',
-                style: TextStyle(
-                  //color: Colors.black,
-                  fontFamily: 'Uniform',
-                ),
-              ),
-              onTap: () {},
-            ),
-
             //language
             ListTile(
               leading: Icon(Icons.language),
@@ -47,6 +36,9 @@ class Otherscreen extends StatelessWidget {
                   fontFamily: 'Uniform',
                 ),
               ),
+              onTap:() {
+                Navigator.push(context,MaterialPageRoute(builder: (context) => About_us()));
+              }
             ),
 
             //logout

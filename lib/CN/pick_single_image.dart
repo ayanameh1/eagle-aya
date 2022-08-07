@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-
+////pick image for the POSTER________________________________________________
 class SingleImage extends ChangeNotifier{
   File? image;
   final picker = ImagePicker();
@@ -26,13 +26,30 @@ class SingleImage extends ChangeNotifier{
         notifyListeners();
       }
   }
+}
 
+//________________________________________________________________________________________________________________________
 
-  //
-  // Future deleteimage(indexx, imageFileList) async {
-  //   await imageFileList.removeAt(indexx);
-  //   print(imageFileList.length);
-  //   notifyListeners();
-  // }
+////pick image for the PRODUCT ______________________________________________
+class productSingleImage extends ChangeNotifier{
+  File? proimage;
+  final propicker = ImagePicker();
 
+  //image from camera
+  Future imagefromCamera() async {
+    final pickedimage = await propicker.pickImage(source: ImageSource.camera);
+    if (pickedimage != null) {
+      proimage = File(pickedimage.path);
+      notifyListeners();
+    }
+  }
+
+  //image from gallery
+  Future imagefromGallery() async {
+    final pickedimage = await propicker.pickImage(source: ImageSource.gallery);
+    if (pickedimage != null) {
+      proimage = File(pickedimage.path);
+      notifyListeners();
+    }
+  }
 }
