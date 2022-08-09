@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:eagle/CN/get_all_expo_cn.dart';
+import 'package:eagle/components/config1.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/notification.dart';
 import 'package:eagle/ui/profile.dart';
@@ -27,7 +28,7 @@ class HomePageScreen extends StatelessWidget {
                 height: 30.0,
               ),
               Text(
-                "Happening Now",
+                languageProvider1.getTexts("Happening Now")??"",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Cermona',fontSize: MediaQuery.of(context).size.width * 60 / 1080,
@@ -76,7 +77,8 @@ class _expolistState extends State<expolist> {
                 final post = pos?[i];
                 return Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: ExpoCard('${post?.id.toString()}'),
+                  child: ExpoCard('Damascus International Fair'//'${post?.id.toString()}'
+                  ),
                 );
               }),
         );

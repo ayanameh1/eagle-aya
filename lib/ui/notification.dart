@@ -1,6 +1,7 @@
 import 'package:eagle/API_services/get_all_expo.dart';
 import 'package:eagle/API_services/get_all_expo.dart';
 import 'package:eagle/CN/get_all_expo_cn.dart';
+import 'package:eagle/components/config1.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -13,11 +14,13 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:Scaffold(
       body: SafeArea(
         child:NotificationScreen1(),
       ),
-    );
+    ));
   }
 }
 

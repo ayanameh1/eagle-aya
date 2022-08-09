@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:eagle/CN/get_investor_info_cn.dart';
 import 'package:eagle/CN/get_reviews_cn.dart';
 import 'package:eagle/CN/pick_single_image.dart';
+import 'package:eagle/components/config1.dart';
 import 'package:eagle/components/date_picker.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
@@ -56,9 +57,11 @@ class ManageBooth extends StatelessWidget {
                         child: CircleAvatar(
                             radius: 48,
                             backgroundImage:
-                                AssetImage('assets/images/Asset 1@4x.png')),
+                                AssetImage('assets/images/download.jpg')),
                       ),
-                      Expanded(child: Text('company name')),
+                      Expanded(child: Text( ' Al Durra company',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),)),
                     ],
                   ),
                 ),
@@ -631,7 +634,7 @@ class _addProductState extends State<addProduct> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Product name',
+          languageProvider1.getTexts('Product name')??'',
                 style: TextStyle(fontFamily: 'Uniform'),
               ),
               Padding(
@@ -647,7 +650,7 @@ class _addProductState extends State<addProduct> {
                 height: 20,
               ),
               Text(
-                'Product price',
+                languageProvider1.getTexts('Product price')??'',
                 style: TextStyle(
                   fontFamily: 'Uniform',
                 ),
@@ -665,7 +668,7 @@ class _addProductState extends State<addProduct> {
                 height: 20,
               ),
               Text(
-                'Add Product photo',
+                languageProvider1.getTexts('Add Product photo')??"",
                 style: TextStyle(
                   fontFamily: 'Uniform',
                 ),
@@ -876,7 +879,7 @@ class _AnnouncTabState extends State<AnnouncTab> {
   }
 }
 
-//ADD ANNOUNCEMENT___________________________________________________
+//ADD ANNOUNCEMENT______________
 class AddAN extends StatefulWidget {
   const AddAN({Key? key}) : super(key: key);
 

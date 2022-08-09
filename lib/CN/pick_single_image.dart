@@ -4,6 +4,29 @@ import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+////pick image for the EXPO FLOOR PLAN المخطط________________________________________________
+class ExpoImage extends ChangeNotifier{
+  File? expoimage;
+  final expoimagepicker = ImagePicker();
+
+  //image from camera
+  // Future imagefromCamera() async {
+  //   final pickedimage = await expoimagepicker.pickImage(source: ImageSource.camera);
+  //   if (pickedimage != null) {
+  //     expoimage = File(pickedimage.path);
+  //     notifyListeners();
+  //   }
+  // }
+
+  //image from gallery
+  Future imagefromGallery() async {
+    final pickedimage = await expoimagepicker.pickImage(source: ImageSource.gallery);
+    if (pickedimage != null) {
+      expoimage = File(pickedimage.path);
+      notifyListeners();
+    }
+  }
+}
 ////pick image for the POSTER________________________________________________
 class SingleImage extends ChangeNotifier{
   File? image;
