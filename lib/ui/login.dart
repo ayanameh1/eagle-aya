@@ -8,9 +8,26 @@ import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:provider/provider.dart';
 import 'package:eagle/CN/passwordvisiblity.dart';
+class loginScreen extends StatelessWidget {
 
-class loginscreen extends StatelessWidget {
-  const loginscreen({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return login1screen();
+  }
+}
+
+
+class login1screen extends StatefulWidget {
+
+  @override
+  State<login1screen> createState() => _login1screenState();
+}
+
+class _login1screenState extends State<login1screen> {
+  final _formkey = GlobalKey<FormState>();
+  TextEditingController emailcontrller = TextEditingController();
+  TextEditingController passworddcontroller = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,97 +63,52 @@ class loginscreen extends StatelessWidget {
               child: Center(
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * 1717 / 1920,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Swiper(
-                          containerHeight:
-                              MediaQuery.of(context).size.height * 898 / 1080,
-                          itemCount: cards.length,
-                          itemBuilder: (context, index) {
-                            return Bcard(
-                              photoname: cards[index].photoname,
-                              description: cards[index].description,
-                            );
-                          },
-                          //control: SwiperControl(),
-                          pagination: SwiperPagination(),
-                        ),
-                      ),
-                      Container(
-                        width: sizeAware.width * 764 / 1080,
-                        height: sizeAware.height * 107 / 1920,
-                        child: TextFormField(
-                          keyboardType: TextInputType.emailAddress,
-                          onFieldSubmitted: (String value) {
-                            print(value);
-                          },
-                          onChanged: (String value) {
-                            print(value);
-                          },
-                          validator: (String? value) {
-                            if (value == null || value.trim().length == 0) {
-                              return 'email must not be empty';
-                            }
-                            if (!RegExp("").hasMatch(value)) {
-                              return "Please Enter valid email ";
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            hintText: 'email',
-                            hintStyle: TextStyle(
-                              fontFamily: 'Uniform',
-                            ),
-                            prefixIcon: Icon(
-                              Icons.email,
-                            ),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(54),
-                              ),
-                            ),
+                  child: Form(
+                    key:_formkey,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: Swiper(
+                            containerHeight:
+                                MediaQuery.of(context).size.height * 898 / 1080,
+                            itemCount: cards.length,
+                            itemBuilder: (context, index) {
+                              return Bcard(
+                                photoname: cards[index].photoname,
+                                description: cards[index].description,
+                              );
+                            },
+                            //control: SwiperControl(),
+                            pagination: SwiperPagination(),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: sizeAware.height * 39 / 1920,
-                      ),
-                      Container(
-                        width: sizeAware.width * 764 / 1080,
-                        height: sizeAware.height * 107 / 1920,
-                        child: Consumer<Passwordvisibilty>(
-                            builder: (context, passwordvisibilty, child) {
-                          return TextFormField(
-                            keyboardType: TextInputType.visiblePassword,
-                            obscureText: passwordvisibilty.obscureTexttt,
+                        Container(
+                          width: sizeAware.width * 764 / 1080,
+                          height: sizeAware.height * 107 / 1920,
+                          child: TextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            onFieldSubmitted: (String value) {
+                              print(value);
+                            },
                             onChanged: (String value) {
                               print(value);
                             },
                             validator: (String? value) {
                               if (value == null || value.trim().length == 0) {
-                                return " password must not be empty";
+                                return 'email must not be empty';
                               }
-                              if (value.length < 8) {
-                                return " Password is too short";
+                              if (!RegExp("").hasMatch(value)) {
+                                return "Please Enter valid email ";
                               }
                               return null;
                             },
                             decoration: InputDecoration(
-                              hintText: 'Password',
+                              hintText: 'email',
                               hintStyle: TextStyle(
                                 fontFamily: 'Uniform',
                               ),
-                              prefixIcon: const Icon(
-                                Icons.lock,
-                              ),
-                              suffixIcon: GestureDetector(
-                                onTap: () {
-                                  passwordvisibilty.eye2();
-                                },
-                                child: Icon(passwordvisibilty.obscureTexttt
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
+                              prefixIcon: Icon(
+                                Icons.email,
                               ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
@@ -144,99 +116,137 @@ class loginscreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          );
-                        }),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Don\'t have an account ?',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: 'Uniform',
-                            ),
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignUpScreen(),
+                        ),
+                        SizedBox(
+                          height: sizeAware.height * 39 / 1920,
+                        ),
+                        Container(
+                          width: sizeAware.width * 764 / 1080,
+                          height: sizeAware.height * 107 / 1920,
+                          child: Consumer<Passwordvisibilty>(
+                              builder: (context, passwordvisibilty, child) {
+                            return TextFormField(
+                              keyboardType: TextInputType.visiblePassword,
+                              obscureText: passwordvisibilty.obscureTexttt,
+                              onChanged: (String value) {
+                                print(value);
+                              },
+                              validator: (String? value) {
+                                if (value == null || value.trim().length == 0) {
+                                  return " password must not be empty";
+                                }
+                                if (value.length < 8) {
+                                  return " Password is too short";
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                hintText: 'Password',
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Uniform',
                                 ),
-                              );
-                            },
-                            child: Text(
-                              'Signup here',
+                                prefixIcon: const Icon(
+                                  Icons.lock,
+                                ),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    passwordvisibilty.eye2();
+                                  },
+                                  child: Icon(passwordvisibilty.obscureTexttt
+                                      ? Icons.visibility_off
+                                      : Icons.visibility),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(54),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Don\'t have an account ?',
                               style: TextStyle(
-                                color: Color(0xff5C0099),
+                                color: Colors.black,
                                 fontFamily: 'Uniform',
                               ),
                             ),
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 60 / 1920,
-                      ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 359 / 1080,
-                        height: MediaQuery.of(context).size.height * 82 / 1920,
-                        child: MaterialButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomeLayout(),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SignUpScreen(),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'Signup here',
+                                style: TextStyle(
+                                  color: Color(0xff5C0099),
+                                  fontFamily: 'Uniform',
+                                ),
                               ),
-                            );
-                          },
-                          child: Text(
-                            "Login",
-                            style: TextStyle(
-                              color: black,
-                              fontFamily: 'Uniform',
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 60 / 1920,
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 359 / 1080,
+                          height: MediaQuery.of(context).size.height * 82 / 1920,
+                          child: MaterialButton(
+    onPressed: () async {
+    if (_formkey.currentState!
+        .validate()) {
+    String e =
+    passworddcontroller.text.trim();
+    String n =
+    emailcontrller.text.trim();
+
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+    builder: (context) =>
+    HomeLayout(),
+                                ),);}},
+
+                            child: Text(
+                              "Login",
+                              style: TextStyle(
+                                color: black,
+                                fontFamily: 'Uniform',
+                              ),
                             ),
                           ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(54),
+                              color: yellow1,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0xff565656),
+                                  spreadRadius: 0,
+                                  blurRadius: 0,
+                                  offset: Offset(2, 4),
+                                ),
+                              ]),
                         ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(54),
-                            color: yellow1,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0xff565656),
-                                spreadRadius: 0,
-                                blurRadius: 0,
-                                offset: Offset(2, 4),
-                              ),
-                            ]),
-                      ),
-                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 50 / 1920,
-                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 359 / 1080,
-                    height: MediaQuery.of(context).size.height * 82 / 1920,
-                    child: MaterialButton(
-                      onPressed: () {
-                        // Navigator.push(
-                        //   context,MaterialPageRoute(builder: (context) => SignUpScreen(),
-                        // ),
-                        // );
-                      },
-                      // child: Text(
-                      //   "Login",
-                      //   style: TextStyle(
-                      //     color: black,
-                      //     fontFamily: 'Uniform',
-                      //   ),
-                      // ),
-                      //
-              
-                  ),
+                     SizedBox(
+                      height: MediaQuery.of(context).size.height *  80/ 1920,
+                     ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 359 / 1080,
+                      height: MediaQuery.of(context).size.height * 82 / 1920,
                 ),
-                    ],
-              ), 
+                      ],
+              ),
+                  ),
             ),
           ),
         ),

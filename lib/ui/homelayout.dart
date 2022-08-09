@@ -75,6 +75,7 @@ class _HomeLayoutoState extends State<HomeLayouto> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        selectedItemColor: Color(0xffffd100),
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {

@@ -70,7 +70,7 @@ class ManageBooth extends StatelessWidget {
                       indicator: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(22), // Creates border
-                        color: Color(0xffd7d7d7),
+                       // color: Color(0xffd7d7d7),
                       ),
                       indicatorPadding: EdgeInsets.all(0),
                       labelColor: darkpurple,
