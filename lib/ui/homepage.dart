@@ -21,6 +21,8 @@ class HomePageScreen extends StatelessWidget {
     return Scaffold(
       body: ChangeNotifierProvider(
         create: (context) => GetAllExpo(),
+        child:Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
         child: Center(
           child: Column(
             children: [
@@ -43,7 +45,7 @@ class HomePageScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }}
 
 
@@ -65,11 +67,13 @@ class _expolistState extends State<expolist> {
     return Consumer<GetAllExpo>(
       builder: (context, allexpo, child) {
         return allexpo.loading?Center(
-          child: SpinKitPouringHourGlassRefined(
+          child:Directionality(
+            textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+            child: SpinKitPouringHourGlassRefined(
             color: yellow1,
             size: MediaQuery.of(context).size.width * 500 / 1080,
           ),
-        ): Expanded(
+          )): Expanded(
           child: ListView.builder(
               itemCount: allexpo.data?.length,
               itemBuilder: (context, i) {
@@ -95,7 +99,9 @@ class ExpoCard extends StatelessWidget {
   var name;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:Container(
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -123,6 +129,6 @@ class ExpoCard extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }

@@ -7,17 +7,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+import '../components/config1.dart';
+
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:Scaffold(
       body: SingleChildScrollView(
         child: ChangeNotifierProvider<Profile>(
           create: (context) => Profile(),
           child: SafeArea(child: profilebody()),
         ),
       ),
-    );
+    ));
   }
 }
 
@@ -67,7 +71,7 @@ class _profilebodyState extends State<profilebody> {
                     padding: const EdgeInsets.all(10),
                     child: Row(
                       children: [
-                        Text("Lana Halak",
+                        Text(languageProvider1.getTexts("Lana Halak")??'',
                           //profilemodel.pf?.title ?? "",
                           style: TextStyle(
                             fontSize: 16,
@@ -124,10 +128,10 @@ class ListItem {
 List<ListItem> generateItems() {
   return <ListItem>[
     ListItem(
-      headerName: 'My Exhibition',
+      headerName: languageProvider1.getTexts('My Exhibition')??'',
     ),
     ListItem(
-      headerName: 'My Booths',
+      headerName: languageProvider1.getTexts('My Booths')??'',
     ),
   ];
 }
