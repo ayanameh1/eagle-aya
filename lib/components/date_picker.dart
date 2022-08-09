@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 late int maxY;
 late int maxM;
@@ -42,6 +43,44 @@ class _DatePickerState extends State<DatePicker> {
         }),
       );
 }
+class DatePicker1 extends StatefulWidget {
+  const DatePicker1({Key? key}) : super(key: key);
+
+  @override
+  _DatePicker1State createState() => _DatePicker1State();
+}
+
+class _DatePicker1State extends State<DatePicker1> {
+  DateTime todaydate = DateTime.now();
+
+  late int d = todaydate.day + 4;
+  late int m = todaydate.month;
+  late int y = todaydate.year;
+
+  late int max = 2050;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 150,
+      width: 250,
+      child: buildDatepicker(),
+    );
+  }
+
+  Widget buildDatepicker() => CupertinoDatePicker(
+    initialDateTime: todaydate.add(Duration(days: 7)),
+    mode: CupertinoDatePickerMode.date,
+    minimumDate: DateTime(y, m, d),
+    onDateTimeChanged: (date) => setState(() {
+      this.todaydate = date;
+      maxD = date.day;
+      maxM = date.month;
+      maxY = date.year;
+    }),
+  );
+}
+
 
 class Timepicker extends StatefulWidget {
   const Timepicker({Key? key}) : super(key: key);

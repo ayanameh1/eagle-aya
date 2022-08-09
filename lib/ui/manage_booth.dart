@@ -8,9 +8,12 @@ import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
+import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
 import '../CN/post_review_cn.dart';
 import '../models/review_comment.dart';
+import 'package:numberpicker/numberpicker.dart';
+
 
 class ManageBooth extends StatelessWidget {
   const ManageBooth({Key? key}) : super(key: key);
@@ -32,8 +35,7 @@ class ManageBooth extends StatelessWidget {
         ],
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.white,
-            //backgroundColor: (Color(0xff5C0099)),
+
             leading: Icon(Icons.arrow_back_ios_rounded),
             title: SizedBox(
               child: Image.asset('assets/images/Group 8.png'),
@@ -886,6 +888,8 @@ class AddAN extends StatefulWidget {
 }
 
 class _AddANState extends State<AddAN> {
+  int currentvalue=10;
+  double currentvaluee =10;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -918,44 +922,74 @@ class _AddANState extends State<AddAN> {
                       builder: (context) => AlertDialog(
                             insetPadding: EdgeInsets.symmetric(
                                 vertical: 20, horizontal: 1),
-                            title: Text('Hold a conference'),
-                            content: Container(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    'Step 1',
-                                    style: TextStyle(
-                                        color: darkpurple,
-                                        fontFamily: 'Uniform',
-                                        fontWeight: FontWeight.bold),
+                            title: Text('Add a sale'),
+                            content: StatefulBuilder(
+                              builder: (context,SBsetState) {
+                                return Container(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        'Step 1',
+                                        style: TextStyle(
+                                            color: darkpurple,
+                                            fontFamily: 'Uniform',
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        height: MediaQuery
+                                            .of(context)
+                                            .size
+                                            .height *
+                                            60 /
+                                            1920,
+                                      ),
+                                      Text(
+                                        'From',
+                                        style: TextStyle(
+                                          fontFamily: 'Uniform',
+                                        ),
+                                      ),
+                                      DatePicker(),
+                                      SizedBox(
+                                        height: MediaQuery
+                                            .of(context)
+                                            .size
+                                            .height *
+                                            60 /
+                                            1920,
+                                      ),
+                                      Text(
+                                        'To',
+                                        style: TextStyle(
+                                          fontFamily: 'Uniform',
+                                        ),
+                                      ),
+                                      DatePicker1(),
+                                      NumberPicker(minValue: 0,
+                                        maxValue: 100,
+                                        value: currentvalue,
+                                        onChanged: ( value) {
+                                          setState(() {
+                                            currentvalue=value ;
+                                            currentvaluee=currentvaluee!.toDouble();
+                                          });
+                                          SBsetState(() {
+                                            currentvalue=value;
+                                            currentvaluee=currentvaluee!.toDouble();
+                                          });
+                                          print(currentvaluee);},
+                                        selectedTextStyle: TextStyle(
+                                            fontSize: 30,
+                                            color: Colors.deepPurple),
+                                        axis: Axis.vertical,
+                                      ),
+                                      SizedBox(height: 10,),
+                                      Text('Discount :${currentvalue} %'),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        60 /
-                                        1920,
-                                  ),
-                                  Text(
-                                    'choose date',
-                                    style: TextStyle(
-                                      fontFamily: 'Uniform',
-                                    ),
-                                  ),
-                                  DatePicker(),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        60 /
-                                        1920,
-                                  ),
-                                  Text(
-                                    'choose time',
-                                    style: TextStyle(
-                                      fontFamily: 'Uniform',
-                                    ),
-                                  ),
-                                  Timepicker(),
-                                ],
-                              ),
+                                );
+                              }
                             ),
                             actions: [
                               TextButton(
@@ -996,12 +1030,83 @@ class _AddANState extends State<AddAN> {
                       fontSize: MediaQuery.of(context).size.width * 100 / 1920),
                 ),
               ),
-              CircleAvatar(
-                backgroundColor: darkpurple,
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                  color: white,
+              GestureDetector(
+                child: CircleAvatar(
+                  backgroundColor: darkpurple,
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    color: white,
+                  ),
                 ),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        insetPadding: EdgeInsets.symmetric(
+                            vertical: 20, horizontal: 1),
+                        title: Text('Hold a conference'),
+                        content: Container(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                'Step 1',
+                                style: TextStyle(
+                                    color: darkpurple,
+                                    fontFamily: 'Uniform',
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height *
+                                    60 /
+                                    1920,
+                              ),
+                              Text(
+                                'choose date',
+                                style: TextStyle(
+                                  fontFamily: 'Uniform',
+                                ),
+                              ),
+                              DatePicker(),
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height *
+                                    60 /
+                                    1920,
+                              ),
+                              Text(
+                                'choose time',
+                                style: TextStyle(
+                                  fontFamily: 'Uniform',
+                                ),
+                              ),
+                              Timepicker(),
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            child: Text(
+                              'Cancel',
+                              style: TextStyle(
+                                  color: darkpurple, fontFamily: 'Uniform'),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          TextButton(
+                            child: Text(
+                              'OK',
+                              style: TextStyle(
+                                  color: darkpurple, fontFamily: 'Uniform'),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      ));
+                },
               ),
             ],
           ),
@@ -1187,4 +1292,5 @@ class _ReviewsTabState extends State<ReviewsTab> {
       });
     });
   }
+
 }

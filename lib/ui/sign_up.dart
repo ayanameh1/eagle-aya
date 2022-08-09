@@ -39,8 +39,6 @@ class SignUpScreen extends StatelessWidget {
     var sizeAware = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        //backgroundColor: Color(0xff5C0099),
         title: SizedBox(
           child: Image.asset('assets/images/Group 8.png'),
           width: sizeAware.width * 257 / 1080,
@@ -117,7 +115,6 @@ class SignUpScreen extends StatelessWidget {
                                       ),
                                       prefixIcon: Icon(
                                         Icons.email,
-                                        color: Color(0xffffee32),
                                       ),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
@@ -165,7 +162,6 @@ class SignUpScreen extends StatelessWidget {
                                       ),
                                       prefixIcon: Icon(
                                         Icons.person,
-                                        color: Color(0xffffee32),
                                       ),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
@@ -222,7 +218,6 @@ class SignUpScreen extends StatelessWidget {
                                           ),
                                           prefixIcon: const Icon(
                                             Icons.lock,
-                                            color: Color(0xffffee32),
                                           ),
                                           suffixIcon: GestureDetector(
                                             child: Icon(
@@ -291,7 +286,6 @@ class SignUpScreen extends StatelessWidget {
                                           ),
                                           prefixIcon: const Icon(
                                             Icons.lock,
-                                            color: Color(0xffffee32),
                                           ),
                                           suffixIcon: GestureDetector(
                                             child: Icon(

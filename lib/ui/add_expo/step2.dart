@@ -1,64 +1,24 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:eagle/CN/booth_list.dart';
-import 'package:eagle/CN/pick_single_image.dart';
+import 'package:eagle/components/components.dart';
+import 'package:eagle/components/confi.dart';
 import 'package:eagle/constants/colors.dart';
-import 'package:eagle/models/booth_details.dart';
 import 'package:eagle/ui/add_expo/step1.dart';
+import 'package:eagle/ui/invest/step_2.dart';
 import 'package:eagle/widget/bottonHeader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+//import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
-class AddExpoStep2Screen extends StatelessWidget {
-  const AddExpoStep2Screen({Key? key}) : super(key: key);
-
+class AddExpoStep2Screen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_rounded),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AddExpoStep1Screen(),
-              ),
-            );
-          },
-        ),
-        backgroundColor: Colors.white,
-        //backgroundColor:Color(0xff5C0099) ,
-        title: SizedBox(
-            child: Text(
-          'Add EXPO',
-          style: TextStyle(color: black),
-        )),
-        shadowColor: Colors.black.withOpacity(0.5),
-      ),
-      body: MultiProvider(
-        providers: [
-          ChangeNotifierProvider<ExpoImage>(create: (context) => ExpoImage()),
-          ChangeNotifierProvider<BoothsList>(create: (context) => BoothsList()),
-        ],
-        child: AddExpoStep2Screeno(),
-      ),
-    );
-  }
+  State<AddExpoStep2Screen> createState() => _AddExpoStep2ScreenState();
 }
 
-// ChangeNotifierProvider(
-// create: (context) => ExpoImage(),
-// child: AddExpoStep2Screeno(),
-class AddExpoStep2Screeno extends StatefulWidget {
-  @override
-  State<AddExpoStep2Screeno> createState() => _AddExpoStep2ScreenoState();
-}
-
-class _AddExpoStep2ScreenoState extends State<AddExpoStep2Screeno> {
+class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
   set value(String? value) {}
 
   //date
@@ -79,216 +39,81 @@ class _AddExpoStep2ScreenoState extends State<AddExpoStep2Screeno> {
     }
   }
 
-  TextEditingController v = TextEditingController();
-  TextEditingController x = TextEditingController();
-  TextEditingController z = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
     var sizeAwareh = MediaQuery.of(context).size.height;
 
-    return Stack(children: [
-      SingleChildScrollView(
-        child: SafeArea(
-          child: Column(
-            children: [
-              SizedBox(
-                height: sizeAware.height * 130 / 1920,
+    return Scaffold(
+      appBar: AppBar(
+        leading: GestureDetector(
+          child: Icon(Icons.arrow_back_ios_rounded),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddExpoStep1Screen(),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Container(
-                  height: sizeAware.height,
-                  decoration: BoxDecoration(
-                      color: Color(0xffD6D6D6),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(28),
-                        topLeft: Radius.circular(28),
-                      )),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Column(mainAxisSize: MainAxisSize.max,
-                        // crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          SizedBox(height: sizeAware.height * 90 / 1920),
-                          // first box (EXPO INFORMATION)
-                          Consumer<ExpoImage>(
-                              builder: (context, oneimage, child) {
-                            return Container(
+            );
+          },
+        ),
+        title: SizedBox(
+            child: Text(
+              'Add Your Expo',
+              style: TextStyle(
+                fontFamily: 'Cermona',
+              ),
+            )),
+        shadowColor: Colors.black.withOpacity(0.5),
+      ),
+      body: Stack(children: [
+        SingleChildScrollView(
+          child: SafeArea(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: sizeAware.height * 130 / 1920,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Container(
+                    height: sizeAware.height,
+                    decoration: BoxDecoration(
+                        color: Color(0xffD6D6D6),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(28),
+                          topLeft: Radius.circular(28),
+                        )),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Column(mainAxisSize: MainAxisSize.max,
+                          // crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            SizedBox(height: sizeAware.height * 90 / 1920),
+                            // first box (EXPO INFORMATION)
+                            Container(
                               child: Padding(
                                 padding: const EdgeInsets.all(12),
-                                child: Consumer<BoothsList>(
-                                    builder: (context, Booths, child) {
-                                  return Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(4),
-                                        child: Text(
-                                          'EXPO floor plan',
-                                          style: TextStyle(
-                                            fontFamily: 'Uniform',
-                                            fontWeight: FontWeight.bold,
-                                            fontSize:
-                                                sizeAware.width * 46 / 1080,
-                                          ),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(4),
+                                      child: Text(
+                                        'Choose booth',
+                                        style: TextStyle(
+                                          color: currentTheme.isdark?Colors.white:Colors.black,
+                                          fontFamily: 'Uniform',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: sizeAware.width * 46 / 1080,
                                         ),
                                       ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          oneimage.imagefromGallery();
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Colors.grey[200],
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black38,
-                                                blurRadius: 2,
-                                                offset: Offset(
-                                                    2, 3), // Shadow position
-                                              ),
-                                            ],
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            border: Border.all(
-                                              width: 3,
-                                              color: darkpurple,
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Icon(Icons.photo,
-                                                color: darkpurple),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      Container(
-                                        child: Center(
-                                          child: oneimage.expoimage == null
-                                              ? Text('no image was selected')
-                                              : Image.file(oneimage.expoimage!),
-                                        ),
-                                      ),
-                                      Divider(
-                                        thickness: 2,
-                                      ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      Container(child: Text('Add booths here')),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Container(
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: TextFormField(
-                                                  controller: v,
-                                                  decoration:
-                                                      const InputDecoration(
-                                                        labelText: 'booth name',
-                                                    hintText:
-                                                        'make it similar to the floorplan)',
-                                                    hintStyle: TextStyle(
-                                                      fontFamily: 'Uniform',
-                                                    ),
-                                                  )),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              //width: 120,
-                                              child: TextFormField(
-                                                  controller: x,
-                                                  decoration:
-                                                      const InputDecoration(
-                                                        labelText:'booth size' ,
-                                                    hintStyle: TextStyle(
-                                                      fontFamily: 'Uniform',
-                                                    ),
-                                                  )),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: TextFormField(
-                                                  controller: z,
-                                                  decoration:
-                                                      const InputDecoration(
-                                                        labelText:'booth price' ,
-                                                    hintStyle: TextStyle(
-                                                      fontFamily: 'Uniform',
-                                                    ),
-                                                  )),
-                                            ),
-                                            IconButton(
-                                              icon: Icon(Icons.add),
-                                              onPressed: () {
-                                                if (v.text.isNotEmpty &&
-                                                    x.text.isNotEmpty &&
-                                                    z.text.isNotEmpty) {
-                                                  Booths.addAbooth(Booth(
-                                                      boothname: v.text,
-                                                      price: z.text,
-                                                      size: x.text));
-                                                } else {
-                                                  final snackBar = SnackBar(
-                                                    content: Text('you need to provide booth name , its price and its size '),
-                                                    duration: Duration(seconds: 2),
-                                                    padding: EdgeInsets.all(15),
-                                                  );
-                                                  Scaffold.of(context).showSnackBar(snackBar);
-                                                }
-                                                v.clear();
-                                                x.clear();
-                                                z.clear();
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        height: 100,
-                                        //width: 50,
-                                        child: ListView.builder(
-                                            itemCount: Booths.boothdata.length,
-                                            itemBuilder: (context, i) {
-                                              return ListTile(
-                                                title: Text(Booths
-                                                    .boothdata[i].boothname),
-                                                subtitle: Text('size ' +
-                                                    Booths.boothdata[i].size +
-                                                    '\n price is '),
-                                                trailing: IconButton(
-                                                  onPressed: () {
-                                                    Booths.deleteAbooth(i);
-                                                  },
-                                                  icon: Icon(Icons.delete),
-                                                ),
-                                                tileColor: Colors.red,
-                                              );
-                                            }),
-                                      ),
-                                    ],
-                                  );
-                                }),
+                                    ),
+                                  ],
+                                ),
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
-                                color: Colors.grey[200],
+                                color: currentTheme.isdark?Colors.grey[600]:Colors.grey[200],
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.black38,
@@ -297,142 +122,149 @@ class _AddExpoStep2ScreenoState extends State<AddExpoStep2Screeno> {
                                   ),
                                 ],
                               ),
-                            );
-                          }),
-                          ////___________________________________________________________________________________________________
-                          SizedBox(
-                            height: 30,
-                          ),
-                          ////___________________________________________________________________________________________________
-                          //Second box (CONTACT INFORMATION)
-                          Container(
-                            child: Padding(
-                              padding: const EdgeInsets.all(12),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(4),
-                                    child: Text(
-                                      'Time period',
-                                      style: TextStyle(
-                                        fontFamily: 'Uniform',
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: sizeAware.width * 46 / 1080,
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+
+                            //Second box (CONTACT INFORMATION)
+                            Container(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(4),
+                                      child: Text(
+                                        'Time period',
+                                        style: TextStyle(
+                                          color: currentTheme.isdark?Colors.white:Colors.black,
+                                          fontFamily: 'Uniform',
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: sizeAware.width * 46 / 1080,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                          (54),
-                                        ),
-                                        color: Colors.black),
-                                    child: ButtonWidget(
-                                      text: getText(),
-                                      onClicked: () => pickDate1(context),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            (54),
+                                          ),
+                                          ),
+                                      child: ButtonWidget(
+                                        text: getText(),
+                                        onClicked: () => pickDate1(context),
+                                      ),
                                     ),
-                                  ),
-                                  // SizedBox(
-                                  //   height: 30.0,
-                                  // ),
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                          (54),
-                                        ),
-                                        color: Colors.black),
-                                    child: ButtonWidget(
-                                      text: getText2(),
-                                      onClicked: () => pickDate2(context),
+                                    SizedBox(
+                                      height: 30.0,
                                     ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                            (54),
+                                          ),
+                                          ),
+                                      child: ButtonWidget(
+                                        text: getText2(),
+                                        onClicked: () => pickDate2(context),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color:currentTheme.isdark? Colors.grey[600]:Colors.grey[200],
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black38,
+                                    blurRadius: 2,
+                                    offset: Offset(4, 5), // Shadow position
                                   ),
                                 ],
                               ),
                             ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30),
-                              color: Colors.grey[200],
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black38,
-                                  blurRadius: 2,
-                                  offset: Offset(4, 5), // Shadow position
-                                ),
-                              ],
+                            SizedBox(
+                              height: 30,
                             ),
-                          ),
-                          // SizedBox(
-                          //   height: 30,
-                          // ),
 
-                          // SizedBox(
-                          //   height:
-                          //       MediaQuery.of(context).size.height * 202 / 1920,
-                          // ),
-                          Padding(
-                            padding: const EdgeInsets.all(5),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width *
-                                  359 /
-                                  1080,
+                            SizedBox(
                               height: MediaQuery.of(context).size.height *
-                                  82 /
+                                  202 /
                                   1920,
-                              child: MaterialButton(
-                                onPressed: () {},
-                                child: Text(
-                                  "Apply",
-                                  style: TextStyle(
-                                    color: black,
-                                    fontFamily: 'Uniform',
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width *
+                                    359 /
+                                    1080,
+                                height: MediaQuery.of(context).size.height *
+                                    82 /
+                                    1920,
+                                child: MaterialButton(
+                                  onPressed: () {
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //     builder: (context) => AddExpo2Screen(),
+                                    //   ),
+                                    // );
+                                  },
+                                  child: Text(
+                                    "Apply",
+                                    style: TextStyle(
+                                      fontFamily: 'Uniform',
+                                    ),
                                   ),
                                 ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(54),
+                                    color: yellow1,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color(0xff565656),
+                                        spreadRadius: 0,
+                                        blurRadius: 0,
+                                        offset: Offset(2, 4),
+                                      ),
+                                    ]),
                               ),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(54),
-                                  color: yellow1,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0xff565656),
-                                      spreadRadius: 0,
-                                      blurRadius: 0,
-                                      offset: Offset(2, 4),
-                                    ),
-                                  ]),
                             ),
-                          ),
-                        ]),
+                          ]),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      Container(
-        width: sizeAware.width * 1080 / 1080,
-        height: sizeAware.height * 170 / 1920,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(70),
-              bottomRight: Radius.circular(70)),
-          color: darkpurple,
-        ),
-        child: Center(
-          child: Text(
-            'Step 2',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: white,
-              fontFamily: 'Uniform',
-              fontWeight: FontWeight.bold,
-              fontSize: sizeAware.width * 60 / 1080,
-              //fontSize: 30,
+              ],
             ),
           ),
         ),
-      ),
-    ]);
+        Container(
+          width: sizeAware.width * 1080 / 1080,
+          height: sizeAware.height * 170 / 1920,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(70),
+                bottomRight: Radius.circular(70)),
+            color: darkpurple,
+          ),
+          child: Center(
+            child: Text(
+              'Step 2',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontFamily: 'Uniform',
+                fontWeight: FontWeight.bold,
+                fontSize: sizeAware.width * 60 / 1080,
+                color: currentTheme.isdark?Colors.white:Colors.black,
+                //fontSize: 30,
+              ),
+            ),
+          ),
+        ),
+      ]),
+    );
   }
 
   void showSnackBar(BuildContext context, String text) {

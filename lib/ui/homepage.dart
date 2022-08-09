@@ -47,7 +47,6 @@ class HomePageScreen extends StatelessWidget {
   }}
 
 
-
 //list of all exhibitions
 class expolist extends StatefulWidget {
   @override

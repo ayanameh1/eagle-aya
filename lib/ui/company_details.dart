@@ -33,8 +33,6 @@ class CompanyDetails extends StatelessWidget {
         ],
         child: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.white,
-            //backgroundColor: (Color(0xff5C0099)),
             leading: Icon(Icons.arrow_back_ios_rounded),
             title: SizedBox(
               child: Image.asset('assets/images/Group 8.png'),
@@ -544,33 +542,3 @@ class _ReviewsTabState extends State<ReviewsTab> {
     });
   }
 }
-
-//-----------------------------------
-// class ReviewsList extends StatelessWidget {
-//   final username;
-//   final review;
-//   ReviewsList({this.username, this.review});
-//   @override
-//   Widget build(BuildContext context) {
-//     return Positioned(
-//         top: 30,
-//         child: Container(
-//             width: MediaQuery.of(context).size.width,
-//             height: MediaQuery.of(context).size.height - 70,
-//             child: SingleChildScrollView(
-//                 child: ListTile(
-//               title: Container(
-//                 margin: EdgeInsets.only(top: 15),
-//                 child: Text(username),
-//               ),
-//               subtitle: Container(
-//                 padding: EdgeInsets.all(10),
-//                 child: Text(review),
-//                 color: Colors.grey[100],
-//               ),
-//               leading: CircleAvatar(
-//                   //radius: 60,
-//                   backgroundImage: AssetImage('assets/images/Asset 1@4x.png')),
-//             ))));
-//   }
-// }
