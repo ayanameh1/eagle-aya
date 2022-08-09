@@ -85,7 +85,6 @@ class _dropdownlanguageState extends State<dropdownlanguage> {
             child: Text(
               'arabic',
               style: TextStyle(
-                color: Colors.black,
                 fontFamily: 'Uniform',
               ),
             ),
@@ -95,7 +94,6 @@ class _dropdownlanguageState extends State<dropdownlanguage> {
             child: Text(
               'English',
               style: TextStyle(
-                color: Colors.black,
                 fontFamily: 'Uniform',
               ),
             ),

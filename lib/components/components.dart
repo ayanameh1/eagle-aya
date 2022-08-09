@@ -1,3 +1,4 @@
+import 'package:eagle/components/confi.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -28,8 +29,8 @@ Widget defaulTexttFormField(
           onFieldSubmitted: onSubmit,
           controller: controller,
           onTap: onTap,
+          validator: validate,
           decoration: InputDecoration(
-            focusColor: Colors.deepPurple,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(54),
@@ -37,7 +38,7 @@ Widget defaulTexttFormField(
             ),
             labelText: label,
             labelStyle: TextStyle(
-              color: black,
+              color: currentTheme.isdark?Colors.white:Colors.black,
               fontFamily: 'Uniform',
             ),
             prefixIcon: Icon(

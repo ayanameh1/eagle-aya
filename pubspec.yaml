@@ -31,6 +31,8 @@ dependencies:
   firebase_messaging:
   flutter_local_notifications:
   flutter_datetime_picker:
+  numberpicker: ^2.1.1
+
 
 dependency_overrides:
   firebase_messaging_platform_interface: 3.1.6

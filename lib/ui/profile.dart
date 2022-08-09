@@ -135,7 +135,6 @@ List<ListItem> generateItems() {
 List<ExpansionPanel> _getExpansionPanels(List<ListItem> _items) {
   return _items.map<ExpansionPanel>((ListItem item) {
     return ExpansionPanel(
-      //backgroundColor: Colors.white38,
       headerBuilder: (BuildContext context, bool isExpanded) {
         return ListTile(
           title: Text(item.headerName),

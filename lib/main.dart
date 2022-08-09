@@ -1,4 +1,5 @@
 import 'package:eagle/CN/theme.dart';
+import 'package:eagle/components/confi.dart';
 import 'package:eagle/ui/add_expo/step1.dart';
 import 'package:eagle/ui/company_details.dart';
 import 'package:eagle/ui/homelayout.dart';
@@ -15,7 +16,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'constants/colors.dart';
 import'package:eagle/services/local_notificatios_services.dart';
 
 Future<void> backgroundhandler (RemoteMessage message) async{
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ThemeChanger>(
-      create: (_) => ThemeChanger(ThemeData.dark()),
+      create: (_) => ThemeChanger(),
       child: new MaterialAppWithTheme(),
     );
   }
@@ -51,6 +51,10 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
   @override
   void initState() {
     super.initState();
+    currentTheme.addListener(() {print('changes');
+      setState(() {});
+    });
+
 
     FirebaseMessaging.instance.getInitialMessage().then((message){
       if(message!= null){
@@ -82,42 +86,42 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
    final theme= Provider.of<ThemeChanger>(context);
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     theme: ThemeData(
-       primaryColor: const Color(0xffffd100),
-       primarySwatch: Colors.grey,
-       scaffoldBackgroundColor: Colors.white,
-       appBarTheme: const AppBarTheme(
-         systemOverlayStyle: SystemUiOverlayStyle(
-           statusBarColor: Colors.white,
-           statusBarBrightness: Brightness.dark,
-         ),
-         titleSpacing: 20.0,
-         backgroundColor: Colors.white,
-         titleTextStyle: TextStyle(
-           color: Colors.white,
-           fontSize: 20.0,
-           fontWeight: FontWeight.bold,
-         ),
-       ),
-       floatingActionButtonTheme: FloatingActionButtonThemeData(
-           backgroundColor: Color(0xff5C0099)),
-       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-         type: BottomNavigationBarType.fixed,
-         selectedItemColor: Color(0xffffd100),
-         unselectedItemColor: Colors.grey,
-         elevation: 20.0,
-         backgroundColor: Colors.white,
-       ),
-       textTheme: const TextTheme(
-           bodyText1: TextStyle(
-             fontSize: 18,
-             color: Colors.black,
-           ),
-       ),
-     ),
-     // darkTheme: ThemeData(
-     //   scaffoldBackgroundColor: Color(0xff333039),
+     // theme: ThemeData(
      //   primaryColor: const Color(0xffffd100),
+     //   primarySwatch: Colors.grey,
+     //   scaffoldBackgroundColor: Colors.white,
+     //   appBarTheme: const AppBarTheme(
+     //     systemOverlayStyle: SystemUiOverlayStyle(
+     //       statusBarColor: Colors.white,
+     //       statusBarBrightness: Brightness.dark,
+     //     ),
+     //     titleSpacing: 20.0,
+     //     backgroundColor: Colors.white,
+     //     titleTextStyle: TextStyle(
+     //       color: Colors.white,
+     //       fontSize: 20.0,
+     //       fontWeight: FontWeight.bold,
+     //     ),
+     //   ),
+     //   floatingActionButtonTheme: FloatingActionButtonThemeData(
+     //       backgroundColor: Color(0xff5C0099)),
+     //   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+     //     type: BottomNavigationBarType.fixed,
+     //     selectedItemColor: Color(0xffffd100),
+     //     unselectedItemColor: Colors.grey,
+     //     elevation: 20.0,
+     //     backgroundColor: Colors.white,
+     //   ),
+     //   textTheme: const TextTheme(
+     //       bodyText1: TextStyle(
+     //         fontSize: 18,
+     //         color: Colors.black,
+     //       ),
+     //   ),
+     // ),
+     //  darkTheme: ThemeData(
+
+     //    primaryColor: const Color(0xffffd100),
      //   primarySwatch: Colors.grey,
      //   appBarTheme: const AppBarTheme(
      //     systemOverlayStyle: SystemUiOverlayStyle(
@@ -148,9 +152,67 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
      //           fontFamily: 'Uniform'
      //       )
      //   ),
-     // ),1
-      //theme: theme.getTheme(),
-     initialRoute: 'Companydetails',
+     // ),
+      theme:ThemeData(
+          primaryColor: const Color(0xffffd100),
+          primarySwatch: Colors.grey,
+          scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.white,
+            statusBarBrightness: Brightness.light,
+        ),
+      backgroundColor: Colors.white,
+    titleTextStyle: TextStyle(
+          color: Colors.black,
+          fontSize: 20.0,
+          fontWeight: FontWeight.bold,
+        ),),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Color(0xff5C0099)),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor:Color(0xff5C0099) ,
+        unselectedItemColor: Colors.grey,
+        elevation: 20.0,
+        backgroundColor: Colors.white,
+      ),
+      ),
+
+     darkTheme: ThemeData(
+       primaryColor: const Color(0xffffd100),
+       primarySwatch: Colors.grey,
+       scaffoldBackgroundColor: Color(0xff333039),
+    appBarTheme: const AppBarTheme(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Color(0xff333039),
+          statusBarBrightness: Brightness.light,
+        ),
+      backgroundColor: Color(0xff333039),
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 20.0,
+          fontWeight: FontWeight.bold,
+        ),
+     ),
+       floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xff5C0099)),
+         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+           type: BottomNavigationBarType.fixed,
+           selectedItemColor: Color(0xff5C0099),
+           unselectedItemColor: Colors.grey,
+           elevation: 0.0,
+           backgroundColor: Color(0xff333039),
+         ),
+    textTheme: TextTheme(
+          bodyText1: TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+              fontFamily: 'Uniform'
+          )
+      ),
+     ),
+     themeMode: currentTheme.currentTheme(),
+     initialRoute: 'invest',
      routes: {
        'welcome': (context) => WelcomeScreen(),
        'login': (context) => loginscreen(),
@@ -159,7 +221,7 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
        'Companydetails': (context) =>CompanyDetails(),
        'invest': (context) => InvestStep1Screen(),
        'addexpo': (context) => AddExpoStep1Screen(),
-       '1': (context) => ManageBooth(),
+       'manage_booth': (context) => ManageBooth(),
        //'ten': (context) => outsplashScreen(),
      },
    );

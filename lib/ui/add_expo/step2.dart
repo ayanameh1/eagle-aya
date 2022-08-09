@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:eagle/components/components.dart';
+import 'package:eagle/components/confi.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/add_expo/step1.dart';
 import 'package:eagle/ui/invest/step_2.dart';
@@ -43,40 +44,8 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
     var sizeAware = MediaQuery.of(context).size;
     var sizeAwareh = MediaQuery.of(context).size.height;
 
-    //images
-    // File? image;
-    // String? _image;
-    // final picker = ImagePicker();
-    // Future getImageFromGallery() async {
-    //   final pickedFile =
-    //       await picker.pickImage(source: ImageSource.gallery, imageQuality: 25);
-    //
-    //   setState(() {
-    //     if (pickedFile != null) {
-    //       _image = pickedFile.path;
-    //     }
-    //   });
-    // }
-    //
-    // Future showOptions() async {
-    //   showCupertinoModalPopup(
-    //     context: context,
-    //     builder: (context) => CupertinoActionSheet(
-    //       actions: [
-    //         CupertinoActionSheetAction(
-    //           child: Text('Photo Gallery'),
-    //           onPressed: () {
-    //             Navigator.of(context).pop();
-    //             getImageFromGallery();
-    //           },
-    //         ),
-    //       ],
-    //     ),
-    //   );
-    // }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff5C0099),
         leading: GestureDetector(
           child: Icon(Icons.arrow_back_ios_rounded),
           onTap: () {
@@ -93,7 +62,6 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
               'Add Your Expo',
               style: TextStyle(
                 fontFamily: 'Cermona',
-                color: Colors.black,
               ),
             )),
         shadowColor: Colors.black.withOpacity(0.5),
@@ -133,6 +101,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                       child: Text(
                                         'Choose booth',
                                         style: TextStyle(
+                                          color: currentTheme.isdark?Colors.white:Colors.black,
                                           fontFamily: 'Uniform',
                                           fontWeight: FontWeight.bold,
                                           fontSize: sizeAware.width * 46 / 1080,
@@ -144,7 +113,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
-                                color: Colors.grey[200],
+                                color: currentTheme.isdark?Colors.grey[600]:Colors.grey[200],
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.black38,
@@ -169,6 +138,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                       child: Text(
                                         'Time period',
                                         style: TextStyle(
+                                          color: currentTheme.isdark?Colors.white:Colors.black,
                                           fontFamily: 'Uniform',
                                           fontWeight: FontWeight.bold,
                                           fontSize: sizeAware.width * 46 / 1080,
@@ -180,7 +150,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                           borderRadius: BorderRadius.circular(
                                             (54),
                                           ),
-                                          color: Colors.black),
+                                          ),
                                       child: ButtonWidget(
                                         text: getText(),
                                         onClicked: () => pickDate1(context),
@@ -194,7 +164,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                           borderRadius: BorderRadius.circular(
                                             (54),
                                           ),
-                                          color: Colors.black),
+                                          ),
                                       child: ButtonWidget(
                                         text: getText2(),
                                         onClicked: () => pickDate2(context),
@@ -205,7 +175,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
-                                color: Colors.grey[200],
+                                color:currentTheme.isdark? Colors.grey[600]:Colors.grey[200],
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.black38,
@@ -245,7 +215,6 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                   child: Text(
                                     "Apply",
                                     style: TextStyle(
-                                      color: black,
                                       fontFamily: 'Uniform',
                                     ),
                                   ),
@@ -285,10 +254,10 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
               'Step 2',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: white,
                 fontFamily: 'Uniform',
                 fontWeight: FontWeight.bold,
                 fontSize: sizeAware.width * 60 / 1080,
+                color: currentTheme.isdark?Colors.white:Colors.black,
                 //fontSize: 30,
               ),
             ),
