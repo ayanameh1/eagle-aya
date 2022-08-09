@@ -1,5 +1,7 @@
 import 'package:eagle/CN/theme.dart';
+import 'package:eagle/components/config1.dart';
 import 'package:eagle/constants/colors.dart';
+import 'package:eagle/providers/language_provider.dart';
 import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/other_menu.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -10,15 +12,28 @@ import 'package:provider/provider.dart';
 import 'add_expo/step1.dart';
 import 'notification.dart';
 import 'profile.dart';
-//import 'package:firebase_messaging/firebase_messaging.dart';
 
-class HomeLayout extends StatefulWidget {
+//import 'package:firebase_messaging/firebase_messaging.dart';
+class HomeLayout extends StatelessWidget {
   const HomeLayout({Key? key}) : super(key: key);
 
   @override
-  State<HomeLayout> createState() => _HomeLayoutState();
+  Widget build(BuildContext context) {
+    return MultiProvider(providers: [
+      ChangeNotifierProvider<LanguageProvider>(
+          create: (context) => LanguageProvider()),
+    ], child: HomeLayouto());
+  }
 }
-class _HomeLayoutState extends State<HomeLayout> {
+
+class HomeLayouto extends StatefulWidget {
+  const HomeLayouto({Key? key}) : super(key: key);
+
+  @override
+  State<HomeLayouto> createState() => _HomeLayoutoState();
+}
+
+class _HomeLayoutoState extends State<HomeLayouto> {
   int currentIndex = 0;
   Widget currentScreen = HomePageScreen();
   final List<Widget> screens = [
@@ -47,14 +62,13 @@ class _HomeLayoutState extends State<HomeLayout> {
         ),
         shadowColor: Colors.black.withOpacity(0.5),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.dark_mode_rounded),
+            onPressed: () {
+              //languageProvider1.changeLan(!languageProvider1.isEn);
+            },
+          ),
           FlatButton(
-            onPressed: () => _themeChanger.setTheme2(ThemeData.dark()),
-            child: FlatButton.icon(
-              onPressed: () => _themeChanger.setTheme2(ThemeData.dark()),
-              icon: const Icon(Icons.dark_mode_rounded),
-              label: Text(''),
-            ),
-          ), FlatButton(
             onPressed: () => _themeChanger.setTheme1(ThemeData.light()),
             child: FlatButton.icon(
               onPressed: () => _themeChanger.setTheme1(ThemeData.light()),
@@ -151,7 +165,10 @@ class _HomeLayoutState extends State<HomeLayout> {
                 color: AppColors.white,
               ),
               onTap: () {
-                Navigator.push(context,MaterialPageRoute(builder: (context) => AddExpoStep1Screen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddExpoStep1Screen()));
               },
             ),
           ],

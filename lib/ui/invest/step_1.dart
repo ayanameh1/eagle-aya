@@ -18,12 +18,14 @@ class InvestStep1Screen extends StatelessWidget {
     var sizeAware = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(Icons.arrow_back_ios_rounded),
         backgroundColor: Colors.white,
-        //backgroundColor: Color(0xff5C0099),
+        //backgroundColor:Color(0xff5C0099) ,
         title: SizedBox(
-          child: Image.asset('assets/images/Group 8.png'),
-          width: sizeAware.width * 257 / 1080,
-          height: sizeAware.height * 146 / 160,
+            child: Text('Invest',style: TextStyle(color: black),)
+          // Image.asset('assets/images/Group 8.png'),
+          // width: sizeAware.width * 257 / 1080,
+          // height: sizeAware.height * 146 / 160,
         ),
         shadowColor: Colors.black.withOpacity(0.5),
       ),

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:eagle/components/config1.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:eagle/ui/login.dart';
 import 'package:eagle/ui/sign_up.dart';
@@ -19,7 +20,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
-    return Scaffold(
+    return  Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:Scaffold(
       body: Column(
         children: [
           SizedBox(
@@ -80,6 +83,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           )
         ],
       ),
-    );
+    ));
   }
 }

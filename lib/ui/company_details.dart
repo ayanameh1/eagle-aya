@@ -4,7 +4,10 @@ import 'dart:convert';
 
 import 'package:eagle/CN/get_reviews_cn.dart';
 import 'package:eagle/constants/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -53,9 +56,14 @@ class CompanyDetails extends StatelessWidget {
                         child: CircleAvatar(
                             radius: 48,
                             backgroundImage:
-                                AssetImage('assets/images/Asset 1@4x.png')),
+                                AssetImage('assets/images/download.jpg')),
                       ),
-                      Expanded(child: Text('company name')),
+                      Expanded(
+                          child: Text(
+                        ' Al Durra company',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      )),
                     ],
                   ),
                 ),
@@ -152,7 +160,9 @@ class _AboutlistState extends State<Aboutlist> {
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Icon(Icons.people_alt_outlined),
                           ),
-                          Expanded(child: Text('About us')),
+                          Expanded(
+                              child: Text(
+                                  'About us \nAl Durra is a family-owned manufacturing business spanning four generations. It delivers high-quality, delicious, and healthy foods.')),
                         ],
                       ),
                     ),
@@ -166,7 +176,7 @@ class _AboutlistState extends State<Aboutlist> {
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Icon(Icons.email),
                           ),
-                          Expanded(child: Text('email')),
+                          Expanded(child: Text('email \n lana.ha12@gmail.com')),
                         ],
                       ),
                     ),
@@ -180,7 +190,7 @@ class _AboutlistState extends State<Aboutlist> {
                             padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Icon(Icons.phone),
                           ),
-                          Expanded(child: Text('phone')),
+                          Expanded(child: Text('phone\n 0938661910')),
                         ],
                       ),
                     ),
@@ -188,14 +198,21 @@ class _AboutlistState extends State<Aboutlist> {
                   Flexible(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 12),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
-                            child: Icon(Icons.local_phone_outlined),
-                          ),
-                          Expanded(child: Text('fax')),
-                        ],
+                      child: Container(
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Icon(Icons.local_phone_outlined),
+                                ),
+                                Expanded(child: Text('fax\n 0116124885')),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -237,8 +254,7 @@ class _productslistState extends State<productslist> {
                 ),
                 leading: CircleAvatar(
                     //radius: 60,
-                    backgroundImage:
-                        AssetImage('assets/images/Asset 1@4x.png')),
+                    backgroundImage: AssetImage('assets/images/download1.jpg')),
               ),
             ),
           );
@@ -324,7 +340,11 @@ class _AnnouncTabState extends State<AnnouncTab> {
                         ),
                       ],
                     ),
-                    child: Center(child: Text('product $i')),
+                    child: Center(
+                        child: Text(
+                      'conference  $i \ntime : 3:00 Pm\n day: Sunday',
+                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),
+                    )),
                   ),
                 );
               }),
@@ -363,7 +383,16 @@ class _AnnouncTabState extends State<AnnouncTab> {
                         ),
                       ],
                     ),
-                    child: Center(child: Text('product $i')),
+                    child: Center(
+                        child: Text(
+                      'we have a sale \n 70 % ',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+
+                      ),
+                    )),
                   ),
                 );
               }),
@@ -403,47 +432,49 @@ class _ReviewsTabState extends State<ReviewsTab> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ReviewPost>(builder: (context, reviewf, child) {
-      return Consumer<GetAllReviews>(
-          builder: (context, allReviewf, child) {
-     return Stack(children: [
+      return Consumer<GetAllReviews>(builder: (context, allReviewf, child) {
+        return Stack(children: [
           reviewf.loading || allReviewf.loading
               ? Container(
                   child: SpinKitCircle(
                     color: darkpurple,
                   ),
                 )
-              :ListView.builder(
-                        itemCount: allReviewf.data?.length,
-                        itemBuilder: (context, i) {
-                          final pos = allReviewf.data;
-                          final post = pos?[i];
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 1),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                      width: 1, color: Color(0xfff1f1f1)),
-                                ),
-                              ),
-                              child: ListTile(
-                                title: Text('${post?.username}'),
-                                subtitle: Container(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(3),
-                                    child: Text(' ${post?.body}'),
-                                  ),
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(topRight: Radius.circular(12),bottomRight: Radius.circular(12),bottomLeft:  Radius.circular(12) ),
-                                      color: Color(0xffd7d7d7)),
-                                ),
-                                leading: CircleAvatar(
-                                    backgroundImage: AssetImage(
-                                        'assets/images/Asset 1@4x.png')),
-                              ),
+              : ListView.builder(
+                  itemCount: allReviewf.data?.length,
+                  itemBuilder: (context, i) {
+                    final pos = allReviewf.data;
+                    final post = pos?[i];
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 1),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border(
+                            bottom:
+                                BorderSide(width: 1, color: Color(0xfff1f1f1)),
+                          ),
+                        ),
+                        child: ListTile(
+                          title: Text('${post?.username}'),
+                          subtitle: Container(
+                            child: Padding(
+                              padding: const EdgeInsets.all(3),
+                              child: Text(' ${post?.body}'),
                             ),
-                          );
-                        }),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(12),
+                                    bottomRight: Radius.circular(12),
+                                    bottomLeft: Radius.circular(12)),
+                                color: Color(0xffd7d7d7)),
+                          ),
+                          leading: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage('assets/images/Asset 1@4x.png')),
+                        ),
+                      ),
+                    );
+                  }),
           Positioned(
             bottom: 0,
             child: Row(
@@ -477,7 +508,9 @@ class _ReviewsTabState extends State<ReviewsTab> {
                               setState(() {
                                 reviewcontrller.clear();
                               });
-                              final allreviews = Provider.of<GetAllReviews>(context, listen: false);
+                              final allreviews = Provider.of<GetAllReviews>(
+                                  context,
+                                  listen: false);
                               allreviews.getallReviewsData();
                               // Navigator.push(
                               //   context,
@@ -506,8 +539,8 @@ class _ReviewsTabState extends State<ReviewsTab> {
               ],
             ),
           ),
-        ]);}
-      );
+        ]);
+      });
     });
   }
 }
