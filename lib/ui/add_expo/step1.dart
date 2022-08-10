@@ -76,7 +76,7 @@ class _AddExpoStep1ScreenoState extends State<AddExpoStep1Screeno> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Color(0xffD6D6D6),
+                        color: currentTheme.isdark? Colors.grey[600]:Colors.grey[200],
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(28),
                           topLeft: Radius.circular(28),

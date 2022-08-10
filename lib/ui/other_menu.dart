@@ -2,6 +2,7 @@
 
 import 'package:eagle/components/config1.dart';
 import 'package:eagle/constants/colors.dart';
+import 'package:eagle/ui/about_us.dart';
 import 'package:eagle/ui/homelayout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -51,21 +52,10 @@ class _OtherscreenoState extends State<Otherscreeno> {
             body: SafeArea(
               child: Column(
                 children: <Widget>[
-                  ListTile(
-                    leading: Icon(Icons.settings),
-                    title: Text(
-                      languageProvider1.getTexts('Settings') ?? 'Settings',
-                      style: TextStyle(
-                        //color: Colors.black,
-                        fontFamily: 'Uniform',
-                      ),
-                    ),
-                    onTap: () {},
-                  ),
-                  Divider(
-                    height: 10,
-                    color: Colors.black54,
-                  ),
+                  // Divider(
+                  //   height: 10,
+                  //   color: Colors.black54,
+                  // ),
                   Container(
                     alignment: languageProvider1.isEn
                         ? Alignment.centerLeft
@@ -94,7 +84,7 @@ class _OtherscreenoState extends State<Otherscreeno> {
                                 .changeLan(!languageProvider1.isEn);
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeLayout()));
                           },
-                          icon: Icon(Icons.add),
+                          icon: Icon(Icons.language),
                         ),
                         // Switch(
                         //   value: languageProvider1.isEn,
@@ -110,10 +100,26 @@ class _OtherscreenoState extends State<Otherscreeno> {
                       ],
                     ),
                   ),
-                  Divider(
-                    height: 10,
-                    color: Colors.black54,
-                  ),
+
+                  // Divider(
+                  //   height: 10,
+                  //   color: Colors.black54,
+                  // ),
+                  // //language
+                  // ListTile(
+                  //   onTap: (){},
+                  //   leading: Icon(Icons.language),
+                  //   title: Text(
+                  //     'Language',
+                  //     style: TextStyle(
+                  //       //color: Colors.black,
+                  //       fontFamily: 'Uniform',
+                  //     ),
+                  //   ),
+                  //   trailing: dropdownlanguage(),
+                  // ),
+
+                  //about us
                   ListTile(
                     leading: Icon(Icons.people),
                     title: Text(
@@ -123,6 +129,9 @@ class _OtherscreenoState extends State<Otherscreeno> {
                         fontFamily: 'Uniform',
                       ),
                     ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>About_us()));
+                    },
                   ),
 
                   //logout

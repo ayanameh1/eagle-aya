@@ -2,6 +2,7 @@
 import 'package:eagle/CN/get_all_expo_cn.dart';
 import 'package:eagle/components/config1.dart';
 import 'package:eagle/constants/colors.dart';
+import 'package:eagle/ui/expo_page.dart';
 import 'package:eagle/ui/notification.dart';
 import 'package:eagle/ui/profile.dart';
 import 'package:eagle/ui/welcome.dart';
@@ -21,6 +22,8 @@ class HomePageScreen extends StatelessWidget {
     return Scaffold(
       body: ChangeNotifierProvider(
         create: (context) => GetAllExpo(),
+        child:Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
         child: Center(
           child: Column(
             children: [
@@ -43,7 +46,7 @@ class HomePageScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }}
 
 
@@ -65,11 +68,13 @@ class _expolistState extends State<expolist> {
     return Consumer<GetAllExpo>(
       builder: (context, allexpo, child) {
         return allexpo.loading?Center(
-          child: SpinKitPouringHourGlassRefined(
+          child:Directionality(
+            textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+            child: SpinKitPouringHourGlassRefined(
             color: yellow1,
             size: MediaQuery.of(context).size.width * 500 / 1080,
           ),
-        ): Expanded(
+          )): Expanded(
           child: ListView.builder(
               itemCount: allexpo.data?.length,
               itemBuilder: (context, i) {
@@ -95,7 +100,9 @@ class ExpoCard extends StatelessWidget {
   var name;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:Container(
       child: Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -105,13 +112,27 @@ class ExpoCard extends StatelessWidget {
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyText1,
           ),
+          // Container(
+          //   width: MediaQuery.of(context).size.width * 844 / 1080,
+          //   height: MediaQuery.of(context).size.height * 465 / 1920,
+          //   decoration: BoxDecoration(
+          //     borderRadius: BorderRadius.circular(22),
+          //     image: DecorationImage(
+          //         image: AssetImage('assets/images/ddd.png'), fit: BoxFit.fill,),
+          //     boxShadow: [
+          //       BoxShadow(
+          //         color: Colors.black12,
+          //         blurRadius: 4,
+          //         offset: Offset(4, 8), // Shadow position
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Container(
             width: MediaQuery.of(context).size.width * 844 / 1080,
             height: MediaQuery.of(context).size.height * 465 / 1920,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(22),
-              image: DecorationImage(
-                  image: AssetImage('assets/images/ddd.png'), fit: BoxFit.fill),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black12,
@@ -120,9 +141,11 @@ class ExpoCard extends StatelessWidget {
                 ),
               ],
             ),
+            child: GestureDetector(onTap:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>ExpoPage()));},
+                child:Image(image: AssetImage('assets/images/ddd.png'), fit: BoxFit.fill,),),
           ),
         ],
       ),
-    );
+    ));
   }
 }

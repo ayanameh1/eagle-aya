@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:floating_bottom_bar/animated_bottom_navigation_bar.dart';
 import 'package:provider/provider.dart';
+import '../components/config1.dart';
 import 'add_expo/step1.dart';
 import 'notification.dart';
 import 'profile.dart';
@@ -46,7 +47,9 @@ class _HomeLayoutoState extends State<HomeLayouto> {
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
     return Consumer<ThemeChanger>(builder: (context, mytheme, child) {
-      return Scaffold(
+      return Directionality(
+          textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+          child:Scaffold(
         appBar: AppBar(
           title: SizedBox(
             child: Image.asset('assets/images/Group 8.png'),
@@ -69,12 +72,14 @@ class _HomeLayoutoState extends State<HomeLayouto> {
           },
           child: Icon(
             Icons.add,
+            color: Colors.white,
           ),
           backgroundColor:darkpurple,
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        selectedItemColor: Color(0xffffd100),
         currentIndex: currentIndex,
         onTap: (index) {
           setState(() {
@@ -87,27 +92,27 @@ class _HomeLayoutoState extends State<HomeLayouto> {
               icon: Icon(
                 Icons.home_filled,
               ),
-              label: 'Home'),
+              label: languageProvider1.getTexts('Home')??""),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.notifications_active_rounded,
             ),
-            label: 'news',
+            label: languageProvider1.getTexts('news')??'',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
             ),
-            label: 'profile',
+            label: languageProvider1.getTexts('profile')??"",
           ),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.menu,
               ),
-              label: 'other'),
+              label: languageProvider1.getTexts('other')??""),
         ],
       ),
-      );
+      ));
       // PageStorage(
       //   child: currentScreen,
       //   bucket: bucket,

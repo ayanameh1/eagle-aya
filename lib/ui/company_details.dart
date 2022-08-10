@@ -15,6 +15,7 @@ import 'dart:convert';
 import 'package:provider/provider.dart';
 
 import '../CN/post_review_cn.dart';
+import '../components/config1.dart';
 import '../models/review_comment.dart';
 
 class CompanyDetails extends StatelessWidget {
@@ -31,7 +32,9 @@ class CompanyDetails extends StatelessWidget {
           ChangeNotifierProvider<GetAllReviews>(
               create: (context) => GetAllReviews()),
         ],
-        child: Scaffold(
+        child: Directionality(
+    textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+    child: Scaffold(
           appBar: AppBar(
             leading: Icon(Icons.arrow_back_ios_rounded),
             title: SizedBox(
@@ -85,27 +88,27 @@ class CompanyDetails extends StatelessWidget {
                       tabs: [
                         Tab(
                           child: Text(
-                            'About',
+                  languageProvider1.getTexts( 'About')??"",
                           ),
                         ),
                         Tab(
                           child: Text(
-                            'Brochure',
+                            languageProvider1.getTexts( 'Brochure')??"",
                           ),
                         ),
                         Tab(
                           child: Text(
-                            'Products',
+                            languageProvider1.getTexts('Products')??"",
                           ),
                         ),
                         Tab(
                           child: Text(
-                            'Announcement',
+                            languageProvider1.getTexts('Announcement')??'',
                           ),
                         ),
                         Tab(
                           child: Text(
-                            'Reviews',
+                            languageProvider1.getTexts('Reviews')??"",
                           ),
                         ),
                       ]),
@@ -124,7 +127,7 @@ class CompanyDetails extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ));
   }
 }
 
@@ -139,7 +142,9 @@ class Aboutlist extends StatefulWidget {
 class _AboutlistState extends State<Aboutlist> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return  Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:SingleChildScrollView(
       child: Column(
         // mainAxisSize :MainAxisSize.min,
         children: [
@@ -220,7 +225,7 @@ class _AboutlistState extends State<Aboutlist> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
 
@@ -238,7 +243,9 @@ class _productslistState extends State<productslist> {
     return ListView.builder(
         itemCount: 10,
         itemBuilder: (context, i) {
-          return Padding(
+          return  Directionality(
+              textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+              child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 1),
             child: Card(
               child: ListTile(
@@ -255,7 +262,7 @@ class _productslistState extends State<productslist> {
                     backgroundImage: AssetImage('assets/images/download1.jpg')),
               ),
             ),
-          );
+          ));
         });
   }
 }
@@ -271,20 +278,20 @@ class BrochureTab extends StatefulWidget {
 class _BrochureTabState extends State<BrochureTab> {
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-        padding: EdgeInsets.zero,
-        itemCount: 5,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          mainAxisSpacing: 1.0,
-          // crossAxisSpacing: 2.0,
-          childAspectRatio: 2.0,
-        ),
-        itemBuilder: (BuildContext context, int index) {
-          return Image(
-            image: AssetImage('assets/images/kkk.png'),
-          );
-        });
+    return  GridView.builder(
+    padding: EdgeInsets.zero,
+    itemCount: 5,
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 1,
+      mainAxisSpacing: 1.0,
+      // crossAxisSpacing: 2.0,
+      childAspectRatio: 2.0,
+    ),
+    itemBuilder: (BuildContext context, int index) {
+      return Image(
+        image: AssetImage('assets/images/kkk.png'),
+      );
+    });
   }
 }
 
@@ -299,7 +306,9 @@ class AnnouncTab extends StatefulWidget {
 class _AnnouncTabState extends State<AnnouncTab> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return  Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:Column(
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.height * 4 / 1000,
@@ -308,7 +317,7 @@ class _AnnouncTabState extends State<AnnouncTab> {
           child: Container(
               width: MediaQuery.of(context).size.width * 50 / 50,
               child: Center(
-                child: Text('Conferences',
+                child: Text(languageProvider1.getTexts('Conferences')??"",
                     style: TextStyle(
                         fontFamily: 'Uniform',
                         fontSize: MediaQuery.of(context).size.width * 50 / 1080,
@@ -351,7 +360,7 @@ class _AnnouncTabState extends State<AnnouncTab> {
             child: Container(
           width: MediaQuery.of(context).size.width * 50 / 50,
           child: Center(
-            child: Text('Sales',
+            child: Text(languageProvider1.getTexts('Sales')??'',
                 style: TextStyle(
                     fontFamily: 'Uniform',
                     fontSize: MediaQuery.of(context).size.width * 50 / 1080,
@@ -396,7 +405,7 @@ class _AnnouncTabState extends State<AnnouncTab> {
               }),
         ),
       ],
-    );
+    ));
   }
 }
 
@@ -431,7 +440,9 @@ class _ReviewsTabState extends State<ReviewsTab> {
   Widget build(BuildContext context) {
     return Consumer<ReviewPost>(builder: (context, reviewf, child) {
       return Consumer<GetAllReviews>(builder: (context, allReviewf, child) {
-        return Stack(children: [
+        return  Directionality(
+            textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+            child: Stack(children: [
           reviewf.loading || allReviewf.loading
               ? Container(
                   child: SpinKitCircle(
@@ -537,7 +548,7 @@ class _ReviewsTabState extends State<ReviewsTab> {
               ],
             ),
           ),
-        ]);
+        ]));
       });
     });
   }

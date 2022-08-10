@@ -79,7 +79,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                   child: Container(
                     height: sizeAware.height,
                     decoration: BoxDecoration(
-                        color: Color(0xffD6D6D6),
+                        color: currentTheme.isdark? Colors.grey[600]:Colors.grey[200],
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(28),
                           topLeft: Radius.circular(28),

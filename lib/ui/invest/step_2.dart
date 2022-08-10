@@ -1,6 +1,7 @@
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../../components/confi.dart';
 import '../../widget/bottonHeader.dart';
 import '../homepage.dart';
 
@@ -55,8 +56,8 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Container(
                   height: sizeAware.height,
-                  decoration: const BoxDecoration(
-                      color: Color(0xffD6D6D6),
+                  decoration:  BoxDecoration(
+                      color: currentTheme.isdark? Colors.grey[600]:Colors.grey[200],
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(28),
                         topLeft: Radius.circular(28),
@@ -103,7 +104,7 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: Colors.grey[200],
+                          color: currentTheme.isdark? Colors.grey[600]:Colors.grey[200],
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black38,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../components/config1.dart';
+
 class About_us extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,8 @@ class About_us extends StatelessWidget{
         padding: const EdgeInsets.all(20),
         child: Expanded(
           child: Text(
-            'Our application  is  meant to make your life easier \n here you can find all the exhibitions you want, visit them and participate in them \n also  you can add your own expo and manage it on the tip of your finger\n'
-                'we are a group of  third year students in Damascus University faculty information technology  and this was our project fot this year \n we hope yoy enjoy it . ',
+    languageProvider1.getTexts('Our application  is  meant to make your life easier \n here you can find all the exhibitions you want, visit them and participate in them \n also  you can add your own expo and manage it on the tip of your finger\n'
+                'we are a group of  third year students in Damascus University faculty information technology  and this was our project fot this year \n we hope you enjoy it . ',)??"",
             style: TextStyle(
                 fontFamily: 'uniform',
             ),

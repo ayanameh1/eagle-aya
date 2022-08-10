@@ -21,7 +21,9 @@ class ManageBooth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
-    return DefaultTabController(
+    return Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:DefaultTabController(
       length: 5,
       child: MultiProvider(
         providers: [
@@ -73,7 +75,7 @@ class ManageBooth extends StatelessWidget {
                       indicator: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(22), // Creates border
-                        color: Color(0xffd7d7d7),
+                       // color: Color(0xffd7d7d7),
                       ),
                       indicatorPadding: EdgeInsets.all(0),
                       labelColor: darkpurple,
@@ -85,27 +87,27 @@ class ManageBooth extends StatelessWidget {
                       tabs: [
                         Tab(
                           child: Text(
-                            'About',
+                  languageProvider1.getTexts('About')??'',
                           ),
                         ),
                         Tab(
                           child: Text(
-                            'Brochure',
+                            languageProvider1.getTexts( 'Brochure')??'',
                           ),
                         ),
                         Tab(
                           child: Text(
-                            'Products',
+                            languageProvider1.getTexts('Products')??"",
                           ),
                         ),
                         Tab(
                           child: Text(
-                            'Announcement',
+                            languageProvider1.getTexts('Announcement')??"",
                           ),
                         ),
                         Tab(
                           child: Text(
-                            'Reviews',
+                            languageProvider1.getTexts('Reviews')??'',
                           ),
                         ),
                       ]),
@@ -124,7 +126,7 @@ class ManageBooth extends StatelessWidget {
           ),
         ),
       ),
-    );
+        ));
   }
 }
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
@@ -155,7 +157,9 @@ class _AboutlistState extends State<Aboutlist> {
               color: darkpurple,
             )
           : SingleChildScrollView(
-              child: Column(
+              child:Directionality(
+          textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+          child: Column(
                 // mainAxisSize :MainAxisSize.min,
                 children: [
                   Padding(
@@ -182,7 +186,7 @@ class _AboutlistState extends State<Aboutlist> {
                                         ),
                                         Expanded(
                                             child: Text(
-                                          'About us',
+                                                languageProvider1.getTexts('About us')??'',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         )),
@@ -210,7 +214,7 @@ class _AboutlistState extends State<Aboutlist> {
                                                       actions: [
                                                         TextButton(
                                                           child: Text(
-                                                            'OK',
+                                                      languageProvider1.getTexts('OK')??'',
                                                             style: TextStyle(
                                                                 color:
                                                                     darkpurple,
@@ -224,7 +228,7 @@ class _AboutlistState extends State<Aboutlist> {
                                                         ),
                                                         TextButton(
                                                           child: Text(
-                                                            'Cancel',
+      languageProvider1.getTexts('Cancel')??'',
                                                             style: TextStyle(
                                                                 color:
                                                                     darkpurple,
@@ -265,7 +269,7 @@ class _AboutlistState extends State<Aboutlist> {
                                         ),
                                         Expanded(
                                             child: Text(
-                                          'email',
+                                                languageProvider1.getTexts('email')??"",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         )),
@@ -279,7 +283,7 @@ class _AboutlistState extends State<Aboutlist> {
                                                 context: context,
                                                 builder: (context) =>
                                                     AlertDialog(
-                                                      title: Text('Edit email'),
+                                                      title: Text(languageProvider1.getTexts('Edit email')??''),
                                                       content: TextFormField(
                                                         initialValue: investorpro
                                                                 .Ip?.title
@@ -289,7 +293,7 @@ class _AboutlistState extends State<Aboutlist> {
                                                       actions: [
                                                         TextButton(
                                                           child: Text(
-                                                            'OK',
+      languageProvider1.getTexts( 'OK')??'',
                                                             style: TextStyle(
                                                                 color:
                                                                     darkpurple,
@@ -303,7 +307,7 @@ class _AboutlistState extends State<Aboutlist> {
                                                         ),
                                                         TextButton(
                                                           child: Text(
-                                                            'Cancel',
+      languageProvider1.getTexts('Cancel')??'',
                                                             style: TextStyle(
                                                                 color:
                                                                     darkpurple,
@@ -345,7 +349,7 @@ class _AboutlistState extends State<Aboutlist> {
                                         ),
                                         Expanded(
                                             child: Text(
-                                          "phone",
+                                                languageProvider1.getTexts("phone")??'',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         )),
@@ -360,7 +364,7 @@ class _AboutlistState extends State<Aboutlist> {
                                                 builder: (context) =>
                                                     AlertDialog(
                                                       title: Text(
-                                                          'Edit phoneNumber'),
+      languageProvider1.getTexts('Edit phoneNumber')??''),
                                                       content: TextFormField(
                                                         initialValue: investorpro
                                                                 .Ip?.id
@@ -370,7 +374,7 @@ class _AboutlistState extends State<Aboutlist> {
                                                       actions: [
                                                         TextButton(
                                                           child: Text(
-                                                            'OK',
+      languageProvider1.getTexts('OK')??'',
                                                             style: TextStyle(
                                                                 color:
                                                                     darkpurple,
@@ -384,7 +388,7 @@ class _AboutlistState extends State<Aboutlist> {
                                                         ),
                                                         TextButton(
                                                           child: Text(
-                                                            'Cancel',
+      languageProvider1.getTexts('Cancel')??"",
                                                             style: TextStyle(
                                                                 color:
                                                                     darkpurple,
@@ -426,7 +430,7 @@ class _AboutlistState extends State<Aboutlist> {
                                         ),
                                         Expanded(
                                             child: Text(
-                                          'fax',
+                                                languageProvider1.getTexts('fax')??'',
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold),
                                         )),
@@ -440,7 +444,7 @@ class _AboutlistState extends State<Aboutlist> {
                                                 context: context,
                                                 builder: (context) =>
                                                     AlertDialog(
-                                                      title: Text('Edit fax'),
+                                                      title: Text(languageProvider1.getTexts('Edit fax')??""),
                                                       content: TextFormField(
                                                         initialValue: investorpro
                                                                 .Ip?.id
@@ -450,7 +454,7 @@ class _AboutlistState extends State<Aboutlist> {
                                                       actions: [
                                                         TextButton(
                                                           child: Text(
-                                                            'OK',
+      languageProvider1.getTexts('OK')??'',
                                                             style: TextStyle(
                                                                 color:
                                                                     darkpurple,
@@ -464,7 +468,7 @@ class _AboutlistState extends State<Aboutlist> {
                                                         ),
                                                         TextButton(
                                                           child: Text(
-                                                            'Cancel',
+      languageProvider1.getTexts('Cancel')??'',
                                                             style: TextStyle(
                                                                 color:
                                                                     darkpurple,
@@ -494,7 +498,7 @@ class _AboutlistState extends State<Aboutlist> {
                   ),
                 ],
               ),
-            );
+            ));
     });
   }
 }
@@ -510,7 +514,9 @@ class productslist extends StatefulWidget {
 class _productslistState extends State<productslist> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:DefaultTabController(
       length: 2,
       child: Column(
         children: [
@@ -523,12 +529,12 @@ class _productslistState extends State<productslist> {
             tabs: [
               Tab(
                 child: Text(
-                  'My Poducts',
+            languageProvider1.getTexts('My Poducts')??"",
                 ),
               ),
               Tab(
                 child: Text(
-                  'Add a product',
+    languageProvider1.getTexts( 'Add a product')??"",
                 ),
               ),
             ],
@@ -561,13 +567,13 @@ class _productslistState extends State<productslist> {
                                   showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
-                                            title: Text('Delete'),
+                                            title: Text(languageProvider1.getTexts('Delete')??""),
                                             content: Text(
-                                                ' Are you sure you want to delete this product?'),
+    languageProvider1.getTexts(' Are you sure you want to delete this product?')??''),
                                             actions: [
                                               TextButton(
                                                 child: Text(
-                                                  'delete',
+    languageProvider1.getTexts('delete')??'',
                                                   style: TextStyle(
                                                       color: darkpurple,
                                                       fontFamily: 'Uniform'),
@@ -578,7 +584,7 @@ class _productslistState extends State<productslist> {
                                               ),
                                               TextButton(
                                                 child: Text(
-                                                  'Cancel',
+    languageProvider1.getTexts('Cancel')??'',
                                                   style: TextStyle(
                                                       color: darkpurple,
                                                       fontFamily: 'Uniform'),
@@ -610,7 +616,7 @@ class _productslistState extends State<productslist> {
           ),
         ],
       ),
-    );
+        ));
   }
 }
 
@@ -627,7 +633,9 @@ class _addProductState extends State<addProduct> {
   Widget build(BuildContext context) {
     return Consumer<productSingleImage>(
         builder: (context, productImage, child) {
-      return SingleChildScrollView(
+      return Directionality(
+          textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+          child:SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Column(
@@ -752,7 +760,7 @@ class _addProductState extends State<addProduct> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'no image was selected',
+                            languageProvider1.getTexts('no image was selected')??"",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: 'Uniform',
@@ -776,7 +784,7 @@ class _addProductState extends State<addProduct> {
                       children: [
                         Icon(Icons.add),
                         Text(
-                          "add the product",
+                          languageProvider1.getTexts("add the product")??'',
                           style: TextStyle(
                             color: Colors.black,
                           ),
@@ -800,7 +808,7 @@ class _addProductState extends State<addProduct> {
             ],
           ),
         ),
-      );
+      ));
     });
   }
 }
@@ -816,7 +824,9 @@ class BrochureTab extends StatefulWidget {
 class _BrochureTabState extends State<BrochureTab> {
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
+    return Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:GridView.builder(
         padding: EdgeInsets.zero,
         itemCount: 5,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -829,7 +839,7 @@ class _BrochureTabState extends State<BrochureTab> {
           return Image(
             image: AssetImage('assets/images/kkk.png'),
           );
-        });
+        }));
   }
 }
 
@@ -844,7 +854,9 @@ class AnnouncTab extends StatefulWidget {
 class _AnnouncTabState extends State<AnnouncTab> {
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:DefaultTabController(
       length: 2,
       child: Column(
         children: [
@@ -857,12 +869,12 @@ class _AnnouncTabState extends State<AnnouncTab> {
             tabs: [
               Tab(
                 child: Text(
-                  'My Announcements',
+                  languageProvider1.getTexts('My Announcements')??'',
                 ),
               ),
               Tab(
                 child: Text(
-                  'Make Announcement',
+                  languageProvider1.getTexts('Make Announcement')??"",
                 ),
               ),
             ],
@@ -875,7 +887,7 @@ class _AnnouncTabState extends State<AnnouncTab> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
 
@@ -892,7 +904,9 @@ class _AddANState extends State<AddAN> {
   double currentvaluee =10;
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:Padding(
       padding: const EdgeInsets.all(30),
       child: Column(
         children: [
@@ -902,7 +916,7 @@ class _AddANState extends State<AddAN> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30),
                 child: Text(
-                  'Add a sale',
+                  languageProvider1.getTexts('Add a sale')??"",
                   style: TextStyle(
                       fontFamily: 'Uniform',
                       fontSize: MediaQuery.of(context).size.width * 100 / 1920),
@@ -922,7 +936,7 @@ class _AddANState extends State<AddAN> {
                       builder: (context) => AlertDialog(
                             insetPadding: EdgeInsets.symmetric(
                                 vertical: 20, horizontal: 1),
-                            title: Text('Add a sale'),
+                            title: Text( languageProvider1.getTexts('Add a sale')??''),
                             content: StatefulBuilder(
                               builder: (context,SBsetState) {
                                 return Container(
@@ -930,7 +944,7 @@ class _AddANState extends State<AddAN> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Text(
-                                        'Step 1',
+                                  languageProvider1.getTexts('Step 1')??'',
                                         style: TextStyle(
                                             color: darkpurple,
                                             fontFamily: 'Uniform',
@@ -945,7 +959,7 @@ class _AddANState extends State<AddAN> {
                                             1920,
                                       ),
                                       Text(
-                                        'From',
+                                languageProvider1.getTexts('From')??"",
                                         style: TextStyle(
                                           fontFamily: 'Uniform',
                                         ),
@@ -960,7 +974,7 @@ class _AddANState extends State<AddAN> {
                                             1920,
                                       ),
                                       Text(
-                                        'To',
+                                            languageProvider1.getTexts('To')??"",
                                         style: TextStyle(
                                           fontFamily: 'Uniform',
                                         ),
@@ -994,7 +1008,7 @@ class _AddANState extends State<AddAN> {
                             actions: [
                               TextButton(
                                 child: Text(
-                                  'Cancel',
+                      languageProvider1.getTexts('Cancel')??"",
                                   style: TextStyle(
                                       color: darkpurple, fontFamily: 'Uniform'),
                                 ),
@@ -1004,7 +1018,7 @@ class _AddANState extends State<AddAN> {
                               ),
                               TextButton(
                                 child: Text(
-                                  'OK',
+                  languageProvider1.getTexts('OK')??"",
                                   style: TextStyle(
                                       color: darkpurple, fontFamily: 'Uniform'),
                                 ),
@@ -1024,7 +1038,7 @@ class _AddANState extends State<AddAN> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30),
                 child: Text(
-                  'Hold a conference',
+                  languageProvider1.getTexts('Hold a conference')??"",
                   style: TextStyle(
                       fontFamily: 'Uniform',
                       fontSize: MediaQuery.of(context).size.width * 100 / 1920),
@@ -1044,13 +1058,13 @@ class _AddANState extends State<AddAN> {
                       builder: (context) => AlertDialog(
                         insetPadding: EdgeInsets.symmetric(
                             vertical: 20, horizontal: 1),
-                        title: Text('Hold a conference'),
+                        title: Text( languageProvider1.getTexts('Hold a conference')??""),
                         content: Container(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                'Step 1',
+                          languageProvider1.getTexts('Step 1')??"",
                                 style: TextStyle(
                                     color: darkpurple,
                                     fontFamily: 'Uniform',
@@ -1062,7 +1076,7 @@ class _AddANState extends State<AddAN> {
                                     1920,
                               ),
                               Text(
-                                'choose date',
+                                languageProvider1.getTexts('choose date')??"",
                                 style: TextStyle(
                                   fontFamily: 'Uniform',
                                 ),
@@ -1074,7 +1088,7 @@ class _AddANState extends State<AddAN> {
                                     1920,
                               ),
                               Text(
-                                'choose time',
+                                languageProvider1.getTexts('choose time')??"",
                                 style: TextStyle(
                                   fontFamily: 'Uniform',
                                 ),
@@ -1086,7 +1100,7 @@ class _AddANState extends State<AddAN> {
                         actions: [
                           TextButton(
                             child: Text(
-                              'Cancel',
+                      languageProvider1.getTexts('Cancel')??"",
                               style: TextStyle(
                                   color: darkpurple, fontFamily: 'Uniform'),
                             ),
@@ -1096,7 +1110,7 @@ class _AddANState extends State<AddAN> {
                           ),
                           TextButton(
                             child: Text(
-                              'OK',
+                  languageProvider1.getTexts('OK')??"",
                               style: TextStyle(
                                   color: darkpurple, fontFamily: 'Uniform'),
                             ),
@@ -1112,7 +1126,7 @@ class _AddANState extends State<AddAN> {
           ),
         ],
       ),
-    );
+    ));
   }
 }
 
@@ -1127,7 +1141,9 @@ class MyAnnouncements extends StatefulWidget {
 class _MyAnnouncementsState extends State<MyAnnouncements> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:Column(
       children: [
         SizedBox(
           height: MediaQuery.of(context).size.height * 4 / 1000,
@@ -1136,7 +1152,7 @@ class _MyAnnouncementsState extends State<MyAnnouncements> {
           child: Container(
               width: MediaQuery.of(context).size.width * 50 / 50,
               child: Center(
-                child: Text('Conferences',
+                child: Text( languageProvider1.getTexts('Conferences')??"",
                     style: TextStyle(
                         fontFamily: 'Uniform',
                         fontSize: MediaQuery.of(context).size.width * 50 / 1080,
@@ -1175,7 +1191,7 @@ class _MyAnnouncementsState extends State<MyAnnouncements> {
             child: Container(
           width: MediaQuery.of(context).size.width * 50 / 50,
           child: Center(
-            child: Text('Sales',
+            child: Text( languageProvider1.getTexts('Sales')??"",
                 style: TextStyle(
                     fontFamily: 'Uniform',
                     fontSize: MediaQuery.of(context).size.width * 50 / 1080,
@@ -1211,7 +1227,7 @@ class _MyAnnouncementsState extends State<MyAnnouncements> {
               }),
         )
       ],
-    );
+    ));
   }
 }
 
@@ -1246,7 +1262,9 @@ class _ReviewsTabState extends State<ReviewsTab> {
   Widget build(BuildContext context) {
     return Consumer<ReviewPost>(builder: (context, reviewf, child) {
       return Consumer<GetAllReviews>(builder: (context, allReviewf, child) {
-        return Stack(children: [
+        return Directionality(
+            textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+            child:Stack(children: [
           reviewf.loading || allReviewf.loading
               ? Container(
                   child: SpinKitCircle(
@@ -1288,7 +1306,7 @@ class _ReviewsTabState extends State<ReviewsTab> {
                       ),
                     );
                   }),
-        ]);
+        ]));
       });
     });
   }
