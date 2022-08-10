@@ -1,5 +1,6 @@
 import 'package:eagle/CN/theme.dart';
 import 'package:eagle/components/confi.dart';
+import 'package:eagle/providers/language_provider.dart';
 import 'package:eagle/ui/add_expo/step1.dart';
 import 'package:eagle/ui/company_details.dart';
 import 'package:eagle/ui/homelayout.dart';
@@ -18,6 +19,8 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import'package:eagle/services/local_notificatios_services.dart';
 
+import 'components/config1.dart';
+
 Future<void> backgroundhandler (RemoteMessage message) async{
   print(message.data.toString());
   print(message.notification!.title);
@@ -35,9 +38,14 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ThemeChanger>(
-      create: (_) => ThemeChanger(),
-      child: new MaterialAppWithTheme(),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider<ThemeChanger>(
+        create: (_) => ThemeChanger(),
+      ),
+      ChangeNotifierProvider<LanguageProvider>(
+      create: (_) => LanguageProvider(),),
+      ],
+      child: MaterialAppWithTheme()
     );
   }
 }
@@ -53,6 +61,9 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
     super.initState();
     currentTheme.addListener(() {print('changes');
       setState(() {});
+    });
+    languageProvider1.addListener(() {print('changes');
+    setState(() {});
     });
 
 
@@ -86,73 +97,6 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
    final theme= Provider.of<ThemeChanger>(context);
    return MaterialApp(
      debugShowCheckedModeBanner: false,
-     // theme: ThemeData(
-     //   primaryColor: const Color(0xffffd100),
-     //   primarySwatch: Colors.grey,
-     //   scaffoldBackgroundColor: Colors.white,
-     //   appBarTheme: const AppBarTheme(
-     //     systemOverlayStyle: SystemUiOverlayStyle(
-     //       statusBarColor: Colors.white,
-     //       statusBarBrightness: Brightness.dark,
-     //     ),
-     //     titleSpacing: 20.0,
-     //     backgroundColor: Colors.white,
-     //     titleTextStyle: TextStyle(
-     //       color: Colors.white,
-     //       fontSize: 20.0,
-     //       fontWeight: FontWeight.bold,
-     //     ),
-     //   ),
-     //   floatingActionButtonTheme: FloatingActionButtonThemeData(
-     //       backgroundColor: Color(0xff5C0099)),
-     //   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-     //     type: BottomNavigationBarType.fixed,
-     //     selectedItemColor: Color(0xffffd100),
-     //     unselectedItemColor: Colors.grey,
-     //     elevation: 20.0,
-     //     backgroundColor: Colors.white,
-     //   ),
-     //   textTheme: const TextTheme(
-     //       bodyText1: TextStyle(
-     //         fontSize: 18,
-     //         color: Colors.black,
-     //       ),
-     //   ),
-     // ),
-     //  darkTheme: ThemeData(
-
-     //    primaryColor: const Color(0xffffd100),
-     //   primarySwatch: Colors.grey,
-     //   appBarTheme: const AppBarTheme(
-     //     systemOverlayStyle: SystemUiOverlayStyle(
-     //       statusBarColor: Color(0xff333039),
-     //       statusBarBrightness: Brightness.light,
-     //     ),
-     //     titleSpacing: 20.0,
-     //     backgroundColor: Color(0xff333039),
-     //     titleTextStyle: TextStyle(
-     //       color: Colors.white,
-     //       fontSize: 20.0,
-     //       fontWeight: FontWeight.bold,
-     //     ),
-     //     iconTheme: IconThemeData(color: Colors.white),
-     //   ),
-     //   floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: Color(0xff5C0099)),
-     //   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-     //     type: BottomNavigationBarType.fixed,
-     //     selectedItemColor: Color(0xffffd100),
-     //     unselectedItemColor: Colors.grey,
-     //     elevation: 0.0,
-     //     backgroundColor: Color(0xff333039),
-     //   ),
-     //    textTheme: TextTheme(
-     //       bodyText1: TextStyle(
-     //         fontSize: 18,
-     //         color: Colors.white,
-     //           fontFamily: 'Uniform'
-     //       )
-     //   ),
-     // ),
       theme:ThemeData(
           primaryColor: const Color(0xffffd100),
           primarySwatch: Colors.grey,
@@ -212,7 +156,7 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
       ),
      ),
      themeMode: currentTheme.currentTheme(),
-     initialRoute: 'invest',
+     initialRoute: 'home',
      routes: {
        'welcome': (context) => WelcomeScreen(),
        'login': (context) => loginscreen(),
