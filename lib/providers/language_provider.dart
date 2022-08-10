@@ -76,10 +76,10 @@ class LanguageProvider extends ChangeNotifier {
     "Invest": "مستثمر",
 
     'Write a review': "اكتب تعليق",
-    'Our application  is  meant to make your life easier \n here you can find all the exhibitions you want, visit them and participate in them \n also  you can add your own expo and manage it on the tip of your finger\n':
-        "يهدف تطبيقنا إلى جعل حياتك أسهل \n هنا يمكنك العثور على جميع المعارض التي تريدها وزيارتها والمشاركة فيها \n كما يمكنك إضافة المعرض الخاص بك وإدارته بضغطة زر \n ",
+    'Our application  is  meant to make your life easier \n here you can find all the exhibitions you want, visit them and participate in them \n also  you can add your own expo and manage it on the tip of your finger\n'
     'we are a group of  third year students in Damascus University faculty information technology  and this was our project fot this year \n we hope you enjoy it . ':
-        'نحن مجموعة من طلاب السنة الثالثة في كلية تكنولوجيا المعلومات في جامعة دمشق وكان هذا مشروعنا هذا العام \n  نأمل أن تستمتع به.',
+  "يهدف تطبيقنا إلى جعل حياتك أسهل \ n هنا يمكنك العثور على جميع المعارض التي تريدها وزيارتها والمشاركة فيها \ n كما يمكنك إضافة المعرض الخاص بك وإدارته بضغطة زر "
+  "نحن مجموعة من طلاب السنة الثالثة في كلية تكنولوجيا المعلومات في جامعة دمشق وكان هذا مشروعنا هذا العام \ n نأمل أن تستمتع به. ",
 
     'way to meet, communicate,\n share and compete ':
         'طريقة للتقابل\n للتواصل \n المشاركة والمنافسة',
@@ -98,6 +98,10 @@ class LanguageProvider extends ChangeNotifier {
     //profile
     'My Exhibition': 'My Exhibition',
     'My Booths': 'My Booths',
+    //About_us
+  'Our application  is  meant to make your life easier \n here you can find all the exhibitions you want, visit them and participate in them \n also  you can add your own expo and manage it on the tip of your finger\n'
+  'we are a group of  third year students in Damascus University faculty information technology  and this was our project fot this year \n we hope you enjoy it . ':'Our application  is  meant to make your life easier \n here you can find all the exhibitions you want, visit them and participate in them \n also  you can add your own expo and manage it on the tip of your finger\n'
+  'we are a group of  third year students in Damascus University faculty information technology  and this was our project fot this year \n we hope you enjoy it . ',
     //welcome
     " Bring your exhibition event\n management to the next level\n with us":
         " Bring your exhibition event\n management to the next level\n with us",

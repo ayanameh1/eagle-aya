@@ -8,17 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:provider/provider.dart';
 import 'package:eagle/CN/passwordvisiblity.dart';
-class loginScreen extends StatelessWidget {
 
+class loginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return login1screen();
   }
 }
 
-
 class login1screen extends StatefulWidget {
-
   @override
   State<login1screen> createState() => _login1screenState();
 }
@@ -27,7 +25,6 @@ class _login1screenState extends State<login1screen> {
   final _formkey = GlobalKey<FormState>();
   TextEditingController emailcontrller = TextEditingController();
   TextEditingController passworddcontroller = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +43,6 @@ class _login1screenState extends State<login1screen> {
               'way to walk around the\n exhibition and keep up with the\n latest news and the biggest\n sales .')
     ];
 
-
     return Scaffold(
         appBar: AppBar(
           title: SizedBox(
@@ -57,14 +53,15 @@ class _login1screenState extends State<login1screen> {
           shadowColor: Colors.black.withOpacity(0.5),
         ),
         body: SingleChildScrollView(
-          child: SafeArea(
-            child: ChangeNotifierProvider<Passwordvisibilty>(
-              create: (context) => Passwordvisibilty(),
-              child: Center(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 1717 / 1920,
-                  child: Form(
-                    key:_formkey,
+            child: SafeArea(
+          child: ChangeNotifierProvider<Passwordvisibilty>(
+            create: (context) => Passwordvisibilty(),
+            child: Center(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 1717 / 1920,
+                child: Form(
+                  key: _formkey,
+                  child: Expanded(
                     child: Column(
                       children: [
                         Expanded(
@@ -83,9 +80,10 @@ class _login1screenState extends State<login1screen> {
                           ),
                         ),
                         Container(
-                          width: sizeAware.width * 764 / 1080,
-                          height: sizeAware.height * 107 / 1920,
+                          width: sizeAware.width * 820/1080,
+                          //height: sizeAware.height * 125 / 1920,
                           child: TextFormField(
+                            controller: emailcontrller,
                             keyboardType: TextInputType.emailAddress,
                             onFieldSubmitted: (String value) {
                               print(value);
@@ -94,7 +92,8 @@ class _login1screenState extends State<login1screen> {
                               print(value);
                             },
                             validator: (String? value) {
-                              if (value == null || value.trim().length == 0) {
+                              if (value == null ||
+                                  value.trim().length == 0) {
                                 return 'email must not be empty';
                               }
                               if (!RegExp("").hasMatch(value)) {
@@ -102,69 +101,101 @@ class _login1screenState extends State<login1screen> {
                               }
                               return null;
                             },
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               hintText: 'email',
                               hintStyle: TextStyle(
                                 fontFamily: 'Uniform',
                               ),
                               prefixIcon: Icon(
                                 Icons.email,
+                                color: Colors.grey,
                               ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(54),
                                 ),
                               ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0xffffd100),
+                                ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: sizeAware.height * 39 / 1920,
+                          height: MediaQuery.of(context).size.height * 50 /1920,
                         ),
                         Container(
-                          width: sizeAware.width * 764 / 1080,
-                          height: sizeAware.height * 107 / 1920,
+                          width: sizeAware.width * 820 / 1080,
+                          //height: sizeAware.height * 107 / 1920,
                           child: Consumer<Passwordvisibilty>(
-                              builder: (context, passwordvisibilty, child) {
-                            return TextFormField(
-                              keyboardType: TextInputType.visiblePassword,
-                              obscureText: passwordvisibilty.obscureTexttt,
-                              onChanged: (String value) {
-                                print(value);
-                              },
-                              validator: (String? value) {
-                                if (value == null || value.trim().length == 0) {
-                                  return " password must not be empty";
-                                }
-                                if (value.length < 8) {
-                                  return " Password is too short";
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                hintText: 'Password',
-                                hintStyle: TextStyle(
-                                  fontFamily: 'Uniform',
-                                ),
-                                prefixIcon: const Icon(
-                                  Icons.lock,
-                                ),
-                                suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    passwordvisibilty.eye2();
-                                  },
-                                  child: Icon(passwordvisibilty.obscureTexttt
-                                      ? Icons.visibility_off
-                                      : Icons.visibility),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(54),
+                            builder:
+                                (context, passwordvisibilty, child) {
+                              return TextFormField(
+                                controller:passworddcontroller ,
+                                keyboardType:
+                                TextInputType.visiblePassword,
+                                obscureText:
+                                passwordvisibilty.obscureText,
+                                onChanged: (String value) {
+                                  print(value);
+                                },
+                                validator: (String? value) {
+                                  if (value == null ||
+                                      value.trim().length == 0) {
+                                    return " password must not be empty";
+                                  }
+                                  if (value.length < 8) {
+                                    return " Password is too short";
+                                  }
+                                  if (value.length > 12) {
+                                    return " Password is too long";
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  hintText: 'Password',
+                                  hintStyle: TextStyle(
+                                    fontFamily: 'Uniform',
+                                  ),
+                                  prefixIcon: const Icon(
+                                    Icons.lock,
+                                    color: Colors.grey,
+                                  ),
+                                  suffixIcon: GestureDetector(
+                                    child: Icon(
+                                        passwordvisibilty.obscureText
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                    color: Colors.grey,),
+                                    onTap: () {
+                                      passwordvisibilty.eye1();
+                                    },
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(54),
+                                    ),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Color(0xffffd100),
+                                    ),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          }),
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: sizeAware.height * 39 / 1920,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -172,7 +203,6 @@ class _login1screenState extends State<login1screen> {
                             Text(
                               'Don\'t have an account ?',
                               style: TextStyle(
-                                color: Colors.black,
                                 fontFamily: 'Uniform',
                               ),
                             ),
@@ -195,28 +225,23 @@ class _login1screenState extends State<login1screen> {
                             )
                           ],
                         ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 60 / 1920,
-                        ),
                         Container(
                           width: MediaQuery.of(context).size.width * 359 / 1080,
                           height: MediaQuery.of(context).size.height * 82 / 1920,
                           child: MaterialButton(
-    onPressed: () async {
-    if (_formkey.currentState!
-        .validate()) {
-    String e =
-    passworddcontroller.text.trim();
-    String n =
-    emailcontrller.text.trim();
+                            onPressed: () async {
+                              if (_formkey.currentState!.validate()) {
+                                String e = passworddcontroller.text.trim();
+                                String n = emailcontrller.text.trim();
 
-    Navigator.push(
-    context,
-    MaterialPageRoute(
-    builder: (context) =>
-    HomeLayout(),
-                                ),);}},
-
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomeLayout(),
+                                  ),
+                                );
+                              }
+                            },
                             child: Text(
                               "Login",
                               style: TextStyle(
@@ -237,20 +262,21 @@ class _login1screenState extends State<login1screen> {
                                 ),
                               ]),
                         ),
-                     SizedBox(
-                      height: MediaQuery.of(context).size.height *  80/ 1920,
-                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 359 / 1080,
-                      height: MediaQuery.of(context).size.height * 82 / 1920,
-                ),
+                        // SizedBox(
+                        //   height: MediaQuery.of(context).size.height * 80 / 1920,
+                        // ),
+                        Container(
+                          width: MediaQuery.of(context).size.width * 359 / 1080,
+                          height: MediaQuery.of(context).size.height * 82 / 1920,
+                        ),
                       ],
-              ),
+                    ),
                   ),
+                ),
+              ),
             ),
           ),
-        ),
-      )));
+        )));
   }
 }
 

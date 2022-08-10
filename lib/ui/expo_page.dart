@@ -1,6 +1,8 @@
 import 'package:eagle/constants/colors.dart';
+import 'package:eagle/ui/company_details.dart';
 import 'package:eagle/ui/homelayout.dart';
 import 'package:eagle/ui/homepage.dart';
+import 'package:eagle/ui/invest/step_1.dart';
 import 'package:flutter/material.dart';
 
 import '../components/config1.dart';
@@ -23,7 +25,6 @@ class _ExpoPageState extends State<ExpoPage> {
       appBar: AppBar(
         leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            color: Colors.black,
             onPressed: () => Navigator.push(context,
                 MaterialPageRoute(builder: (context) => HomeLayout()))),
         title: SizedBox(
@@ -57,7 +58,7 @@ class _ExpoPageState extends State<ExpoPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomePageScreen(),
+                        builder: (context) => CompanyDetails(),
                       ),
                     );
                   },
@@ -97,7 +98,7 @@ class _ExpoPageState extends State<ExpoPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomePageScreen(),
+                        builder: (context) => InvestStep1Screen(),
                       ),
                     );
                   },

@@ -72,6 +72,7 @@ class _HomeLayoutoState extends State<HomeLayouto> {
           },
           child: Icon(
             Icons.add,
+            color: Colors.white,
           ),
           backgroundColor:darkpurple,
         ),
