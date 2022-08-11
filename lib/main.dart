@@ -114,7 +114,7 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
       ),
       darkTheme: ThemeData.dark(),
       themeMode: currentTheme.currentTheme(),
-      initialRoute: 'home'
+      initialRoute: 'addexpo'
           '',
       routes: {
         'welcome': (context) => WelcomeScreen(),

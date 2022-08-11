@@ -1,5 +1,6 @@
  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.eagle">
+     <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="Eagle"
         android:icon="@mipmap/ic_launcher">

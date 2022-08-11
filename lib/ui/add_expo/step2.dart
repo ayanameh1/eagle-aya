@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:eagle/components/components.dart';
 import 'package:eagle/components/confi.dart';
 import 'package:eagle/constants/colors.dart';
+import 'package:eagle/models/addexpo_body.dart';
 import 'package:eagle/ui/add_expo/step1.dart';
 import 'package:eagle/ui/invest/step_2.dart';
 import 'package:eagle/widget/bottonHeader.dart';
@@ -10,12 +10,35 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-
 import 'package:intl/intl.dart';
+class fghjd extends StatelessWidget {
+  final e;
+  final l;
+  final o;
+  final m;
+  final n;
+  final i;
+  fghjd({Key? key, this.e, this.l, this.o, this.m, this.n, this.i});
+
+  @override
+  Widget build(BuildContext context) {
+    return AddExpoStep2Screen(e: e,l:l,o: o,m: m,n: n,i: i,);
+  }
+}
 
 class AddExpoStep2Screen extends StatefulWidget {
+  final e;
+  final l;
+  final o;
+  final m;
+  final n;
+  final i;
+  const AddExpoStep2Screen(
+      {Key? key, this.e, this.l, this.o, this.m, this.n, this.i})
+      : super(key: key);
+
   @override
-  State<AddExpoStep2Screen> createState() => _AddExpoStep2ScreenState();
+  _AddExpoStep2ScreenState createState() => _AddExpoStep2ScreenState();
 }
 
 class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
@@ -59,11 +82,11 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
         ),
         title: SizedBox(
             child: Text(
-              'Add Your Expo',
-              style: TextStyle(
-                fontFamily: 'Cermona',
-              ),
-            )),
+          'Add Your Expo',
+          style: TextStyle(
+            fontFamily: 'Cermona',
+          ),
+        )),
         shadowColor: Colors.black.withOpacity(0.5),
       ),
       body: Stack(children: [
@@ -79,7 +102,9 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                   child: Container(
                     height: sizeAware.height,
                     decoration: BoxDecoration(
-                        color: currentTheme.isdark? Colors.grey[600]:Colors.grey[200],
+                        color: currentTheme.isdark
+                            ? Colors.grey[600]
+                            : Colors.grey[200],
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(28),
                           topLeft: Radius.circular(28),
@@ -101,7 +126,9 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                       child: Text(
                                         'Choose booth',
                                         style: TextStyle(
-                                          color: currentTheme.isdark?Colors.white:Colors.black,
+                                          color: currentTheme.isdark
+                                              ? Colors.white
+                                              : Colors.black,
                                           fontFamily: 'Uniform',
                                           fontWeight: FontWeight.bold,
                                           fontSize: sizeAware.width * 46 / 1080,
@@ -113,7 +140,9 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
-                                color: currentTheme.isdark?Colors.grey[600]:Colors.grey[200],
+                                color: currentTheme.isdark
+                                    ? Colors.grey[600]
+                                    : Colors.grey[200],
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.black38,
@@ -138,7 +167,9 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                       child: Text(
                                         'Time period',
                                         style: TextStyle(
-                                          color: currentTheme.isdark?Colors.white:Colors.black,
+                                          color: currentTheme.isdark
+                                              ? Colors.white
+                                              : Colors.black,
                                           fontFamily: 'Uniform',
                                           fontWeight: FontWeight.bold,
                                           fontSize: sizeAware.width * 46 / 1080,
@@ -147,10 +178,10 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                            (54),
-                                          ),
-                                          ),
+                                        borderRadius: BorderRadius.circular(
+                                          (54),
+                                        ),
+                                      ),
                                       child: ButtonWidget(
                                         text: getText(),
                                         onClicked: () => pickDate1(context),
@@ -161,10 +192,10 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                     ),
                                     Container(
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                            (54),
-                                          ),
-                                          ),
+                                        borderRadius: BorderRadius.circular(
+                                          (54),
+                                        ),
+                                      ),
                                       child: ButtonWidget(
                                         text: getText2(),
                                         onClicked: () => pickDate2(context),
@@ -175,7 +206,9 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
-                                color:currentTheme.isdark? Colors.grey[600]:Colors.grey[200],
+                                color: currentTheme.isdark
+                                    ? Colors.grey[600]
+                                    : Colors.grey[200],
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.black38,
@@ -204,13 +237,23 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                     82 /
                                     1920,
                                 child: MaterialButton(
-                                  onPressed: () {
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //     builder: (context) => AddExpo2Screen(),
-                                    //   ),
-                                    // );
+                                  onPressed: () async {
+                                    AddExpoData v = AddExpoData(
+                                        title: this.widget.e,
+                                        description: this.widget.l,
+                                        fax_number: this.widget.m,
+                                        email: this.widget.n,
+                                        phone_number: this.widget.o,
+                                        price: '5',
+                                        image: this.widget.i);
+                                   // await SignupPost.Signpost(s);
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            AddExpoStep2Screen(),
+                                      ),
+                                    );
                                   },
                                   child: Text(
                                     "Apply",
@@ -257,7 +300,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                 fontFamily: 'Uniform',
                 fontWeight: FontWeight.bold,
                 fontSize: sizeAware.width * 60 / 1080,
-                color: currentTheme.isdark?Colors.white:Colors.black,
+                color: currentTheme.isdark ? Colors.white : Colors.black,
                 //fontSize: 30,
               ),
             ),
