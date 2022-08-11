@@ -11,19 +11,23 @@ class LogoutPost extends ChangeNotifier{
   bool problem =false;
   String message = '';
   Future logoutpost() async {
-    loading =true;
+    loading = true;
     notifyListeners();
     http.Response? sp = await logout();
-    if(sp!.statusCode==200 ||sp!.statusCode==201){
-      isback= true;
+      if (sp!.statusCode == 200 || sp!.statusCode == 201) {
+        isback = true;
+        notifyListeners();
+        print('pp');
+      }
+      if (sp!.statusCode == 400) {
+        problem = true;
+        notifyListeners();
+      }
+      loading = false;
       notifyListeners();
-    }
-    if(sp!.statusCode==400){
-      problem= true;
-      notifyListeners();
-    }
-    loading = false;
-    notifyListeners();
-  }
 
+    if (sp == null){
+      print('dd');
+    }
+  }
 }

@@ -9,7 +9,7 @@ Future<http.Response?> postSignup(SignupBody sdata) async {
   http.Response? signupresponse;
   try {
     signupresponse = await http.post(
-      Uri.parse("http://localhost:8000/api/register"),
+      Uri.parse("http://192.168.108.51:8000/api/register"),
       body: jsonEncode(sdata.toJson()),
       headers: <String, String>{
         "Content-Type": "application/json",
@@ -20,6 +20,7 @@ Future<http.Response?> postSignup(SignupBody sdata) async {
     print(signupresponse.statusCode);
     if (signupresponse.statusCode == 200 || signupresponse.statusCode == 201) {
       print(signupresponse.body);
+      print('done');
       responsedataToken = jsonDecode(signupresponse.body)['token'];
     }
   } catch (e) {

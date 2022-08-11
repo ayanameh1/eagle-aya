@@ -19,7 +19,7 @@ class Otherscreen extends StatelessWidget {
     return MultiProvider(providers: [
       ChangeNotifierProvider<LanguageProvider>(
           create: (context) => LanguageProvider()),
-      ChangeNotifierProvider<LogoutPost>(create: (context) => LogoutPost()),
+      //ChangeNotifierProvider<LogoutPost>(create: (context) => LogoutPost()),
     ], child: Otherscreeno());
   }
 }
@@ -40,175 +40,173 @@ class _OtherscreenoState extends State<Otherscreeno> {
   // }
   @override
   Widget build(BuildContext context) {
-    return Consumer<LanguageProvider>(builder: (context, la, child) {
-      return languageProvider1.isLoading
-          ? Scaffold(
-              body: Container(
-                  child: SpinKitCircle(
-              color: darkpurple,
-            )))
-          : Directionality(
-              textDirection: languageProvider1.isEn
-                  ? TextDirection.ltr
-                  : TextDirection.rtl,
-              child: Scaffold(
-                body: SafeArea(
-                  child: Column(
-                    children: <Widget>[
-                      // Divider(
-                      //   height: 10,
-                      //   color: Colors.black54,
-                      // ),
-                      Container(
-                        alignment: languageProvider1.isEn
-                            ? Alignment.centerLeft
-                            : Alignment.centerRight,
-                        padding: EdgeInsets.only(top: 20, right: 22),
-                        // child:Text('drawer_switch_title',
-                        // style:TextStyle(fontWeight: FontWeight.bold),
-                        // ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            right: (languageProvider1.isEn ? 0 : 20),
-                            left: (languageProvider1.isEn ? 20 : 0),
-                            bottom: 15,
-                            top: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              languageProvider1.getTexts('arabic') ?? 'arabic',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                languageProvider1
-                                    .changeLan(!languageProvider1.isEn);
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => HomeLayout()));
-                              },
-                              icon: Icon(Icons.language),
-                            ),
-                            // Switch(
-                            //   value: languageProvider1.isEn,
-                            //   onChanged: (newValue) {
-                            //     languageProvider1.changeLan(newValue);
-                            //   },
+    return ChangeNotifierProvider<LogoutPost>(create: (context) => LogoutPost(),
+      child: Consumer<LanguageProvider>(builder: (context, la, child) {
+        return Consumer<LogoutPost>(builder: (context, log, child)  {
+          return Directionality(
+                  textDirection: languageProvider1.isEn
+                      ? TextDirection.ltr
+                      : TextDirection.rtl,
+                  child: Scaffold(
+                    body: SafeArea(
+                      child: Column(
+                        children: <Widget>[
+                          // Divider(
+                          //   height: 10,
+                          //   color: Colors.black54,
+                          // ),
+                          Container(
+                            alignment: languageProvider1.isEn
+                                ? Alignment.centerLeft
+                                : Alignment.centerRight,
+                            padding: EdgeInsets.only(top: 20, right: 22),
+                            // child:Text('drawer_switch_title',
+                            // style:TextStyle(fontWeight: FontWeight.bold),
                             // ),
-                            Text(
-                              languageProvider1.getTexts('english') ??
-                                  'english',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      // Divider(
-                      //   height: 10,
-                      //   color: Colors.black54,
-                      // ),
-                      // //language
-                      // ListTile(
-                      //   onTap: (){},
-                      //   leading: Icon(Icons.language),
-                      //   title: Text(
-                      //     'Language',
-                      //     style: TextStyle(
-                      //       //color: Colors.black,
-                      //       fontFamily: 'Uniform',
-                      //     ),
-                      //   ),
-                      //   trailing: dropdownlanguage(),
-                      // ),
-
-                      //about us
-                      ListTile(
-                        leading: Icon(Icons.people),
-                        title: Text(
-                          languageProvider1.getTexts('About us') ?? 'About us',
-                          style: TextStyle(
-                            //color: Colors.black,
-                            fontFamily: 'Uniform',
                           ),
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => About_us()));
-                        },
-                      ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                                right: (languageProvider1.isEn ? 0 : 20),
+                                left: (languageProvider1.isEn ? 20 : 0),
+                                bottom: 15,
+                                top: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  languageProvider1.getTexts('arabic') ?? 'arabic',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    languageProvider1
+                                        .changeLan(!languageProvider1.isEn);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => HomeLayout()));
+                                  },
+                                  icon: Icon(Icons.language),
+                                ),
+                                // Switch(
+                                //   value: languageProvider1.isEn,
+                                //   onChanged: (newValue) {
+                                //     languageProvider1.changeLan(newValue);
+                                //   },
+                                // ),
+                                Text(
+                                  languageProvider1.getTexts('english') ??
+                                      'english',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
 
-                      //logout
-                      Consumer<LogoutPost>(builder: (context, log, child) {
-                        return ListTile(
-                            leading: Icon(Icons.logout),
+                          // Divider(
+                          //   height: 10,
+                          //   color: Colors.black54,
+                          // ),
+                          // //language
+                          // ListTile(
+                          //   onTap: (){},
+                          //   leading: Icon(Icons.language),
+                          //   title: Text(
+                          //     'Language',
+                          //     style: TextStyle(
+                          //       //color: Colors.black,
+                          //       fontFamily: 'Uniform',
+                          //     ),
+                          //   ),
+                          //   trailing: dropdownlanguage(),
+                          // ),
+
+                          //about us
+                          ListTile(
+                            leading: Icon(Icons.people),
                             title: Text(
-                              languageProvider1.getTexts('Logout') ?? 'Logout',
+                              languageProvider1.getTexts('About us') ?? 'About us',
                               style: TextStyle(
-                                //  color: Colors.black,
+                                //color: Colors.black,
                                 fontFamily: 'Uniform',
                               ),
                             ),
                             onTap: () {
-                              log.logoutpost();
-                             if(log.isback){
-                               if(Platform.isAndroid){
-                                 SystemNavigator.pop();
-                               }else {
-                                 exit(0);
-                               }
-                             }
-                              if (log.problem) {
-                                showDialog(context: context, builder: (context) => AlertDialog(
-                                  title: Text( languageProvider1.getTexts('Sorry')??""),
-                                  content: Text( languageProvider1.getTexts('try again')??""),
-                                  actions: [
-                                    TextButton(
-                                      child: Text(
-                                        languageProvider1.getTexts( 'OK')??"",
-                                        style: TextStyle(
-                                            color: darkpurple, fontFamily: 'Uniform'),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
-                                ) );
-                              }
-                            });
-                      }),
-                      // Padding(
-                      //   padding: EdgeInsets.only(right: (lan.isEn?0:20),left:(lan.isEn?20:0),bottom:15,top:15),
-                      //   child: Row(
-                      //     mainAxisAlignment: MainAxisAlignment.start,
-                      //     children: [
-                      //       Text('english',
-                      //         style:TextStyle(fontWeight: FontWeight.bold),
-                      //       ),
-                      //       Switch(
-                      //         value: Provider.of<LanguageProvider>(context,listen: true).isEn,
-                      //         onChanged:(newValue){
-                      //           Provider.of<LanguageProvider>(context,listen:false).changeLan(newValue);
-                      //           Navigator.of(context).pop();
-                      //         },
-                      //       ),
-                      //       Text('arabic',
-                      //         style:TextStyle(fontWeight: FontWeight.bold),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                ),
-              ));
-    });
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => About_us()));
+                            },
+                          ),
+                          //logout
+          ListTile(
+                                leading: Icon(Icons.logout),
+                                title: Text(
+                                  languageProvider1.getTexts('Logout') ?? 'Logout',
+                                  style: TextStyle(
+                                    //  color: Colors.black,
+                                    fontFamily: 'Uniform',
+                                  ),
+                                ),
+                                onTap: () async{
+                                 await log.logoutpost();
+                                  if (log.isback) {
+                                    if (Platform.isAndroid) {
+                                      SystemNavigator.pop();
+                                    } else {
+                                      exit(0);
+                                    }
+                                  }
+                                  if (log.problem) {
+                                    showDialog(
+                                        context: context, builder: (context) =>
+                                        AlertDialog(
+                                          title: Text('Sorry'),
+                                          content: Text('try again'),
+                                          actions: [
+                                            TextButton(
+                                              child: Text(
+                                                'OK',
+                                                style: TextStyle(
+                                                    color: darkpurple,
+                                                    fontFamily: 'Uniform'),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ],
+                                        ));
+                                  }
+                                }  ),
+                          // Padding(
+                          //   padding: EdgeInsets.only(right: (lan.isEn?0:20),left:(lan.isEn?20:0),bottom:15,top:15),
+                          //   child: Row(
+                          //     mainAxisAlignment: MainAxisAlignment.start,
+                          //     children: [
+                          //       Text('english',
+                          //         style:TextStyle(fontWeight: FontWeight.bold),
+                          //       ),
+                          //       Switch(
+                          //         value: Provider.of<LanguageProvider>(context,listen: true).isEn,
+                          //         onChanged:(newValue){
+                          //           Provider.of<LanguageProvider>(context,listen:false).changeLan(newValue);
+                          //           Navigator.of(context).pop();
+                          //         },
+                          //       ),
+                          //       Text('arabic',
+                          //         style:TextStyle(fontWeight: FontWeight.bold),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                    ),
+                  ));}
+        );
+      }),
+    );
   }
 }
 

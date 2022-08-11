@@ -273,10 +273,10 @@ class SignUpScreen extends StatelessWidget {
                                           if (value.length > 12) {
                                             return " Password is too long";
                                           }
-                                          if (passwordcontroller.value !=
-                                              passworddcontroller.value) {
-                                            return " password is not matching";
-                                          }
+                                          // if (passwordcontroller.value !=
+                                          //     passworddcontroller.value) {
+                                          //   return " password is not matching";
+                                          // }
                                           return null;
                                         },
                                         decoration: InputDecoration(
