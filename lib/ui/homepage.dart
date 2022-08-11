@@ -139,6 +139,7 @@ class ExpoCard extends StatelessWidget {
                   blurRadius: 4,
                   offset: Offset(4, 8), // Shadow position
                 ),
+
               ],
             ),
             child: GestureDetector(onTap:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>ExpoPage()));},
