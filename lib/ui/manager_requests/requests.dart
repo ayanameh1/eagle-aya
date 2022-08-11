@@ -1,3 +1,4 @@
+import 'package:eagle/components/config1.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,9 @@ class _ManageExpoQState extends State<ManageExpoQ> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:Column(
       children: [
         Image.asset('assets/images/ddd.png'),
         Container(
@@ -43,7 +46,7 @@ class _ManageExpoQState extends State<ManageExpoQ> {
               // );
             },
             child: Text(
-              "View Requests",
+    languageProvider1.getTexts("View Requests")??"",
               style: TextStyle(
                 color: black,
                 fontFamily: 'Uniform',
@@ -52,6 +55,6 @@ class _ManageExpoQState extends State<ManageExpoQ> {
           ),
         ),
       ],
-    );
+    ));
   }
 }

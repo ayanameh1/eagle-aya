@@ -334,8 +334,10 @@ class SignUpScreen extends StatelessWidget {
                                                   emailcontrller.text.trim();
                                               String n =
                                                   namecontrller.text.trim();
+                                              String p =
+                                              passwordcontroller.text;
                                               SignupBody s =
-                                                  SignupBody(title: e, body: n);
+                                                  SignupBody(email: e, name: n ,password: p);
                                               await SignupPost.Signpost(s);
                                               if (SignupPost.isback) {
                                                 Navigator.push(
@@ -345,6 +347,24 @@ class SignUpScreen extends StatelessWidget {
                                                         HomeLayout(),
                                                   ),
                                                 );
+                                              }
+                                              if (SignupPost.problem) {
+                                                showDialog(context: context, builder: (context) => AlertDialog(
+                                                  title: Text('Sorry'),
+                                                  content: Text('try again'),
+                                                  actions: [
+                                                    TextButton(
+                                                      child: Text(
+                                                        'OK',
+                                                        style: TextStyle(
+                                                            color: darkpurple, fontFamily: 'Uniform'),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                    ),
+                                                  ],
+                                                ) );
                                               }
                                             }
                                           },

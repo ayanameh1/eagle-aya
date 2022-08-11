@@ -1,3 +1,4 @@
+import 'package:eagle/components/config1.dart';
 import 'package:eagle/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -15,7 +16,7 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
   DateTime? date1, date2;
   String getText() {
     if (date1 == null) {
-      return 'From';
+      return languageProvider1.getTexts('From')??"";
     } else {
       return DateFormat('MM/dd/yyyy').format(date1!);
     }
@@ -23,7 +24,7 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
 
   String getText2() {
     if (date2 == null) {
-      return 'To';
+      return languageProvider1.getTexts('To')??"";
     } else {
       return DateFormat('MM/dd/yyyy').format(date2!);
     }
@@ -86,7 +87,7 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
                             child: Column(
                               children: [
                                 Text(
-                                  'Choose booth',
+                            languageProvider1.getTexts('Choose booth')??"",
                                   style: TextStyle(
                                     fontFamily: 'Uniform',
                                     fontWeight: FontWeight.bold,
@@ -118,7 +119,7 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
                             Padding(
                               padding: const EdgeInsets.all(6),
                               child: Text(
-                                'Time period',
+                                languageProvider1.getTexts( 'Time period')??"",
                                 style: TextStyle(
                                   fontFamily: 'Uniform',
                                   fontWeight: FontWeight.bold,
@@ -173,7 +174,7 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
                               );
                             },
                             child: Text(
-                              "Apply",
+                              languageProvider1.getTexts("Apply")??"",
                               style: TextStyle(
                                 color: black,
                                 fontFamily: 'Uniform',
@@ -257,7 +258,7 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
     );
 
     if (newDate == null) {
-      showSnackBar(context, 'please enter the date');
+      showSnackBar(context, languageProvider1.getTexts('please enter the date')??"");
     }
 
     setState(() => date2 = newDate);

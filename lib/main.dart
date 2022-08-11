@@ -54,7 +54,7 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
   void initState() {
     super.initState();
     currentTheme.addListener(() {print('changes');
-      setState(() {});
+    setState(() {});
     });
 
 
@@ -85,49 +85,48 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
   }
   @override
   Widget build(BuildContext context) {
-   final theme= Provider.of<ThemeChanger>(context);
-   return MaterialApp(
-     debugShowCheckedModeBanner: false,
+    final theme= Provider.of<ThemeChanger>(context);
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme:ThemeData(
-          primaryColor: const Color(0xffffd100),
-          primarySwatch:Colors.grey,
-          scaffoldBackgroundColor: Colors.white,
+        primaryColor: const Color(0xffffd100),
+        primarySwatch:Colors.grey,
+        scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
-            systemOverlayStyle: SystemUiOverlayStyle(
+          systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.white,
             statusBarBrightness: Brightness.light,
+          ),
+          backgroundColor: Colors.white,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: Color(0xff5C0099)),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          type: BottomNavigationBarType.fixed,
+          unselectedItemColor: Colors.grey,
+          elevation: 20.0,
+          backgroundColor: Colors.white,
         ),
-      backgroundColor: Colors.white,
-    titleTextStyle: TextStyle(
-          color: Colors.black,
-          fontSize: 20.0,
-          fontWeight: FontWeight.bold,
-        ),),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Color(0xff5C0099)),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        type: BottomNavigationBarType.fixed,
-        unselectedItemColor: Colors.grey,
-        elevation: 20.0,
-        backgroundColor: Colors.white,
       ),
-      ),
-
-     darkTheme: ThemeData.dark(),
-     themeMode: currentTheme.currentTheme(),
-     initialRoute: 'home'
-         '',
-     routes: {
-       'welcome': (context) => WelcomeScreen(),
-       'login': (context) => loginScreen(),
-       'signup': (context) => SignUpScreen(),
-       'home': (context) => HomeLayout(),
-       'Companydetails': (context) =>CompanyDetails(),
-       'invest': (context) => InvestStep1Screen(),
-       'addexpo': (context) => AddExpoStep1Screen(),
-       'manage_booth': (context) => ManageBooth(),
-       'ten': (context) => ExpoPage(),
-     },
-   );
+      darkTheme: ThemeData.dark(),
+      themeMode: currentTheme.currentTheme(),
+      initialRoute: 'home'
+          '',
+      routes: {
+        'welcome': (context) => WelcomeScreen(),
+        'login': (context) => loginScreen(),
+        'signup': (context) => SignUpScreen(),
+        'home': (context) => HomeLayout(),
+        'Companydetails': (context) =>CompanyDetails(),
+        'invest': (context) => InvestStep1Screen(),
+        'addexpo': (context) => AddExpoStep1Screen(),
+        'manage_booth': (context) => ManageBooth(),
+        'ten': (context) => ExpoPage(),
+      },
+    );
   }
 }

@@ -1,3 +1,4 @@
+library colors.globals;
 import 'package:flutter/material.dart';
 
 final Color yellow1 = Color(0xffffee32);
@@ -8,3 +9,5 @@ final Color grey3 = Color(0xff202020);
 final Color white = Colors.white;
 final Color black = Colors.black;
 final Color darkpurple = Color(0xff5C0099);
+
+var responsedataToken;

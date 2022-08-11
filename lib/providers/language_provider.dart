@@ -74,6 +74,13 @@ class LanguageProvider extends ChangeNotifier {
     'other': "أخرى",
     "Visit": "زائر",
     "Invest": "مستثمر",
+    "View Requests":" عرض الطلبات",
+    'Choose booth':'اختر حجرة',
+    'Time period':'فترة زمنية',
+    "Apply":"تقديم",
+    'Step 2':"الخطوة 2",
+    'please enter the date':"الرجاء إدخال التاريخ",
+
 
     'Write a review': "اكتب تعليق",
     'Our application  is  meant to make your life easier \n here you can find all the exhibitions you want, visit them and participate in them \n also  you can add your own expo and manage it on the tip of your finger\n'
@@ -160,6 +167,15 @@ class LanguageProvider extends ChangeNotifier {
     'other': 'other',
     "Visit": "Visit",
     "Invest": "Invest",
+    "View Requests":"View Requests",
+    'Choose booth':'Choose booth',
+    'Time period':'Time period',
+    "Apply":"Apply",
+    'Step 2':'Step 2',
+    'please enter the date':'please enter the date',
+
+
+
 
     'Write a review': 'Write a review',
 

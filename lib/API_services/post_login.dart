@@ -1,14 +1,14 @@
 import 'dart:io';
 import 'package:eagle/constants/colors.dart';
-import 'package:eagle/models/signup_body.dart';
+import 'package:eagle/models/login_body.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future<http.Response?> postSignup(SignupBody sdata) async {
-  http.Response? signupresponse;
+Future<http.Response?> postLogin(LoginBody sdata) async {
+  http.Response? loginresponse;
   try {
-    signupresponse = await http.post(
+    loginresponse = await http.post(
       Uri.parse("http://localhost:8000/api/register"),
       body: jsonEncode(sdata.toJson()),
       headers: <String, String>{
@@ -17,13 +17,13 @@ Future<http.Response?> postSignup(SignupBody sdata) async {
         'Charset': 'utf-8',
       },
     );
-    print(signupresponse.statusCode);
-    if (signupresponse.statusCode == 200 || signupresponse.statusCode == 201) {
-      print(signupresponse.body);
-      responsedataToken = jsonDecode(signupresponse.body)['token'];
+    print(loginresponse.statusCode);
+    if (loginresponse.statusCode == 200 || loginresponse.statusCode == 201) {
+      print(loginresponse.body);
+      responsedataToken = jsonDecode(loginresponse.body)['token'];
     }
   } catch (e) {
     print(e.toString());
   }
-  return signupresponse;
+  return loginresponse;
 }
