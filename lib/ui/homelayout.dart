@@ -97,7 +97,7 @@ class _HomeLayoutoState extends State<HomeLayouto> {
             icon: Icon(
               Icons.notifications_active_rounded,
             ),
-            label: languageProvider1.getTexts('news')??'',
+            label: languageProvider1.getTexts('NEWS')??'',
           ),
           BottomNavigationBarItem(
             icon: Icon(

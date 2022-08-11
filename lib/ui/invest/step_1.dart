@@ -10,6 +10,7 @@ import 'dart:io';
 import 'package:provider/provider.dart';
 
 import '../../components/confi.dart';
+import '../../components/config1.dart';
 
 class InvestStep1Screen extends StatelessWidget {
   const InvestStep1Screen({Key? key}) : super(key: key);
@@ -17,7 +18,9 @@ class InvestStep1Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
-    return Scaffold(
+    return  Directionality(
+        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+        child:Scaffold(
       appBar: AppBar(
         title: SizedBox(
           child: Image.asset('assets/images/Group 8.png'),
@@ -30,7 +33,7 @@ class InvestStep1Screen extends StatelessWidget {
         create: (context) => MultiImages(),
         child: InvestStep1Screeno(),
       ),
-    );
+    ));
   }
 }
 
@@ -43,23 +46,23 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
   //list
   String? value;
   final items = [
-    'Syria',
-    'Lebanon',
-    'Sudan',
-    'Russia',
-    'India',
-    'Armenia',
-    'Belarus',
-    'Brazil',
-    'Egypt',
-    'Iran',
-    'Jordan',
-    'Oman',
-    'palestine',
-    'Pakistan',
-    'Qatar',
-    'United-Arab-Emirates',
-    'Philippines'
+  languageProvider1.getTexts('Syria')??"",
+  languageProvider1.getTexts('Lebanon')??"",
+  languageProvider1.getTexts('Sudan')??"",
+  languageProvider1.getTexts('Russia')??"",
+  languageProvider1.getTexts('India')??"",
+  languageProvider1.getTexts('Armenia')??'',
+  languageProvider1.getTexts('Belarus')??"",
+  languageProvider1.getTexts('Brazil')??"",
+  languageProvider1.getTexts('Egypt')??"",
+  languageProvider1.getTexts('Iran')??"",
+  languageProvider1.getTexts('Jordan')??"",
+  languageProvider1.getTexts('Oman')??"",
+  languageProvider1.getTexts('palestine')??"",
+  languageProvider1.getTexts('Pakistan')??"",
+  languageProvider1.getTexts('Qatar')??"",
+  languageProvider1.getTexts('United-Arab-Emirates')??"",
+  languageProvider1.getTexts('Philippines')??""
   ];
 
   final _formkey = GlobalKey<FormState>();
@@ -132,7 +135,7 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                                     defaulTexttFormField(
                                       sizeaware1: sizeAwareh,
                                       controller: fnamecontroller,
-                                      label: 'First name',
+                                      label: languageProvider1.getTexts('First name')??"",
                                       validate: (String? value) {
                                         if (value == null ||
                                             value.trim().length == 0) {

@@ -165,12 +165,12 @@ class _OtherscreenoState extends State<Otherscreeno> {
                              }
                               if (log.problem) {
                                 showDialog(context: context, builder: (context) => AlertDialog(
-                                  title: Text('Sorry'),
-                                  content: Text('try again'),
+                                  title: Text( languageProvider1.getTexts('Sorry')??""),
+                                  content: Text( languageProvider1.getTexts('try again')??""),
                                   actions: [
                                     TextButton(
                                       child: Text(
-                                        'OK',
+                                        languageProvider1.getTexts( 'OK')??"",
                                         style: TextStyle(
                                             color: darkpurple, fontFamily: 'Uniform'),
                                       ),

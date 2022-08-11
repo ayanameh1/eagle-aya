@@ -65,247 +65,245 @@ class _login1screenState extends State<login1screen> {
                   create: (context) => LoginPost(),
                 )
               ],
-              child: Center(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 1717 / 1920,
-                  child: Form(
-                    key: _formkey,
-                    child: Expanded(
-                      child: Consumer<LoginPost>(builder: (context, Loginpost, child) {
-                        return Column(
-                          children: [
-                            Expanded(
-                              child: Swiper(
-                                containerHeight:
-                                    MediaQuery.of(context).size.height *
-                                        898 /
-                                        1080,
-                                itemCount: cards.length,
-                                itemBuilder: (context, index) {
-                                  return Bcard(
-                                    photoname: cards[index].photoname,
-                                    description: cards[index].description,
-                                  );
-                                },
-                                //control: SwiperControl(),
-                                pagination: SwiperPagination(),
-                              ),
+              child: Form(
+                key: _formkey,
+                child: Center(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 1717 / 1920,
+                    child: Consumer<LoginPost>(builder: (context, Loginpost, child) {
+                      return Column(
+                        children: [
+                          Expanded(
+                            child: Swiper(
+                              containerHeight:
+                                  MediaQuery.of(context).size.height *
+                                      898 /
+                                      1080,
+                              itemCount: cards.length,
+                              itemBuilder: (context, index) {
+                                return Bcard(
+                                  photoname: cards[index].photoname,
+                                  description: cards[index].description,
+                                );
+                              },
+                              //control: SwiperControl(),
+                              pagination: SwiperPagination(),
                             ),
-                            Container(
-                              width: sizeAware.width * 820 / 1080,
-                              //height: sizeAware.height * 125 / 1920,
-                              child: TextFormField(
-                                controller: emailcontrller,
-                                keyboardType: TextInputType.emailAddress,
-                                onFieldSubmitted: (String value) {
-                                  print(value);
-                                },
-                                onChanged: (String value) {
-                                  print(value);
-                                },
-                                validator: (String? value) {
-                                  if (value == null || value.trim().length == 0) {
-                                    return 'email must not be empty';
-                                  }
-                                  if (!RegExp("").hasMatch(value)) {
-                                    return "Please Enter valid email ";
-                                  }
-                                  return null;
-                                },
-                                decoration: const InputDecoration(
-                                  hintText: 'email',
-                                  hintStyle: TextStyle(
-                                    fontFamily: 'Uniform',
+                          ),
+                          Container(
+                            width: sizeAware.width * 820 / 1080,
+                            //height: sizeAware.height * 125 / 1920,
+                            child: TextFormField(
+                              controller: emailcontrller,
+                              keyboardType: TextInputType.emailAddress,
+                              onFieldSubmitted: (String value) {
+                                print(value);
+                              },
+                              onChanged: (String value) {
+                                print(value);
+                              },
+                              validator: (String? value) {
+                                if (value == null || value.trim().length == 0) {
+                                  return 'email must not be empty';
+                                }
+                                if (!RegExp("").hasMatch(value)) {
+                                  return "Please Enter valid email ";
+                                }
+                                return null;
+                              },
+                              decoration: const InputDecoration(
+                                hintText: 'email',
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Uniform',
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.email,
+                                  color: Colors.grey,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(54),
                                   ),
-                                  prefixIcon: Icon(
-                                    Icons.email,
-                                    color: Colors.grey,
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xffffd100),
                                   ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(54),
-                                    ),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: Color(0xffffd100),
-                                    ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
                                   ),
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 50 / 1920,
-                            ),
-                            Container(
-                              width: sizeAware.width * 820 / 1080,
-                              //height: sizeAware.height * 107 / 1920,
-                              child: Consumer<Passwordvisibilty>(
-                                builder: (context, passwordvisibilty, child) {
-                                  return TextFormField(
-                                    controller: passworddcontroller,
-                                    keyboardType: TextInputType.visiblePassword,
-                                    obscureText: passwordvisibilty.obscureText,
-                                    onChanged: (String value) {
-                                      print(value);
-                                    },
-                                    validator: (String? value) {
-                                      if (value == null ||
-                                          value.trim().length == 0) {
-                                        return " password must not be empty";
-                                      }
-                                      if (value.length < 8) {
-                                        return " Password is too short";
-                                      }
-                                      if (value.length > 12) {
-                                        return " Password is too long";
-                                      }
-                                      return null;
-                                    },
-                                    decoration: InputDecoration(
-                                      hintText: 'Password',
-                                      hintStyle: TextStyle(
-                                        fontFamily: 'Uniform',
-                                      ),
-                                      prefixIcon: const Icon(
-                                        Icons.lock,
-                                        color: Colors.grey,
-                                      ),
-                                      suffixIcon: GestureDetector(
-                                        child: Icon(
-                                          passwordvisibilty.obscureText
-                                              ? Icons.visibility
-                                              : Icons.visibility_off,
-                                          color: Colors.grey,
-                                        ),
-                                        onTap: () {
-                                          passwordvisibilty.eye1();
-                                        },
-                                      ),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(54),
-                                        ),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0xffffd100),
-                                        ),
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                            SizedBox(
-                              height: sizeAware.height * 39 / 1920,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Don\'t have an account ?',
-                                  style: TextStyle(
-                                    fontFamily: 'Uniform',
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => SignUpScreen(),
-                                      ),
-                                    );
+                          ),
+                          SizedBox(
+                            height:
+                                MediaQuery.of(context).size.height * 50 / 1920,
+                          ),
+                          Container(
+                            width: sizeAware.width * 820 / 1080,
+                            //height: sizeAware.height * 107 / 1920,
+                            child: Consumer<Passwordvisibilty>(
+                              builder: (context, passwordvisibilty, child) {
+                                return TextFormField(
+                                  controller: passworddcontroller,
+                                  keyboardType: TextInputType.visiblePassword,
+                                  obscureText: passwordvisibilty.obscureText,
+                                  onChanged: (String value) {
+                                    print(value);
                                   },
-                                  child: Text(
-                                    'Signup here',
-                                    style: TextStyle(
-                                      color: Color(0xff5C0099),
+                                  validator: (String? value) {
+                                    if (value == null ||
+                                        value.trim().length == 0) {
+                                      return " password must not be empty";
+                                    }
+                                    if (value.length < 8) {
+                                      return " Password is too short";
+                                    }
+                                    if (value.length > 12) {
+                                      return " Password is too long";
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                    hintText: 'Password',
+                                    hintStyle: TextStyle(
                                       fontFamily: 'Uniform',
                                     ),
-                                  ),
-                                )
-                              ],
-                            ),
-                            Container(
-                              width:
-                                  MediaQuery.of(context).size.width * 359 / 1080,
-                              height:
-                                  MediaQuery.of(context).size.height * 82 / 1920,
-                              child: MaterialButton(
-                                onPressed: () async {
-                                  if (_formkey.currentState!.validate()) {
-                                    String e = passworddcontroller.text;
-                                    String n = emailcontrller.text.trim();
-                                    LoginBody s =
-                                        LoginBody(email: n, password: e);
-                                    await Loginpost.LogPost(s);
-                                    if(Loginpost.isback){ Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => HomeLayout(),
+                                    prefixIcon: const Icon(
+                                      Icons.lock,
+                                      color: Colors.grey,
+                                    ),
+                                    suffixIcon: GestureDetector(
+                                      child: Icon(
+                                        passwordvisibilty.obscureText
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                        color: Colors.grey,
                                       ),
-                                    );}
-                                    if (Loginpost.problem) {
-                                      showDialog(context: context, builder: (context) => AlertDialog(
-                                        title: Text('Sorry'),
-                                        content: Text('try again'),
-                                        actions: [
-                                          TextButton(
-                                            child: Text(
-                                              'OK',
-                                              style: TextStyle(
-                                                  color: darkpurple, fontFamily: 'Uniform'),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                        ],
-                                      ) );
-                                    }
-                                  }
+                                      onTap: () {
+                                        passwordvisibilty.eye1();
+                                      },
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(54),
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0xffffd100),
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: sizeAware.height * 39 / 1920,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Don\'t have an account ?',
+                                style: TextStyle(
+                                  fontFamily: 'Uniform',
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => SignUpScreen(),
+                                    ),
+                                  );
                                 },
                                 child: Text(
-                                  "Login",
+                                  'Signup here',
                                   style: TextStyle(
-                                    color: black,
+                                    color: Color(0xff5C0099),
                                     fontFamily: 'Uniform',
                                   ),
                                 ),
-                              ),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(54),
-                                  color: yellow1,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0xff565656),
-                                      spreadRadius: 0,
-                                      blurRadius: 0,
-                                      offset: Offset(2, 4),
+                              )
+                            ],
+                          ),
+                          Container(
+                            width:
+                                MediaQuery.of(context).size.width * 359 / 1080,
+                            height:
+                                MediaQuery.of(context).size.height * 82 / 1920,
+                            child: MaterialButton(
+                              onPressed: () async {
+                                if (_formkey.currentState!.validate()) {
+                                  String e = passworddcontroller.text;
+                                  String n = emailcontrller.text.trim();
+                                  LoginBody s =
+                                      LoginBody(email: n, password: e);
+                                  await Loginpost.LogPost(s);
+                                  if(Loginpost.isback){ Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HomeLayout(),
                                     ),
-                                  ]),
+                                  );}
+                                  if (Loginpost.problem) {
+                                    showDialog(context: context, builder: (context) => AlertDialog(
+                                      title: Text('Sorry'),
+                                      content: Text('try again'),
+                                      actions: [
+                                        TextButton(
+                                          child: Text(
+                                            'OK',
+                                            style: TextStyle(
+                                                color: darkpurple, fontFamily: 'Uniform'),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    ) );
+                                  }
+                                }
+                              },
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                  color: black,
+                                  fontFamily: 'Uniform',
+                                ),
+                              ),
                             ),
-                            // SizedBox(
-                            //   height: MediaQuery.of(context).size.height * 80 / 1920,
-                            // ),
-                            Container(
-                              width:
-                                  MediaQuery.of(context).size.width * 359 / 1080,
-                              height:
-                                  MediaQuery.of(context).size.height * 82 / 1920,
-                            ),
-                          ],
-                        );}
-                      ),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(54),
+                                color: yellow1,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(0xff565656),
+                                    spreadRadius: 0,
+                                    blurRadius: 0,
+                                    offset: Offset(2, 4),
+                                  ),
+                                ]),
+                          ),
+                          // SizedBox(
+                          //   height: MediaQuery.of(context).size.height * 80 / 1920,
+                          // ),
+                          Container(
+                            width:
+                                MediaQuery.of(context).size.width * 359 / 1080,
+                            height:
+                                MediaQuery.of(context).size.height * 82 / 1920,
+                          ),
+                        ],
+                      );}
                     ),
                   ),
                 ),
