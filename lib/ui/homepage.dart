@@ -93,7 +93,6 @@ class _expolistState extends State<expolist> {
 }
 
 
-
 //CARD DESIGN_____________________________________________________________
 class ExpoCard extends StatelessWidget {
   ExpoCard(this.name);
@@ -112,38 +111,23 @@ class ExpoCard extends StatelessWidget {
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyText1,
           ),
-          // Container(
-          //   width: MediaQuery.of(context).size.width * 844 / 1080,
-          //   height: MediaQuery.of(context).size.height * 465 / 1920,
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(22),
-          //     image: DecorationImage(
-          //         image: AssetImage('assets/images/ddd.png'), fit: BoxFit.fill,),
-          //     boxShadow: [
-          //       BoxShadow(
-          //         color: Colors.black12,
-          //         blurRadius: 4,
-          //         offset: Offset(4, 8), // Shadow position
-          //       ),
-          //     ],
-          //   ),
-          // ),
-          Container(
-            width: MediaQuery.of(context).size.width * 844 / 1080,
-            height: MediaQuery.of(context).size.height * 465 / 1920,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(22),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 4,
-                  offset: Offset(4, 8), // Shadow position
-                ),
-
-              ],
+          GestureDetector(
+            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>ExpoPage()));},
+            child: Container(
+              width: MediaQuery.of(context).size.width * 844 / 1080,
+              height: MediaQuery.of(context).size.height * 465 / 1920,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(22),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 4,
+                    offset: Offset(4, 8), // Shadow position
+                  ),
+                ],
+                image: DecorationImage(image: AssetImage('assets/images/ddd.png'), fit: BoxFit.fill,),
+              ),
             ),
-            child: GestureDetector(onTap:(){Navigator.push(context, MaterialPageRoute(builder: (context)=>ExpoPage()));},
-                child:Image(image: AssetImage('assets/images/ddd.png'), fit: BoxFit.fill,),),
           ),
         ],
       ),

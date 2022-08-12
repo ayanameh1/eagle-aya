@@ -52,6 +52,7 @@ class _HomeLayoutoState extends State<HomeLayouto> {
               languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
           child: Scaffold(
             appBar: AppBar(
+              backgroundColor:  currentTheme.isdark? Colors.grey[700]:Colors.white,
               title: SizedBox(
                 child: Image.asset('assets/images/Group 8.png'),
                 width: sizeAware.width * 257 / 1080,
@@ -84,6 +85,7 @@ class _HomeLayoutoState extends State<HomeLayouto> {
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             bottomNavigationBar: BottomNavigationBar(
+              backgroundColor: currentTheme.isdark? Colors.grey[700]:Colors.white,
               type: BottomNavigationBarType.fixed,
               selectedItemColor: Color(0xffffd100),
               currentIndex: currentIndex,
