@@ -110,7 +110,7 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
       ),
       darkTheme: ThemeData.dark(),
       themeMode: currentTheme.currentTheme(),
-      initialRoute: 'manage_booth',
+      initialRoute: 'signup',
       routes: {
         'welcome': (context) => WelcomeScreen(),
         'login': (context) => loginScreen(),

@@ -17,14 +17,20 @@ class AddexpoPost extends ChangeNotifier{
     loading =true;
     notifyListeners();
     var sp = await postAddex(sdata);
-    if(sp!.statusCode==200 ||sp!.statusCode==201){
-      isback= true;
-      notifyListeners();
+    if(sp != null){
+      if(sp!.statusCode==200 ||sp!.statusCode==201){
+        isback= true;
+        notifyListeners();
+      }
+      if(sp!.statusCode==400){
+        problem= true;
+        notifyListeners();
+      }
     }
-    if(sp!.statusCode==400){
-      problem= true;
-      notifyListeners();
+    if(sp == null){
+      print ('h');
     }
+
     loading = false;
     notifyListeners();
   }
