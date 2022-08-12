@@ -9,7 +9,7 @@ Future<http.Response?> postSignup(SignupBody sdata) async {
   http.Response? signupresponse;
   try {
     signupresponse = await http.post(
-      Uri.parse("http://192.168.108.51:8000/api/register"),
+      Uri.parse("http://192.168.1.37:8000/api/register"),
       body: jsonEncode(sdata.toJson()),
       headers: <String, String>{
         "Content-Type": "application/json",

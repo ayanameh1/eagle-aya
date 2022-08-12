@@ -1,19 +1,20 @@
 import 'dart:io';
 import 'package:eagle/constants/colors.dart';
 import 'package:eagle/models/addexpo_body.dart';
+import 'package:eagle/models/addproduct.dart';
 import 'package:eagle/models/signup_body.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 
-Future<http.StreamedResponse?> postAddex(AddExpoData sdata) async {
+Future<http.StreamedResponse?> postAddpro(AddproductData sdata) async {
   //http.Response? request;
   http.StreamedResponse ?g;
   try{
     final request = await http.MultipartRequest(
       "POST",
-      Uri.parse('http://192.168.1.37:8000/api/add'),
+      Uri.parse('http://1192.168.1.37:8000/api/add'),
     );
     request.headers.addAll({
       "Authorization": "Bearer $responsedataToken",
@@ -23,17 +24,10 @@ Future<http.StreamedResponse?> postAddex(AddExpoData sdata) async {
       //"Accept-Encoding" : "gzip, deflate, br",
     });
 
-    request.files.add(await http.MultipartFile.fromPath('image', sdata.image!.path));
+    request.files.add(await http.MultipartFile.fromPath('image', sdata.image_name!.path));
 
-    request.fields['title'] = sdata.title!;
+    request.fields['name'] = sdata.name!;
     request.fields['price'] = sdata.price!;
-    request.fields['start_date'] = sdata.start_date!;
-    request.fields['end_date'] = sdata.end_date!;
-    request.fields['email'] = sdata.email!;
-    request.fields['description'] = sdata.description!;
-    request.fields['boothes_number'] = sdata.boothes_number!;
-    request.fields['fax_number'] = sdata.fax_number!;
-    request.fields['phone_number'] = sdata.phone_number!;
 
     var res = await request.send();
     print(res.statusCode);
