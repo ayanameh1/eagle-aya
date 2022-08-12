@@ -12,6 +12,7 @@ import '../components/config1.dart';
 import 'add_expo/step1.dart';
 import 'notification.dart';
 import 'profile.dart';
+
 //import 'package:firebase_messaging/firebase_messaging.dart';
 class HomeLayout extends StatelessWidget {
   const HomeLayout({Key? key}) : super(key: key);
@@ -19,10 +20,8 @@ class HomeLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
-    ChangeNotifierProvider<ThemeChanger>(
-    create: (context) => ThemeChanger()),
-    ],
-    child: HomeLayouto());
+      ChangeNotifierProvider<ThemeChanger>(create: (context) => ThemeChanger()),
+    ], child: HomeLayouto());
   }
 }
 
@@ -32,6 +31,7 @@ class HomeLayouto extends StatefulWidget {
   @override
   State<HomeLayouto> createState() => _HomeLayoutoState();
 }
+
 class _HomeLayoutoState extends State<HomeLayouto> {
   int currentIndex = 0;
   Widget currentScreen = HomePageScreen();
@@ -48,71 +48,77 @@ class _HomeLayoutoState extends State<HomeLayouto> {
     var sizeAware = MediaQuery.of(context).size;
     return Consumer<ThemeChanger>(builder: (context, mytheme, child) {
       return Directionality(
-          textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
-          child:Scaffold(
-        appBar: AppBar(
-          title: SizedBox(
-            child: Image.asset('assets/images/Group 8.png'),
-            width: sizeAware.width * 257 / 1080,
-            height: sizeAware.height * 150 / 160,
-          ),
-          shadowColor: Colors.black.withOpacity(0.5),
-          actions: [
-            IconButton(
-              onPressed: () => currentTheme.switchtheme(),
-              icon: const Icon(Icons.brightness_4,),
-            )
-          ],
-        ),
-        body: screens[currentIndex],
-        floatingActionButton: FloatingActionButton(
-          onPressed: ()  {
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>AddExpoStep1Screen()));
-
-          },
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-          backgroundColor:darkpurple,
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Color(0xffffd100),
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        // ignore: prefer_const_literals_to_create_immutables
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home_filled,
+          textDirection:
+              languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
+          child: Scaffold(
+            appBar: AppBar(
+              title: SizedBox(
+                child: Image.asset('assets/images/Group 8.png'),
+                width: sizeAware.width * 257 / 1080,
+                height: sizeAware.height * 150 / 160,
               ),
-              label: languageProvider1.getTexts('Home')??""),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.notifications_active_rounded,
+              shadowColor: Colors.black.withOpacity(0.5),
+              actions: [
+                IconButton(
+                  onPressed: () => currentTheme.switchtheme(),
+                  icon: const Icon(
+                    Icons.brightness_4,
+                  ),
+                )
+              ],
             ),
-            label: languageProvider1.getTexts('news')??'',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person,
-            ),
-            label: languageProvider1.getTexts('profile')??"",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.menu,
+            body: screens[currentIndex],
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddExpoStep1Screen()));
+              },
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
               ),
-              label: languageProvider1.getTexts('other')??""),
-        ],
-      ),
-      ));
+              backgroundColor: darkpurple,
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            bottomNavigationBar: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              selectedItemColor: Color(0xffffd100),
+              currentIndex: currentIndex,
+              onTap: (index) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+              // ignore: prefer_const_literals_to_create_immutables
+              items: [
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.home_filled,
+                    ),
+                    label: languageProvider1.getTexts('Home') ?? ""),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.notifications_active_rounded,
+                  ),
+                  label: languageProvider1.getTexts('News') ?? '',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.person,
+                  ),
+                  label: languageProvider1.getTexts('Profile') ?? "",
+                ),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.menu,
+                    ),
+                    label: languageProvider1.getTexts('Other') ?? ""),
+              ],
+            ),
+          ));
       // PageStorage(
       //   child: currentScreen,
       //   bucket: bucket,
@@ -207,7 +213,6 @@ class _HomeLayoutoState extends State<HomeLayouto> {
       //   ],
       //
       // ),
-
     });
   }
 }

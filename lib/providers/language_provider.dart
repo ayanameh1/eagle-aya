@@ -125,7 +125,7 @@ class LanguageProvider extends ChangeNotifier {
     'confirm Password': 'confirm Password',
     "Submit": "Submit",
     //notification
-    'NEWS': 'NEWS',
+    'News': 'News',
 
     //manage booth
     'company name': 'company name',
@@ -163,8 +163,8 @@ class LanguageProvider extends ChangeNotifier {
     'Hold a conference': 'Hold a conference',
     'choose date': 'choose date',
     'Home': 'Home',
-    'profile': 'profile',
-    'other': 'other',
+    'Profile': 'Profile',
+    'Other': 'Other',
     "Visit": "Visit",
     "Invest": "Invest",
     "View Requests":"View Requests",

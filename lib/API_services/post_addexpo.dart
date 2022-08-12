@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future postAddex(AddExpoData sdata) async {
+
+Future<http.StreamedResponse?> postAddex(AddExpoData sdata) async {
   //http.Response? request;
+  http.StreamedResponse ?g;
   try{
     final request = await http.MultipartRequest(
       "POST",
@@ -35,10 +37,10 @@ Future postAddex(AddExpoData sdata) async {
 
     var res = await request.send();
     print(res.statusCode);
-    return request;
+    return res;
   }
   catch(errr){
     print (errr.toString());
   }
-
+  return g;
 }
