@@ -475,6 +475,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                           "Apply",
                                           style: TextStyle(
                                             fontFamily: 'Uniform',
+                                            color: Colors.black,
                                           ),
                                         ),
                                       ),

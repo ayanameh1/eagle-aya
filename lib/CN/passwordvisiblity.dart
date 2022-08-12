@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 
 class Passwordvisibilty extends ChangeNotifier{
-  bool obscureTexttt = false;
- bool obscureTextt = false;
- bool obscureText = false;
+  bool obscureTexttt = true;
+ bool obscureTextt = true;
+ bool obscureText = true
+  ;
 
  //for sign up password
  eye(){

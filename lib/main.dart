@@ -9,6 +9,8 @@ import 'package:eagle/ui/invest/step_1.dart';
 import 'package:eagle/ui/invest/step_2.dart';
 import 'package:eagle/ui/login.dart';
 import 'package:eagle/ui/manage_booth.dart';
+import 'package:eagle/ui/manager_requests/requests.dart';
+import 'package:eagle/ui/manager_requests/single_request_page.dart';
 import 'package:eagle/ui/profile.dart';
 import 'package:eagle/ui/sign_up.dart';
 import 'package:eagle/ui/welcome.dart';
@@ -110,7 +112,7 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
       ),
       darkTheme: ThemeData.dark(),
       themeMode: currentTheme.currentTheme(),
-      initialRoute: 'signup',
+      initialRoute: 'ManageExpoQ',
       routes: {
         'welcome': (context) => WelcomeScreen(),
         'login': (context) => loginScreen(),
@@ -120,7 +122,8 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
         'invest': (context) => InvestStep1Screen(),
         'addexpo': (context) => AddExpoStep1Screen(),
         'manage_booth': (context) => ManageBooth(),
-        'ten': (context) => ExpoPage(),
+        'Singlerequest': (context) => Singlerequest(),
+        'ManageExpoQ':(context)=> ManageExpoQ(),
       },
     );
   }
