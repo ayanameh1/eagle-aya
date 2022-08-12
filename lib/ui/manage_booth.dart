@@ -2,11 +2,14 @@ import 'dart:convert';
 import 'package:eagle/CN/get_investor_info_cn.dart';
 import 'package:eagle/CN/get_reviews_cn.dart';
 import 'package:eagle/CN/pick_single_image.dart';
+import 'package:eagle/CN/post_addproduct_cn.dart';
 import 'package:eagle/components/config1.dart';
 import 'package:eagle/components/date_picker.dart';
 import 'package:eagle/constants/colors.dart';
+import 'package:eagle/models/addproduct.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
@@ -35,6 +38,8 @@ class ManageBooth extends StatelessWidget {
                   create: (context) => InvestorProfile()),
               ChangeNotifierProvider<GetAllReviews>(
                   create: (context) => GetAllReviews()),
+              ChangeNotifierProvider<AddproductPost>(
+                  create: (context) => AddproductPost()),
             ],
             child: Scaffold(
               appBar: AppBar(
@@ -680,200 +685,250 @@ class _productslistState extends State<productslist> {
 
 // add a product___________________________
 class addProduct extends StatefulWidget {
-  const addProduct({Key? key}) : super(key: key);
+    const addProduct({Key? key}) : super(key: key);
 
   @override
   State<addProduct> createState() => _addProductState();
 }
 
 class _addProductState extends State<addProduct> {
+
+  TextEditingController namecontroller = TextEditingController();
+  TextEditingController pricecontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Consumer<productSingleImage>(
         builder: (context, productImage, child) {
-      return Directionality(
-          textDirection:
+          return  Consumer<AddproductPost>(builder: (context, addprod, child)
+          {
+            return Directionality(
+              textDirection:
               languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    languageProvider1.getTexts('Product name') ?? '',
-                    style: TextStyle(fontFamily: 'Uniform'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    languageProvider1.getTexts('Product price') ?? '',
-                    style: TextStyle(
-                      fontFamily: 'Uniform',
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30)),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    languageProvider1.getTexts('Add Product photo') ?? "",
-                    style: TextStyle(
-                      fontFamily: 'Uniform',
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          productImage.imagefromCamera();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black38,
-                                blurRadius: 2,
-                                offset: Offset(2, 3), // Shadow position
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              width: 3,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: Icon(
-                              Icons.camera_alt_outlined,
-                              color: Colors.black45,
-                            ),
+                      Text(
+                        languageProvider1.getTexts('Product name') ?? '',
+                        style: TextStyle(fontFamily: 'Uniform'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          controller: namecontroller,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30)),
                           ),
                         ),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          productImage.imagefromGallery();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.grey[200],
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black38,
-                                blurRadius: 2,
-                                offset: Offset(2, 3), // Shadow position
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              width: 3,
-                              color: Colors.black45,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.photo,
-                              color: Colors.black45,
-                            ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        languageProvider1.getTexts('Product price') ?? '',
+                        style: TextStyle(
+                          fontFamily: 'Uniform',
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          controller: pricecontroller,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30)),
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                  Center(
-                    child: productImage.proimage != null
-                        ? CircleAvatar(
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        languageProvider1.getTexts('Add Product photo') ?? "",
+                        style: TextStyle(
+                          fontFamily: 'Uniform',
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              productImage.imagefromCamera();
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black38,
+                                    blurRadius: 2,
+                                    offset: Offset(2, 3), // Shadow position
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  width: 3,
+                                  color: Colors.black45,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Icon(
+                                  Icons.camera_alt_outlined,
+                                  color: Colors.black45,
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              productImage.imagefromGallery();
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black38,
+                                    blurRadius: 2,
+                                    offset: Offset(2, 3), // Shadow position
+                                  ),
+                                ],
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  width: 3,
+                                  color: Colors.black45,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.photo,
+                                  color: Colors.black45,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Center(
+                        child: productImage.proimage != null
+                            ? CircleAvatar(
+                          radius:
+                          MediaQuery
+                              .of(context)
+                              .size
+                              .height * 150 / 1920,
+                          backgroundImage: FileImage(productImage.proimage!)
+                          as ImageProvider,
+                        )
+                            : CircleAvatar(
                             radius:
-                                MediaQuery.of(context).size.height * 150 / 1920,
-                            backgroundImage: FileImage(productImage.proimage!)
-                                as ImageProvider,
-                          )
-                        : CircleAvatar(
-                            radius:
-                                MediaQuery.of(context).size.height * 150 / 1920,
+                            MediaQuery
+                                .of(context)
+                                .size
+                                .height * 150 / 1920,
                             backgroundColor: Colors.black45,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
                                 languageProvider1
-                                        .getTexts('no image was selected') ??
+                                    .getTexts('no image was selected') ??
                                     "",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontFamily: 'Uniform',
                                     color: white,
                                     fontSize:
-                                        MediaQuery.of(context).size.width *
-                                            90 /
-                                            1920),
+                                    MediaQuery
+                                        .of(context)
+                                        .size
+                                        .width *
+                                        90 /
+                                        1920),
                               ),
                             )),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Center(
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 82 / 1920,
-                      child: MaterialButton(
-                        onPressed: () async {},
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.add),
-                            Text(
-                              languageProvider1.getTexts("add the product") ??
-                                  '',
-                              style: TextStyle(
-                                color: Colors.black,
-                              ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: Container(
+                          height: MediaQuery
+                              .of(context)
+                              .size
+                              .height * 82 / 1920,
+                          child: MaterialButton(
+                            onPressed: () async {
+                              AddproductData v = AddproductData(
+                                 name: namecontroller.text,
+                                  price: pricecontroller.text,
+                                  image_name:productImage.proimage );
+                              await addprod.addproductPost(v);
+                              if (addprod.loading) {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        AlertDialog(
+                                          content: SpinKitCircle(
+                                            color: darkpurple,
+                                          ),
+                                        ));
+                              }
+                              if (addprod.isback) {
+                                Fluttertoast.showToast(
+                                    msg:
+                                    'your Product has been added successfully');
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        productslist(),
+                                  ),);
+                              }
+                            },
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.add),
+                                Text(
+                                  languageProvider1.getTexts(
+                                      "add the product") ??
+                                      '',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(54),
+                              color: Color(0xffffee32),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0xff565656),
+                                  spreadRadius: 0,
+                                  blurRadius: 0,
+                                  offset: Offset(2, 4),
+                                ),
+                              ]),
                         ),
                       ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(54),
-                          color: Color(0xffffee32),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0xff565656),
-                              spreadRadius: 0,
-                              blurRadius: 0,
-                              offset: Offset(2, 4),
-                            ),
-                          ]),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
-          ));
+            );
+          });
     });
   }
 }

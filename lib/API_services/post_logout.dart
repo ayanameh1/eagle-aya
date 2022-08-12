@@ -6,7 +6,7 @@ Future<http.Response?> logout() async {
   print("Bearer $responsedataToken");
   try{
   final logoutresponse = await http.post(
-    Uri.parse('http://192.168.1.107:8000/api/logout'),
+    Uri.parse('http://192.168.1.37:8000/api/logout'),
     headers: {
       "Content-Type": "application/json",
       "Authorization": "Bearer $responsedataToken",
