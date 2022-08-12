@@ -105,7 +105,7 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: currentTheme.isdark? Colors.grey[600]:Colors.grey[200],
+                          color: currentTheme.isdark? Colors.grey[600]:Colors.grey[500],
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black38,

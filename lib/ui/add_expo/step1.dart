@@ -5,11 +5,12 @@ import 'package:eagle/CN/post_addexpo_cn.dart';
 import 'package:eagle/components/components.dart';
 import 'package:eagle/components/confi.dart';
 import 'package:eagle/constants/colors.dart';
-import 'package:eagle/models/addexpo_body.dart';
 import 'package:eagle/ui/add_expo/step2.dart' as prefix;
+import 'package:eagle/ui/add_expo/step2.dart';
+import 'package:eagle/ui/homelayout.dart';
 import 'package:eagle/ui/invest/step_2.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' ;
+import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,18 @@ class AddExpoStep1Screen extends StatelessWidget {
     var sizeAware = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_rounded,
+              color: currentTheme.isdark ? Colors.white : Colors.black),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeLayout(),
+              ),
+            );
+          },
+        ),
         title: SizedBox(
           child: Image.asset('assets/images/Group 8.png'),
           width: sizeAware.width * 257 / 1080,
@@ -76,7 +89,7 @@ class _AddExpoStep1ScreenoState extends State<AddExpoStep1Screeno> {
               return Consumer<SingleImage>(builder: (context, oneimage, child) {
                 return Form(
                   key: _formkey,
-                  child: Column(children: [
+                  child: Column(mainAxisSize: MainAxisSize.max, children: [
                     SizedBox(
                       height: sizeAware.height * 130 / 1920,
                     ),
@@ -86,7 +99,7 @@ class _AddExpoStep1ScreenoState extends State<AddExpoStep1Screeno> {
                         decoration: BoxDecoration(
                             color: currentTheme.isdark
                                 ? Colors.grey[600]
-                                : Colors.grey[200],
+                                : Colors.grey[500],
                             borderRadius: BorderRadius.only(
                               topRight: Radius.circular(28),
                               topLeft: Radius.circular(28),
@@ -473,65 +486,66 @@ class _AddExpoStep1ScreenoState extends State<AddExpoStep1Screeno> {
                                   ),
                                 ],
                               ),
-                            )
-                          ]),
-                        ),
-                      ),
-                    ),
-                    // END of THIRD BOX
-                    SizedBox(
-                      height: 30,
-                    ),
-                    //THE BUTTON
-                    Container(
-                      width: MediaQuery.of(context).size.width * 359 / 1080,
-                      height: MediaQuery.of(context).size.height * 82 / 1920,
-                      child: MaterialButton(
-                        onPressed: () async {
-                          if (_formkey.currentState!.validate()) {
-                            String e = titlecontroller.text.trim();
-                            String l = desccontroller.text.trim();
-                            String m = faxcontroller.text.trim();
-                            String o = phonecontroller.text.trim();
-                            String n = emailcontroller.text.trim();
-                            // AddExpoData v = AddExpoData(
-                            //     title: e,
-                            //     description: l,
-                            //     fax_number: m,
-                            //     email: n,
-                            //     phone_number: o,
-                            //     image: oneimage.image!);
-                            await Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      prefix.AddExpoStep2Screen(e: e,l: l,o:o,n: n,i:oneimage.image),
+                            ),
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width *
+                                  359 /
+                                  1080,
+                              height: MediaQuery.of(context).size.height *
+                                  82 /
+                                  1920,
+                              child: MaterialButton(
+                                onPressed: () async {
+                                  if (_formkey.currentState!.validate()) {
+                                    String e = titlecontroller.text.trim();
+                                    String l = desccontroller.text.trim();
+                                    String m = faxcontroller.text.trim();
+                                    String o = phonecontroller.text.trim();
+                                    String n = emailcontroller.text.trim();
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => AddExpoStep2(
+                                          e: e,
+                                          l: l,
+                                          o: o,
+                                          n: n,
+                                          i: oneimage.image,
+                                          m: m,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Text(
+                                  "Next",
+                                  style: TextStyle(
+                                    color: black,
+                                    fontFamily: 'Uniform',
+                                  ),
                                 ),
-                              );
-                          }
-                        },
-                        child: Text(
-                          "Next",
-                          style: TextStyle(
-                            color: black,
-                            fontFamily: 'Uniform',
-                          ),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(54),
-                          color: yellow1,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0xff565656),
-                              spreadRadius: 0,
-                              blurRadius: 0,
-                              offset: Offset(2, 4),
+                              ),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(54),
+                                  color: yellow1,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(0xff565656),
+                                      spreadRadius: 0,
+                                      blurRadius: 0,
+                                      offset: Offset(2, 4),
+                                    ),
+                                  ]),
+                            ),
+                            SizedBox(
+                              height: 30,
                             ),
                           ]),
-                    ),
-                    SizedBox(
-                      height: 30,
+                        ),
+                      ),
                     ),
                   ]),
                 );
@@ -556,7 +570,7 @@ class _AddExpoStep1ScreenoState extends State<AddExpoStep1Screeno> {
                 fontFamily: 'Uniform',
                 fontWeight: FontWeight.bold,
                 fontSize: sizeAware.width * 60 / 1080,
-                color: currentTheme.isdark?Colors.white:Colors.black,
+                color: Colors.white,
                 //fontSize: 30,
               ),
             ),
