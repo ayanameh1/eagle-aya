@@ -458,7 +458,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                           if (expo.isback) {
                                             Fluttertoast.showToast(
                                                 msg:
-                                                    'your Expo has been added successfully');
+                                                'your Expo has been added successfully');
                                             await Navigator.push(
                                               context,
                                               MaterialPageRoute(
