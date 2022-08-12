@@ -19,6 +19,8 @@ import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../homelayout.dart';
+
 class AddExpoStep2 extends StatelessWidget {
   final e;
   final l;
@@ -444,6 +446,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                               end_date: '9/8/2000',
                                               price: '5',
                                               image: this.widget.i);
+                                          print(v.title);
                                           await expo.addexpoPost(v);
                                           if (expo.loading) {
                                             showDialog(
@@ -463,7 +466,7 @@ class _AddExpoStep2ScreenState extends State<AddExpoStep2Screen> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    AddExpoStep2Screen(),
+                                                    HomeLayout(),
                                               ),
                                             );
                                           }

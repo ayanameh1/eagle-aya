@@ -8,22 +8,21 @@ import 'dart:convert';
 
 
 Future<http.StreamedResponse?> postAddex(AddExpoData sdata) async {
-  //http.Response? request;
   http.StreamedResponse ?g;
   try{
     final request = await http.MultipartRequest(
       "POST",
-      Uri.parse('http://192.168.108.51:8000/api/add'),
+      Uri.parse("http://192.168.1.107:8000/api/addd"),
     );
     request.headers.addAll({
-      "Authorization": "Bearer $responsedataToken",
+      //"Authorization": "Bearer $responsedataToken",
       "Content-Type" : "multipart/form-data",
       "Accept":"application/json"
       //"Charset": "utf-8",
       //"Accept-Encoding" : "gzip, deflate, br",
     });
 
-    request.files.add(await http.MultipartFile.fromPath('image', sdata.image!.path));
+    request.files.add(await http.MultipartFile.fromPath('image_name', sdata.image!.path));
 
     request.fields['title'] = sdata.title!;
     request.fields['price'] = sdata.price!;
