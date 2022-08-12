@@ -10,7 +10,7 @@ import 'dart:io';
 import 'package:provider/provider.dart';
 
 import '../../components/confi.dart';
-import '../../components/config1.dart';
+import '../homelayout.dart';
 
 class InvestStep1Screen extends StatelessWidget {
   const InvestStep1Screen({Key? key}) : super(key: key);
@@ -18,22 +18,23 @@ class InvestStep1Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sizeAware = MediaQuery.of(context).size;
-    return  Directionality(
-        textDirection: languageProvider1.isEn ? TextDirection.ltr : TextDirection.rtl,
-        child:Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        title: SizedBox(
-          child: Image.asset('assets/images/Group 8.png'),
-          width: sizeAware.width * 257 / 1080,
-          height: sizeAware.height * 146 / 160,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_rounded,
+              color: currentTheme.isdark ? Colors.white : Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
+        title: Text('Invest',style: TextStyle(fontFamily: 'Uniform'),),
         shadowColor: Colors.black.withOpacity(0.5),
       ),
       body: ChangeNotifierProvider(
         create: (context) => MultiImages(),
         child: InvestStep1Screeno(),
       ),
-    ));
+    );
   }
 }
 
@@ -46,23 +47,23 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
   //list
   String? value;
   final items = [
-  languageProvider1.getTexts('Syria')??"",
-  languageProvider1.getTexts('Lebanon')??"",
-  languageProvider1.getTexts('Sudan')??"",
-  languageProvider1.getTexts('Russia')??"",
-  languageProvider1.getTexts('India')??"",
-  languageProvider1.getTexts('Armenia')??'',
-  languageProvider1.getTexts('Belarus')??"",
-  languageProvider1.getTexts('Brazil')??"",
-  languageProvider1.getTexts('Egypt')??"",
-  languageProvider1.getTexts('Iran')??"",
-  languageProvider1.getTexts('Jordan')??"",
-  languageProvider1.getTexts('Oman')??"",
-  languageProvider1.getTexts('palestine')??"",
-  languageProvider1.getTexts('Pakistan')??"",
-  languageProvider1.getTexts('Qatar')??"",
-  languageProvider1.getTexts('United-Arab-Emirates')??"",
-  languageProvider1.getTexts('Philippines')??""
+    'Syria',
+    'Lebanon',
+    'Sudan',
+    'Russia',
+    'India',
+    'Armenia',
+    'Belarus',
+    'Brazil',
+    'Egypt',
+    'Iran',
+    'Jordan',
+    'Oman',
+    'palestine',
+    'Pakistan',
+    'Qatar',
+    'United-Arab-Emirates',
+    'Philippines'
   ];
 
   final _formkey = GlobalKey<FormState>();
@@ -103,7 +104,9 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: currentTheme.isdark?Colors.grey[500]:Colors.grey[100],
+                        color: currentTheme.isdark
+                            ? Colors.grey[600]
+                            : Colors.grey[500],
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(28),
                           topLeft: Radius.circular(28),
@@ -135,7 +138,7 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                                     defaulTexttFormField(
                                       sizeaware1: sizeAwareh,
                                       controller: fnamecontroller,
-                                      label: languageProvider1.getTexts('First name')??"",
+                                      label: 'First name',
                                       validate: (String? value) {
                                         if (value == null ||
                                             value.trim().length == 0) {
@@ -591,7 +594,7 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
             'Step 1',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: currentTheme.isdark?Colors.white:Colors.black,
+              color:Colors.white,
               fontFamily: 'Uniform',
               fontWeight: FontWeight.bold,
               fontSize: sizeAware.width * 60 / 1080,

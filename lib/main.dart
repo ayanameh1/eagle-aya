@@ -91,12 +91,8 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
       theme:ThemeData(
         primaryColor: const Color(0xffffd100),
         primarySwatch:Colors.grey,
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Color(0xfff1f1f1),
         appBarTheme: AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.white,
-            statusBarBrightness: Brightness.light,
-          ),
           backgroundColor: Colors.white,
           titleTextStyle: TextStyle(
             color: Colors.black,
@@ -114,7 +110,7 @@ class _MaterialAppWithThemeState extends State<MaterialAppWithTheme> {
       ),
       darkTheme: ThemeData.dark(),
       themeMode: currentTheme.currentTheme(),
-      initialRoute: 'welcome',
+      initialRoute: 'login',
       routes: {
         'welcome': (context) => WelcomeScreen(),
         'login': (context) => loginScreen(),

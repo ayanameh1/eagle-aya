@@ -6,17 +6,26 @@ import '../../components/confi.dart';
 import '../../widget/bottonHeader.dart';
 import '../homepage.dart';
 
-class InvestStep2Screen extends StatefulWidget {
+class InvestStep2Screen extends StatelessWidget {
+  const InvestStep2Screen({Key? key}) : super(key: key);
+
   @override
-  State<InvestStep2Screen> createState() => _InvestStep2ScreenState();
+  Widget build(BuildContext context) {
+    return InvestStep2Screeno();
+  }
 }
 
-class _InvestStep2ScreenState extends State<InvestStep2Screen> {
+class InvestStep2Screeno extends StatefulWidget {
+  @override
+  State<InvestStep2Screeno> createState() => _InvestStep2ScreenoState();
+}
+
+class _InvestStep2ScreenoState extends State<InvestStep2Screeno> {
   //date
   DateTime? date1, date2;
   String getText() {
     if (date1 == null) {
-      return languageProvider1.getTexts('From')??"";
+      return languageProvider1.getTexts('From') ?? "";
     } else {
       return DateFormat('MM/dd/yyyy').format(date1!);
     }
@@ -24,7 +33,7 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
 
   String getText2() {
     if (date2 == null) {
-      return languageProvider1.getTexts('To')??"";
+      return languageProvider1.getTexts('To') ?? "";
     } else {
       return DateFormat('MM/dd/yyyy').format(date2!);
     }
@@ -36,15 +45,13 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.keyboard_arrow_left)),
-        title: SizedBox(
-          child: Image.asset('assets/images/Group 8.png'),
-          width: sizeAware.width * 257 / 1080,
-          height: sizeAware.height * 146 / 160,
+          icon: Icon(Icons.arrow_back_ios_rounded,
+              color: currentTheme.isdark ? Colors.white : Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
+        title: Text('Invest',style: TextStyle(fontFamily: 'Uniform'),),
         shadowColor: Colors.black.withOpacity(0.5),
       ),
       body: Stack(children: [
@@ -52,13 +59,15 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
           child: SafeArea(
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              SizedBox( height: sizeAware.height * 130 / 1920),
+              SizedBox(height: sizeAware.height * 130 / 1920),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Container(
                   height: sizeAware.height,
-                  decoration:  BoxDecoration(
-                      color: currentTheme.isdark? Colors.grey[600]:Colors.grey[200],
+                  decoration: BoxDecoration(
+                      color: currentTheme.isdark
+                          ? Colors.grey[600]
+                          : Colors.grey[500],
                       borderRadius: BorderRadius.only(
                         topRight: Radius.circular(28),
                         topLeft: Radius.circular(28),
@@ -87,7 +96,8 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
                             child: Column(
                               children: [
                                 Text(
-                            languageProvider1.getTexts('Choose booth')??"",
+                                  languageProvider1.getTexts('Choose booth') ??
+                                      "",
                                   style: TextStyle(
                                     fontFamily: 'Uniform',
                                     fontWeight: FontWeight.bold,
@@ -105,7 +115,9 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          color: currentTheme.isdark? Colors.grey[600]:Colors.grey[500],
+                          color: currentTheme.isdark
+                              ? Colors.grey[600]
+                              : Colors.grey[500],
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black38,
@@ -119,7 +131,7 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
                             Padding(
                               padding: const EdgeInsets.all(6),
                               child: Text(
-                                languageProvider1.getTexts( 'Time period')??"",
+                                languageProvider1.getTexts('Time period') ?? "",
                                 style: TextStyle(
                                   fontFamily: 'Uniform',
                                   fontWeight: FontWeight.bold,
@@ -174,7 +186,7 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
                               );
                             },
                             child: Text(
-                              languageProvider1.getTexts("Apply")??"",
+                              languageProvider1.getTexts("Apply") ?? "",
                               style: TextStyle(
                                 color: black,
                                 fontFamily: 'Uniform',
@@ -258,7 +270,8 @@ class _InvestStep2ScreenState extends State<InvestStep2Screen> {
     );
 
     if (newDate == null) {
-      showSnackBar(context, languageProvider1.getTexts('please enter the date')??"");
+      showSnackBar(
+          context, languageProvider1.getTexts('please enter the date') ?? "");
     }
 
     setState(() => date2 = newDate);

@@ -12,19 +12,21 @@ class LoginPost extends ChangeNotifier{
   bool problem =false;
   String message = '';
   Future LogPost(LoginBody sdata) async {
-    loading =true;
+    loading = true;
     notifyListeners();
     http.Response? sp = await postLogin(sdata);
     if(sp!.statusCode==200 ||sp!.statusCode==201){
       isback= true;
       notifyListeners();
+      loading = false;
+      notifyListeners();
     }
-    if(sp!.statusCode==400){
+    if(sp!.statusCode==400 ||sp!.statusCode==401){
+      loading = false;
+      notifyListeners();
       problem= true;
       notifyListeners();
     }
-    loading = false;
-    notifyListeners();
   }
 
 }
