@@ -175,8 +175,6 @@ class LanguageProvider extends ChangeNotifier {
     'please enter the date':'please enter the date',
 
 
-
-
     'Write a review': 'Write a review',
 
     'Our application  is  meant to make your life easier \n here you can find all the exhibitions you want, visit them and participate in them \n also  you can add your own expo and manage it on the tip of your finger\n':

@@ -8,6 +8,8 @@ import 'package:eagle/ui/homepage.dart';
 import 'package:eagle/ui/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:eagle/CN/passwordvisiblity.dart';
 
@@ -249,12 +251,14 @@ class _login1screenState extends State<login1screen> {
                                       LoginBody(email: n, password: e);
                                   await Loginpost.LogPost(s);
                                   if (Loginpost.isback) {
-                                    Navigator.push(
+                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => HomeLayout(),
                                       ),
                                     );
+                                     await Fluttertoast.showToast(
+                                        msg: 'you have logged in successfully');
                                   }
                                   if (Loginpost.problem) {
                                     showDialog(

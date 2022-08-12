@@ -10,6 +10,7 @@ import 'dart:io';
 import 'package:provider/provider.dart';
 
 import '../../components/confi.dart';
+import '../homelayout.dart';
 
 class InvestStep1Screen extends StatelessWidget {
   const InvestStep1Screen({Key? key}) : super(key: key);
@@ -19,11 +20,14 @@ class InvestStep1Screen extends StatelessWidget {
     var sizeAware = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: SizedBox(
-          child: Image.asset('assets/images/Group 8.png'),
-          width: sizeAware.width * 257 / 1080,
-          height: sizeAware.height * 146 / 160,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_rounded,
+              color: currentTheme.isdark ? Colors.white : Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
+        title: Text('Invest',style: TextStyle(fontFamily: 'Uniform'),),
         shadowColor: Colors.black.withOpacity(0.5),
       ),
       body: ChangeNotifierProvider(
@@ -100,7 +104,9 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: currentTheme.isdark?Colors.grey[500]:Colors.grey[100],
+                        color: currentTheme.isdark
+                            ? Colors.grey[600]
+                            : Colors.grey[500],
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(28),
                           topLeft: Radius.circular(28),
@@ -588,7 +594,7 @@ class _InvestStep1ScreenoState extends State<InvestStep1Screeno> {
             'Step 1',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: currentTheme.isdark?Colors.white:Colors.black,
+              color:Colors.white,
               fontFamily: 'Uniform',
               fontWeight: FontWeight.bold,
               fontSize: sizeAware.width * 60 / 1080,
